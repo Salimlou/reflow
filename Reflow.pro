@@ -1,4 +1,4 @@
-QT += core gui widgets opengl xml
+QT += core gui widgets xml
 CONFIG += c++11
 TARGET = Reflow
 TEMPLATE = app
@@ -288,4 +288,9 @@ macx {
   DEFINES += __MACOSX_CORE__
   DEFINES += MACOSX
   LIBS += -lpthread -L/usr/local/lib -ljack -framework CoreAudio -framework CoreFoundation
+}
+linux-clang {
+    DEFINES += LINUX __LINUX_PULSE__
+    QMAKE_CXXFLAGS += -std=c++11
+    LIBS += -lpulse -lpulse-simple -ljack -lpthread -lrt
 }

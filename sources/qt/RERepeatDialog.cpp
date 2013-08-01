@@ -3,6 +3,8 @@
 
 #include "REBar.h"
 
+#include <QPushButton>
+
 RERepeatDialog::RERepeatDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RERepeatDialog)
