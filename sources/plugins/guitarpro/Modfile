@@ -1,0 +1,5 @@
+@name = "Guitar Pro I/O"
+
+source_files "*.cpp"
+header_files "*.h"
+

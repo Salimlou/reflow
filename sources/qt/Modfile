@@ -1,0 +1,7 @@
+@name = "Reflow Qt"
+
+platform :qt do
+  source_files "*.cpp"
+  header_files "*.h"
+  form_files "*.ui"
+end

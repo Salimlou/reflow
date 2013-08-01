@@ -1,0 +1,6 @@
+@name = "RtAudio"
+
+platform :qt do
+  source_files "rtaudio/RtAudio.cpp"
+  header_files "rtaudio/RtAudio.h"
+end

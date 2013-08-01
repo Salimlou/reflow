@@ -1,0 +1,110 @@
+<grips>
+    <!-- OPEN CHORDS -->
+    <grip form="maj"    pitch="C" frets="x 3 2 0 1 0" />
+    <grip form="maj"    pitch="C" frets="x 3 2 0 1 4" />
+    
+    <grip form="maj"    pitch="D" frets="x x 0 2 3 2" />
+    <grip form="min"    pitch="D" frets="x x 0 2 3 1" />
+    <grip form="7"      pitch="D" frets="x x 0 2 1 0" />
+    <grip form="min7"   pitch="D" frets="x x 0 2 1 1" />
+    <grip form="maj7"   pitch="D" frets="x x 0 2 2 2" />
+    <grip form="min6"   pitch="D" frets="x x 0 2 0 1" />
+
+    <grip form="maj"    pitch="E" frets="0 2 2 1 0 0" />
+    <grip form="min"    pitch="E" frets="0 2 2 0 0 0" />
+    <grip form="7"      pitch="E" frets="0 2 0 1 0 0" />
+    <grip form="min7"   pitch="E" frets="0 2 0 0 0 0" />
+    <grip form="maj7"   pitch="E" frets="0 2 1 1 0 0" />
+
+    <grip form="7"      pitch="F" frets="1 0 1 2 x x" />
+    <grip form="maj7"   pitch="F" frets="x x 3 2 1 0" />
+
+    <grip form="min6"   pitch="Gb" frets="2 0 1 2 2 x" />
+
+    <grip form="maj"    pitch="G" frets="3 2 0 0 0 3" />
+    <grip form="min"    pitch="G" frets="3 1 0 0 3 3" />
+
+    <grip form="maj"    pitch="A" frets="x 0 2 2 2 0" />
+    <grip form="7"      pitch="A" frets="x 0 2 0 2 0" />
+    <grip form="min7"   pitch="A" frets="x 0 2 0 1 0" />
+    <grip form="maj7"   pitch="A" frets="x 0 2 1 2 0" />
+
+    <grip form="min6"   pitch="B" frets="x 2 0 1 0 2" />    
+    
+    <!-- TRIADS -->
+    <grip form="maj" pitch="C" frets="8 10 10 9 8 8" />
+    <grip form="maj" pitch="C" frets="x 3 5 5 5 3" />
+    <grip form="maj" pitch="C" frets="x x 10 12 13 12" />
+    <grip form="maj" pitch="C" frets="8 7 6 6 6 8" />
+    
+    <grip form="min" pitch="C" frets="x x x 5 4 3" />
+    <grip form="min" pitch="C" frets="x 3 5 5 4 3" />
+    <grip form="min" pitch="C" frets="x x 10 8 8 8" />
+    <grip form="min" pitch="C" frets="8 10 10 8 8 8" />
+
+    <grip form="dim" pitch="C" frets="x 3 4 5 4 x" />
+    <grip form="dim" pitch="C" frets="8 9 10 8 x x" />
+    <grip form="dim" pitch="C" frets="x x 10 8 7 8" />
+
+    <grip form="aug" pitch="C" frets="x 3 2 1 1 x" />
+    <grip form="aug" pitch="C" frets="8 7 6 5 x x" />
+    <grip form="aug" pitch="C" frets="x x 10 9 9 8" />    
+    
+    <grip form="sus2" pitch="C" frets="x 3 5 5 3 3" />
+    <grip form="sus2" pitch="C" frets="8 10 10 8 8 10" />    
+    <grip form="sus2" pitch="C" frets="x x 10 12 13 10" />    
+
+    <grip form="sus4" pitch="C" frets="x 3 5 5 6 3" />
+    <grip form="sus4" pitch="C" frets="8 8 10 10 8 8" />
+    <grip form="sus4" pitch="C" frets="8 10 10 10 8 8" />
+    
+	<!-- SEVENTH -->
+	<grip form="7"      pitch="C" frets="x x 10 12 11 12" />
+	<grip form="7"      pitch="C" frets="8 10 8 9 8 8" />
+	<grip form="7"      pitch="C" frets="8 7 8 9 x x" />
+    <grip form="7"      pitch="C" frets="x 3 5 3 5 3" />
+    <grip form="7"      pitch="C" frets="x 3 2 3 1 x" />
+	<grip form="min7"   pitch="C" frets="x x 10 12 11 11" />
+    <grip form="min7"   pitch="C" frets="x x 8 8 8 8" />
+    <grip form="min7"   pitch="C" frets="x 3 5 3 4 3" />
+    <grip form="min7"   pitch="C" frets="8 10 8 8 8 8" />
+    <grip form="maj7"   pitch="C" frets="x 3 5 4 5 3" />
+    <grip form="maj7"   pitch="C" frets="x x 10 12 12 12" />
+    <grip form="maj7"   pitch="C" frets="x x 10 9 8 7" />
+    <grip form="maj7"   pitch="C" frets="8 10 9 9 8 8" />
+    <grip form="m7b5"   pitch="C" frets="x 3 4 3 4 x" />
+    <grip form="m7b5"   pitch="C" frets="8 x 8 8 7 x" />
+    <grip form="m7b5"   pitch="C" frets="x x 10 11 11 11" />
+	<grip form="dim7"   pitch="C" frets="x 3 4 2 4 x" />    
+	<grip form="dim7"   pitch="C" frets="8 x 7 8 7 x" />
+	<grip form="dim7"   pitch="C" frets="x x 10 11 10 11" />
+    
+    <!-- SIXTH -->
+    <grip form="maj6"   pitch="C" frets="8 x 7 9 8 x" />
+    <grip form="maj6"   pitch="C" frets="x x 10 12 10 12" />
+    <grip form="min6"   pitch="C" frets="8 6 7 8 8 x" />
+    <grip form="min6"   pitch="C" frets="x x 10 12 10 11" />
+    
+    <!-- NINTH -->
+    <grip form="maj9"   pitch="C" frets="x 3 2 4 3 x" />
+    <grip form="maj9"   pitch="C" frets="8 7 9 7 x x" />
+    <grip form="maj9"   pitch="C" frets="x x 10 7 8 7" />
+    <grip form="m9"     pitch="C" frets="x 3 1 3 3 x" />
+    <grip form="m9"     pitch="C" frets="8 6 8 7 x x" />
+    <grip form="m9"     pitch="C" frets="8 10 8 8 8 10" />
+    <grip form="9"      pitch="C" frets="x 3 2 3 3 3" />
+    <grip form="9"      pitch="C" frets="8 10 8 9 8 10" />
+    <grip form="9"      pitch="C" frets="8 7 8 7 8 x" />
+    <grip form="9"      pitch="C" frets="x x 8 7 8 8" />
+    
+    <!-- ELEVENTH -->
+    <grip form="11"     pitch="C" frets="x 3 3 3 3 3" />
+    <grip form="11"     pitch="C" frets="8 x 8 7 6 6" />
+    <grip form="11"     pitch="C" frets="x x 10 10 11 10" />
+    
+    <!-- THIRTEENTH -->
+    <grip form="13"     pitch="C" frets="x 3 2 3 3 5" />
+    <grip form="13"     pitch="C" frets="8 x 8 7 5 5" />
+    <grip form="13"     pitch="C" frets="8 x 8 9 10 10" />
+    
+</grips>

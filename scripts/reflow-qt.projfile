@@ -1,0 +1,33 @@
+@props = 
+{
+  :platform => "Qt", 
+  :out_dir => "#{root_dir}",
+  :product_name => 'Reflow', 
+  :bundle_identifier => "com.gargant.reflow.qt", 
+  :bundle_version => '1.7.2', 
+  :build_number => 18, 
+  :copyright => "Copyright \u00A9 2011-2013 Gargant Studios. All rights reserved.",
+  :header_dirs => [
+    "#{root_dir}/depends/rapidjson/include", 
+    "#{root_dir}/depends/rtaudio"
+  ],
+  :library_dirs => [], 
+  :linker_flags => [], 
+  :defines => {
+    :all => [
+      'REFLOW_QT', 
+      'REFLOW_JACK',
+      'REFLOW_NO_ICLOUD',
+      'REFLOW_NO_FAVORITES',
+      'REFLOW_NO_PYTHON',
+      'BOOST_MEM_FN_ENABLE_STDCALL'
+    ],
+    :debug => ['REFLOW_VERBOSE'],
+    :release => []
+  }
+}
+
+use_module "**/Modfile"
+use_module "depends/rtaudio.modfile"
+
+@stubs = []

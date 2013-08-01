@@ -1,0 +1,5 @@
+@name = :Reflow
+
+source_files "*.cpp"
+header_files "*.h"
+asset_files "*.{xml,png,svg}"

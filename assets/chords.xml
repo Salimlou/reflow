@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chords>
+	<!-- TRIADS -->
+    <chord id="maj"     formula="1,3,5" type="triad" name="Major" symbols="maj M Δ" />
+	<chord id="min"     formula="1,b3,5" type="triad" name="Minor" symbols="min m -" />
+	<chord id="dim"     formula="1,b3,b5" type="triad" name="Diminished" symbols="dim ° m(♭5)" />
+	<chord id="aug"     formula="1,3,#5" type="triad" name="Augmented" symbols="aug + maj(♯5) Δ♯5" />
+	<chord id="maj(b5)" formula="1,3,b5" type="triad" name="Major flat 5th" symbols="(♭5) maj(♭5)" />
+	<chord id="sus4"    formula="1,4,5" type="triad" name="Suspended 4th" symbols="sus4 sus" />
+	<chord id="sus2"    formula="1,2,5" type="triad" name="Suspended 2nd" symbols="sus2" />
+	
+	<!-- SPECIAL -->
+	<chord id="5"       formula="1,5" type="special" name="Power Chord" symbols="5" />
+	
+	<!-- SEVENTH -->
+    <chord id="maj7"    formula="1,3,(5),7" type="7th" name="Major 7th" symbols="maj7 M7 Δ7" />
+    <chord id="min7"    formula="1,b3,(5),b7" type="7th" name="Minor 7th" symbols="min7 m7 -7" />
+    <chord id="7"       formula="1,3,(5),b7" type="7th" name="Dominant 7th" symbols="7 dom7" />
+    <chord id="dim7"    formula="1,b3,b5,bb7" type="7th" name="Diminished 7th" symbols="dim7 °7" />
+    <chord id="m7b5"    formula="1,b3,b5,b7" type="7th" name="Half Diminished 7th" symbols="m7♭5 ø min7♭5 -7♭5" />
+    <chord id="m(maj7)"  formula="1,b3,(5),7" type="7th" name="Minor/Major 7th" symbols="m(maj7) m/maj7 mΔ7 -Δ7 mM7 mmaj7" />
+	<chord id="7sus2"   formula="1,2,5,b7"   type="7th" name="Dominant 7th, Suspendend 2nd" symbols="7sus2" />
+	<chord id="7sus4"   formula="1,4,5,b7"   type="7th" name="Dominant 7th, Suspendend 4th" symbols="7sus4 7sus" />
+    
+	<!-- SIXTH -->
+	<chord id="maj6"	formula="1,3,(5),6" type="6th" name="Major 6th" symbols="6 maj6 M6" />
+	<chord id="min6"	formula="1,b3,(5),6" type="6th" name="Minor 6th" symbols="m6 min6 -6" />
+	<chord id="6/9"	    formula="1,3,(5),6,9" type="6th" name="Major 6/9" symbols="6/9 69 6add9" />
+	<chord id="m6/9"	formula="1,b3,(5),6,9" type="6th" name="Minor 6/9" symbols="m6/9 m69 m6add9" />
+	<chord id="6/9#11"	formula="1,3,(5),6,9,#11" type="6th" name="Major 6/9, sharp 11th" symbols="6/9♯11 69♯11 6add9♯11" />
+	
+	<!-- ADD -->
+	<chord id="add9"	formula="1,3,(5),9" type="add" name="Major added 9th" symbols="add9 maj(add9) Madd9 Δadd9 add2 maj(add2) Madd2 Δadd2 2" />
+	<chord id="madd9"	formula="1,b3,(5),9" type="add" name="Minor added 9th" symbols="madd9 -add9 madd2 -add2 m2" />
+	<chord id="add11"	formula="1,3,(5),11" type="add" name="Major added 11th" symbols="add11 maj(add11) Madd11 Δadd11 add4 maj(add4) Madd4 Δadd4" />
+	<chord id="madd11"	formula="1,b3,(5),11" type="add" name="Minor added 11th" symbols="madd11 -add11 madd4 -add4" />
+    
+    <!-- NON DOMINANT SEVENTH -->
+    <chord id="maj7b5"      formula="1,3,b5,7"      type="7th" name="Major 7th, flat 5th" symbols="maj7♭5 M7♭5 Δ7♭5 "/>
+	<chord id="maj7add11"   formula="1,3,(5),7,11"  type="7th" name="Major 7th, added 11th" symbols="maj7add11 M7add11 Δ7add11"/>
+  	<chord id="maj7#11"     formula="1,3,(5),7,#11" type="7th" name="Major 7th, sharp 11th" symbols="maj7♯11 M7♯11 Δ7♯11"/>
+    <chord id="maj7add13"   formula="1,3,(5),7,13"  type="7th" name="Major 7th, added 13th" symbols="maj7add13 M7add13 Δ7add13"/>
+    <chord id="m7sus4"      formula="1,b3,4,5,b7"   type="7th" name="Minor 7th, added sus 4th" symbols="m7sus4" />
+    <chord id="m7#5"        formula="1,b3,#5,b7"    type="7th" name="Minor 7th, sharp 5th" symbols="m7♯5" />
+    <chord id="m7add11"     formula="1,b3,(5),b7,11" type="7th" name="Minor 7th, added 11th" symbols="m7add11 min7add11 -7add11"/>
+    <chord id="m7add13"     formula="1,b3,(5),b7,13" type="7th" name="Minor 7th, added 13th" symbols="m7add13 min7add13 -7add13"/>
+    <chord id="m7b13"       formula="1,b3,5,b7,b13" type="7th" name="Minor 7th, flat 13th" symbols="m7♭13 min7♭13 -7♭13"/>
+    <chord id="dim/maj7"    formula="1,b3,b5,7"     type="7th" name="Diminished Major 7th" symbols="dim/maj7 °/maj7" />    
+    <chord id="m7b9b5"      formula="1,b3,b5,b7,b9" type="7th" name="Half diminished 7th, flat 9th" symbols="m7♭9♭5" />
+    <chord id="7b9sus4"     formula="1,4,5,b7,b9" type="7th" name="Suspended Dominant 7th, flat 9th" symbols="7♭9sus4 7sus4♭9" />
+    <chord id="maj7#5"      formula="1,3,#5,7" type="7th" name="Augmented Major 7th" symbols="maj7♯5" />
+    
+    <!-- NINTH -->
+    <chord id="maj9"        formula="1,3,(5),7,9"   type="9th" name="Major 9th" symbols="maj9 M9 Δ9"/>
+    <chord id="maj9#11"     formula="1,3,(5),7,9,#11" type="9th" name="Major 9th, sharp 11th" symbols="maj9♯11 M9♯11 Δ9♯11"/>
+    <chord id="m9"          formula="1,b3,(5),b7,9" type="9th" name="Minor 9th" symbols="m9 -9" />
+    <chord id="9"           formula="1,3,(5),b7,9" type="9th" name="Dominant 9th" symbols="9 dom9"/>
+    <chord id="m9b5"        formula="1,b3,b5,b7,9" type="9th" name="Half diminished 9th" symbols="m9♭5" />
+    <chord id="m(maj9)"     formula="1,b3,(5),7,9" type="9th" name="Minor/Major 9th" symbols="m(maj9) m/maj9" />
+    <chord id="9sus4"       formula="1,4,5,b7,9" type="9th" name="Suspended Dominant 9th" symbols="9sus4 9sus"/>
+    <chord id="maj9#5"      formula="1,3,#5,7,9" type="9th" name="Augmented Major 9th" symbols="maj9♯5" />
+    
+    <!-- ELEVENTH -->
+    <chord id="maj11"       formula="1,(3),(5),7,(9),11" type="11th" name="Major 11th" symbols="maj11 M11 Δ11"/>
+    <chord id="m11"         formula="1,b3,(5),b7,(9),11" type="11th" name="Minor 11th" symbols="m11 min11 -11"/>
+    <chord id="11"          formula="1,(3),(5),b7,(9),11" type="11th" name="Dominant 11th" symbols="11 dom11"/>
+    <chord id="dim11"       formula="1,b3,b5,bb7,b9,b11" type="11th" name="Diminished 11th" symbols="dim11 °11"/>
+    <chord id="m11b5b9"     formula="1,b3,b5,b7,b9,11" type="11th" name="Half Diminished 11th" symbols="m11♭5♭9 ø11"/>
+    <chord id="m(maj11)"    formula="1,b3,(5),7,(9),11" type="11th" name="Minor/Major 11th" symbols="m(maj11)"/>
+    <chord id="maj11#5"     formula="1,3,#5,7,(9),11" type="11th" name="Augmented Major 11th" symbols="maj11♯5"/>
+    
+    <!-- THIRTEENTH -->
+    <chord id="maj13"       formula="1,3,(5),7,(9),(11),13" type="13th" name="Major 13th" symbols="maj13 M13 Δ13"/>
+    <chord id="maj13#5"     formula="1,3,#5,7,(9),(11),13"  type="13th" name="Major 13th, sharp 5th" symbols="maj13♯5"/>
+    <chord id="maj13#11"    formula="1,3,(5),7,(9),#11,13"  type="13th" name="Major 13th, sharp 11th" symbols="maj13♯11 M13♯11 Δ13♯11"/>
+    <chord id="m13"         formula="1,b3,(5),b7,(9),(11),13" type="13th" name="Minor 13th" symbols="m13 min13 -13"/>
+    <chord id="13"          formula="1,(3),(5),b7,(9),(11),13" type="13th" name="Dominant 13th" symbols="13 dom13"/>
+    <chord id="m13b5"       formula="1,b3,b5,b7,9,11,13"    type="13th" name="Half diminished 13th" symbols="m13♭5"/>    
+    <chord id="m(maj13)"    formula="1,b3,(5),7,(9),(11),13" type="13th" name="Minor/Major 13th" symbols="m(maj13)"/>
+    <chord id="13sus4"      formula="1,4,5,b7,(9),13"       type="13th" name="Suspended Dominant 13th" symbols="13sus4 13sus"/>
+    <chord id="13b9sus4"    formula="1,4,5,b7,b9,13"        type="13th" name="Suspended Dominant 13th, flat 9th" symbols="13♭9sus4 13sus4♭9"/>/>
+    
+    <!-- ALTERED DOMINANTS -->
+    <chord id="7b5"         formula="1,3,b5,b7"         type="7th" name="Dominant 7th, flat 5th" symbols="7♭5" />
+    <chord id="7#5"         formula="1,3,#5,b7"         type="7th" name="Dominant 7th, sharp 5th" symbols="7♯5" />
+    <chord id="7b9"         formula="1,3,(5),b7,b9"     type="7th" name="Dominant 7th, flat 9th" symbols="7♭9" />
+    <chord id="7b9b5"       formula="1,(3),b5,b7,b9"    type="7th" name="Dominant 7th, flat 9th, flat 5th" symbols="7♭9♭5" />
+    <chord id="7b9#5"       formula="1,(3),#5,b7,b9"    type="7th" name="Dominant 7th, flat 9th, sharp 5th" symbols="7♭9♯5" /> 
+    <chord id="7b9#11"      formula="1,(3),(5),b7,b9,#11" type="7th" name="Dominant 7th, flat 9th, sharp 11th" symbols="7♭9♯11" />
+    <chord id="7b9b13"      formula="1,3,(5),b7,b9,b13" type="7th" name="Dominant 7th, flat 9th, flat 13th" symbols="7♭9♭13" />
+    <chord id="7#9"         formula="1,3,(5),b7,#9"     type="7th" name="Dominant 7th, sharp 9th" symbols="7♯9" />
+    <chord id="7#9b5"       formula="1,3,b5,b7,#9"      type="7th" name="Dominant 7th, sharp 9th, flat 5th" symbols="7♯9♭5" />
+    <chord id="7#9#5"       formula="1,3,#5,b7,#9"      type="7th" name="Dominant 7th, sharp 9th, sharp 5th" symbols="7♯9♯5" />
+    <chord id="7#9#11"      formula="1,3,(5),b7,#9,#11" type="7th" name="Dominant 7th, sharp 9th, sharp 11th" symbols="7♯9♯11" />
+    <chord id="7#9#11b13"   formula="1,3,b7,#9,#11,b13" type="7th" name="Dominant 7th, sharp 9th, sharp 11th, flat 13th" symbols="7♯9♯11♭13" />
+    <chord id="7#9b13"      formula="1,3,(5),b7,#9,b13" type="7th" name="Dominant 7th, sharp 9th, flat 13th" symbols="7♯9♭13" />
+    <chord id="7#11"        formula="1,3,(5),b7,#11"    type="7th" name="Dominant 7th, sharp 11th" symbols="7♯11" />
+    <chord id="7b13"        formula="1,3,(5),b7,b13"    type="7th" name="Dominant 7th, flat 13th" symbols="7♭13" />
+    <chord id="9b5"         formula="1,(3),b5,b7,9"         type="9th" name="Dominant 9th, flat 5th" symbols="9♭5" />    
+    <chord id="9#5"         formula="1,(3),#5,b7,9"         type="9th" name="Dominant 9th, sharp 5th" symbols="9♯5" />    
+    <chord id="9#11"        formula="1,(3),(5),b7,9,#11"         type="9th" name="Dominant 9th, sharp 11th" symbols="9♯11" />    
+    <chord id="9b13"        formula="1,3,(5),b7,9,b13"         type="9th" name="Dominant 9th, flat 13th" symbols="9♭13" />    
+    <chord id="11#5"        formula="1,3,#5,b7,(9),11"         type="11th" name="Dominant 11th, sharp 5th" symbols="11♯5"/>    
+    <chord id="11b9"        formula="1,(3),(5),b7,b9,11"         type="11th" name="Dominant 11th, flat 9th" symbols="11♭9"/>    
+    <chord id="13b5"        formula="1,3,b5,b7,(9),(11),13"         type="13th" name="Dominant 13th, flat 5th" symbols="13♭5"/>    
+    <chord id="13#5"        formula="1,3,#5,b7,(9),(11),13"         type="13th" name="Dominant 13th, sharp 5th" symbols="13♯5"/>    
+    <chord id="13b9"        formula="1,(3),(5),b7,b9,(11),13"         type="13th" name="Dominant 13th, flat 9th" symbols="13♭9"/>    
+    <chord id="13b9b5"      formula="1,(3),b5,b7,b9,(11),13"         type="13th" name="Dominant 13th, flat 9th, flat 5th" symbols="13♭9♭5"/>    
+    <chord id="13b9#11"     formula="1,(3),(5),b7,b9,#11,13"         type="13th" name="Dominant 13th, flat 9th, sharp 11th" symbols="13♭9♯11"/>    
+    <chord id="13#11"       formula="1,3,(5),b7,(9),#11,13"         type="13th" name="Dominant 13th, sharp 11th" symbols="13♯11"/>    
+        
+</chord>

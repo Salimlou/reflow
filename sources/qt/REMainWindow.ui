@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>REMainWindow</class>
+ <widget class="QMainWindow" name="REMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>REMainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuScore">
+    <property name="title">
+     <string>Score</string>
+    </property>
+    <addaction name="actionTracksAndParts"/>
+    <addaction name="separator"/>
+    <addaction name="actionTimeSignature"/>
+    <addaction name="actionKeySignature"/>
+    <addaction name="actionClef"/>
+    <addaction name="actionRehearsalSign"/>
+    <addaction name="actionRepeats"/>
+    <addaction name="separator"/>
+    <addaction name="actionTempoMarker"/>
+    <addaction name="actionText"/>
+    <addaction name="actionChordName"/>
+    <addaction name="actionChordDiagram"/>
+    <addaction name="actionSystemBreak"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuScore"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionTracksAndParts">
+   <property name="text">
+    <string>Tracks and Parts</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionTimeSignature">
+   <property name="text">
+    <string>Time Signature</string>
+   </property>
+  </action>
+  <action name="actionKeySignature">
+   <property name="text">
+    <string>Key Signature</string>
+   </property>
+  </action>
+  <action name="actionClef">
+   <property name="text">
+    <string>Clef</string>
+   </property>
+  </action>
+  <action name="actionRehearsalSign">
+   <property name="text">
+    <string>Rehearsal Sign</string>
+   </property>
+  </action>
+  <action name="actionRepeats">
+   <property name="text">
+    <string>Repeats</string>
+   </property>
+  </action>
+  <action name="actionTempoMarker">
+   <property name="text">
+    <string>Tempo Marker</string>
+   </property>
+  </action>
+  <action name="actionText">
+   <property name="text">
+    <string>Text</string>
+   </property>
+  </action>
+  <action name="actionChordName">
+   <property name="text">
+    <string>Chord Name</string>
+   </property>
+  </action>
+  <action name="actionChordDiagram">
+   <property name="text">
+    <string>Chord Diagram</string>
+   </property>
+  </action>
+  <action name="actionSystemBreak">
+   <property name="text">
+    <string>System Break</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
