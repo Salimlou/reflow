@@ -11,6 +11,7 @@ class REQtPalette;
 class REDocumentView;
 class RESequencerWidget;
 class RETransportWidget;
+class REPianoWidget;
 
 namespace Ui {
     class REMainWindow;
@@ -50,6 +51,7 @@ private:
     REQtPalette* _palette;
     RESequencerWidget* _sequencerWidget;
     RETransportWidget* _transportWidget;
+    REPianoWidget* _pianoWidget;
     QListView* _partListView;
     QListView* _sectionListView;
 	QAction* _undoAction;

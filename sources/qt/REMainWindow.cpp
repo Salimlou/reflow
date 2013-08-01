@@ -8,6 +8,7 @@
 #include "RETrackListModel.h"
 #include "RETransportWidget.h"
 #include "RESequencerWidget.h"
+#include "REPianoWidget.h"
 
 #include <RESong.h>
 #include <RESongController.h>
@@ -86,6 +87,8 @@ REMainWindow::REMainWindow(QWidget *parent) :
 
     _transportWidget = new RETransportWidget;
 
+    _pianoWidget = new REPianoWidget;
+
     _partListView = new QListView;
     _partListView->setFocusPolicy(Qt::NoFocus);
     _partListView->setStyleSheet(QString::fromLatin1(_listViewStyleSheet));
@@ -115,6 +118,11 @@ REMainWindow::REMainWindow(QWidget *parent) :
     QDockWidget* sectionListDock = new QDockWidget(tr("Sections"));
     sectionListDock->setWidget(_sectionListView);
     this->addDockWidget(Qt::RightDockWidgetArea, sectionListDock);
+
+    QDockWidget* pianoDock = new QDockWidget(tr("Keyboard"));
+    pianoDock->setWidget(_pianoWidget);
+    pianoDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
+    this->addDockWidget(Qt::BottomDockWidgetArea, pianoDock);
 
     QObject::connect(tab, SIGNAL(currentChanged(int)), this, SLOT(OnCurrentTabChanged(int)));
 
