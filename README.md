@@ -16,7 +16,6 @@ Missing Features
 - Zooming
 - Playback Transport
 - Preferences Dialog
-- File Properties Dialog
 - Clef Dialog
 - Key Signature Dialog
 - Text Dialog
@@ -25,6 +24,7 @@ Missing Features
 - Parts Dialog
 - Keyboard and Fretboard
 - Chord Names and Diagrams Dialog
+- <del>File Properties Dialog</del>
 - <del>Cut/Copy/Paste</del>
 - <del>Save/Close File</del>
 

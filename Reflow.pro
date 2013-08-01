@@ -14,7 +14,8 @@ DEFINES += REFLOW_VERBOSE
 }
 else {
 }
-SOURCES += "sources/core/REArchive.cpp"
+SOURCES += "sources/core/REArchive.cpp" \
+    sources/qt/REFilePropertiesDialog.cpp
 SOURCES += "sources/core/REAudioEngine.cpp"
 SOURCES += "sources/core/REAudioExportEngine.cpp"
 SOURCES += "sources/core/REAudioSettings.cpp"
@@ -97,7 +98,8 @@ SOURCES += "sources/core/REViewport.cpp"
 SOURCES += "sources/core/REVoice.cpp"
 SOURCES += "sources/core/REWavFileWriter.cpp"
 SOURCES += "sources/core/REWriteChunkToFile.cpp"
-HEADERS += "sources/core/REArchive.h"
+HEADERS += "sources/core/REArchive.h" \
+    sources/qt/REFilePropertiesDialog.h
 HEADERS += "sources/core/REAudioEngine.h"
 HEADERS += "sources/core/REAudioExportEngine.h"
 HEADERS += "sources/core/REAudioSettings.h"
@@ -260,7 +262,8 @@ HEADERS += "sources/qt/RETrackListView.h"
 HEADERS += "sources/qt/RETransportWidget.h"
 HEADERS += "sources/qt/RETuningDialog.h"
 HEADERS += "sources/qt/REUndoCommand.h"
-FORMS += "sources/qt/RECreateTrackDialog.ui"
+FORMS += "sources/qt/RECreateTrackDialog.ui" \
+    sources/qt/REFilePropertiesDialog.ui
 FORMS += "sources/qt/REMainWindow.ui"
 FORMS += "sources/qt/REMixerHeaderWidget.ui"
 FORMS += "sources/qt/REMixerRowWidget.ui"

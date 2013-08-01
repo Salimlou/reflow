@@ -81,6 +81,7 @@ public slots:
     void ActionInsertBar();
     void ActionDeleteBar();
 
+    void ShowFilePropertiesDialog();
     void ShowTracksAndPartsDialog();
     void ShowTimeSignatureDialog();
     void ShowClefDialog();

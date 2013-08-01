@@ -1360,6 +1360,18 @@ void REScoreController::PerformTaskOnSong(RESongOperation op)
     REFLOW_SCORE_OPERATION_END;
 }
 
+void REScoreController::PerformTasksOnSong(const RESongOperationVector& ops)
+{
+    REFLOW_SCORE_OPERATION_BEGIN("Unknown Operation")
+    {
+        RESong* song = lock_.LockSong();
+        for(auto op : ops) {
+            op(song);
+        }
+    }
+    REFLOW_SCORE_OPERATION_END;
+}
+
 void REScoreController::TypeOnVisualFretboard(int string, int fret)
 {
     // Only for Cursor selection

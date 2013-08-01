@@ -44,9 +44,12 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSaveAs"/>
     <addaction name="actionClose"/>
+    <addaction name="separator"/>
+    <addaction name="actionFileProperties"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -117,50 +120,80 @@
    <property name="text">
     <string>Time Signature</string>
    </property>
+   <property name="shortcut">
+    <string>Shift+T</string>
+   </property>
   </action>
   <action name="actionKeySignature">
    <property name="text">
     <string>Key Signature</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+K</string>
    </property>
   </action>
   <action name="actionClef">
    <property name="text">
     <string>Clef</string>
    </property>
+   <property name="shortcut">
+    <string>Shift+C</string>
+   </property>
   </action>
   <action name="actionRehearsalSign">
    <property name="text">
     <string>Rehearsal Sign</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+S</string>
    </property>
   </action>
   <action name="actionRepeats">
    <property name="text">
     <string>Repeats</string>
    </property>
+   <property name="shortcut">
+    <string>Shift+R</string>
+   </property>
   </action>
   <action name="actionTempoMarker">
    <property name="text">
     <string>Tempo Marker</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+M</string>
    </property>
   </action>
   <action name="actionText">
    <property name="text">
     <string>Text</string>
    </property>
+   <property name="shortcut">
+    <string>T</string>
+   </property>
   </action>
   <action name="actionChordName">
    <property name="text">
     <string>Chord Name</string>
+   </property>
+   <property name="shortcut">
+    <string>N</string>
    </property>
   </action>
   <action name="actionChordDiagram">
    <property name="text">
     <string>Chord Diagram</string>
    </property>
+   <property name="shortcut">
+    <string>D</string>
+   </property>
   </action>
   <action name="actionSystemBreak">
    <property name="text">
     <string>System Break</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
    </property>
   </action>
   <action name="actionSave">
@@ -214,6 +247,14 @@
    </property>
    <property name="shortcut">
     <string>Del</string>
+   </property>
+  </action>
+  <action name="actionFileProperties">
+   <property name="text">
+    <string>File Properties</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+I</string>
    </property>
   </action>
  </widget>

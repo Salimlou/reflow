@@ -101,7 +101,7 @@ REMainWindow::REMainWindow(QWidget *parent) :
     QDockWidget* transportDock = new QDockWidget(tr("Transport"));
     transportDock->setWidget(_transportWidget);
     transportDock->setAllowedAreas(Qt::AllDockWidgetAreas);
-    this->addDockWidget(Qt::LeftDockWidgetArea, transportDock);
+    this->addDockWidget(Qt::RightDockWidgetArea, transportDock);
 
     QDockWidget* sequencerDock = new QDockWidget(tr("Sequencer"));
     sequencerDock->setWidget(_sequencerWidget);
@@ -281,6 +281,7 @@ void REMainWindow::ConnectToDocument()
     QObject::connect(ui->actionPaste, SIGNAL(triggered()), _currentDocument, SLOT(ActionPaste()));
     QObject::connect(ui->actionDelete, SIGNAL(triggered()), _currentDocument, SLOT(ActionDelete()));
 
+    QObject::connect(ui->actionFileProperties, SIGNAL(triggered()), _currentDocument, SLOT(ShowFilePropertiesDialog()));
     QObject::connect(ui->actionTracksAndParts, SIGNAL(triggered()), _currentDocument, SLOT(ShowTracksAndPartsDialog()));
     QObject::connect(ui->actionTimeSignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowTimeSignatureDialog()));
     QObject::connect(ui->actionKeySignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowKeySignatureDialog()));
@@ -424,6 +425,7 @@ void REMainWindow::DisconnectFromDocument()
     QObject::disconnect(ui->actionPaste, SIGNAL(triggered()), _currentDocument, SLOT(ActionPaste()));
     QObject::disconnect(ui->actionDelete, SIGNAL(triggered()), _currentDocument, SLOT(ActionDelete()));
 
+    QObject::disconnect(ui->actionFileProperties, SIGNAL(triggered()), _currentDocument, SLOT(ShowFilePropertiesDialog()));
     QObject::disconnect(ui->actionTracksAndParts, SIGNAL(triggered()), _currentDocument, SLOT(ShowTracksAndPartsDialog()));
     QObject::disconnect(ui->actionTimeSignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowTimeSignatureDialog()));
     QObject::disconnect(ui->actionKeySignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowKeySignatureDialog()));

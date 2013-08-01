@@ -26,6 +26,7 @@
 #include "RERehearsalDialog.h"
 #include "RERepeatDialog.h"
 #include "RETimeSignatureDialog.h"
+#include "REFilePropertiesDialog.h"
 
 #include <QGraphicsTextItem>
 #include <QVBoxLayout>
@@ -324,6 +325,25 @@ void REDocumentView::ActionInsertBar()
 void REDocumentView::ActionDeleteBar()
 {
     _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::DeleteSelectedBars, std::placeholders::_1)));
+}
+
+void REDocumentView::ShowFilePropertiesDialog()
+{
+    REFilePropertiesDialog dlg(this);
+    dlg.Initialize(Song());
+    if(QDialog::Accepted == dlg.exec())
+    {
+        RESongOperationVector operations;
+        operations.push_back(std::bind(&RESong::SetTitle, std::placeholders::_1, dlg.Title().toStdString()));
+        operations.push_back(std::bind(&RESong::SetSubTitle, std::placeholders::_1, dlg.Subtitle().toStdString()));
+        operations.push_back(std::bind(&RESong::SetArtist, std::placeholders::_1, dlg.Artist().toStdString()));
+        operations.push_back(std::bind(&RESong::SetAlbum, std::placeholders::_1, dlg.Album().toStdString()));
+        operations.push_back(std::bind(&RESong::SetMusicBy, std::placeholders::_1, dlg.MusicBy().toStdString()));
+        operations.push_back(std::bind(&RESong::SetLyricsBy, std::placeholders::_1, dlg.LyricsBy().toStdString()));
+        operations.push_back(std::bind(&RESong::SetTranscriber, std::placeholders::_1, dlg.Transcriber().toStdString()));
+        operations.push_back(std::bind(&RESong::SetCopyright, std::placeholders::_1, dlg.Copyright().toStdString()));
+        _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::PerformTasksOnSong, std::placeholders::_1, operations)));
+    }
 }
 
 void REDocumentView::ShowTracksAndPartsDialog()
