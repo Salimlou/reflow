@@ -41,6 +41,16 @@ REDocumentView::REDocumentView(QWidget *parent) :
     QObject::connect(_viewportUpdateTimer, SIGNAL(timeout()), this, SLOT(UpdateViewport()));
 }
 
+void REDocumentView::Save()
+{
+
+}
+
+void REDocumentView::SaveAs()
+{
+
+}
+
 void REDocumentView::InitializeWithEmptyDocument()
 {
     // Create a default song
@@ -164,6 +174,14 @@ void REDocumentView::CreateControllers()
 
     // Select first score
     _scoreController->SetScoreIndex(0);
+}
+
+void REDocumentView::DestroyControllers()
+{
+    StopPlayback();
+
+    delete _scoreController; _scoreController = nullptr;
+    delete _songController; _songController = nullptr;
 }
 
 bool REDocumentView::IsPlaybackRunning() const

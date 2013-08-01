@@ -27,11 +27,14 @@ public slots:
     void ActionNew();
     void ActionOpen();
     void ActionOpen(QString filename);
+    void ActionClose();
 
 protected slots:
     void OnCurrentTabChanged(int newIndex);
     void OnCurrentDocumentPlaybackStarted();
     void OnCurrentDocumentPlaybackStopped();
+
+    void CloseDocumentTab(int index);
 
 protected:
     void ConnectToDocument();

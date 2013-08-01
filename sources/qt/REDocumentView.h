@@ -25,6 +25,7 @@ class REDocumentView :
     Q_OBJECT
 
     friend class REQtViewport;
+    friend class REMainWindow;
 
 public:
     explicit REDocumentView(QWidget *parent = 0);
@@ -59,6 +60,9 @@ public slots:
 	void StartPlayback();
 	void StopPlayback();
 	void TogglePlayback();
+
+    void Save();
+    void SaveAs();
 
     void ActionAddChord();
     void ActionInsertChord();
@@ -182,6 +186,7 @@ public:
 
 protected:
     void CreateControllers();
+    void DestroyControllers();
     void LoadGP(RESong& song, QString filename);
 	bool LoadFLOW(RESong& song, QString filename);
 

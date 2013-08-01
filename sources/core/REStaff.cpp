@@ -76,6 +76,8 @@ int REStaff::LineAtYOffset(float y) const
 {
 #ifdef REFLOW_IOS
     return y/_interline;
+#elif defined(WIN32)
+    return roundtol(y / _interline);
 #else
     return lround(y / _interline);
 #endif

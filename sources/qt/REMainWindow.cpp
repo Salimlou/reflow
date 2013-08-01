@@ -74,6 +74,9 @@ REMainWindow::REMainWindow(QWidget *parent) :
 
     QTabWidget* tab = new QTabWidget;
     tab->setDocumentMode(true);
+    tab->setTabsClosable(true);
+    tab->setElideMode(Qt::ElideLeft);
+    QObject::connect(tab, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseDocumentTab(int)));
     setCentralWidget(tab);
 
     _palette = new REQtPalette;
@@ -109,6 +112,7 @@ REMainWindow::REMainWindow(QWidget *parent) :
 
     QObject::connect(ui->actionNew, SIGNAL(triggered()), this, SLOT(ActionNew()));
     QObject::connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(ActionOpen()));
+    QObject::connect(ui->actionClose, SIGNAL(triggered()), this, SLOT(ActionClose()));
 }
 
 REMainWindow::~REMainWindow()
@@ -144,6 +148,34 @@ void REMainWindow::ActionOpen(QString filename)
         tab->addTab(doc, filename);
 
         tab->setCurrentIndex(tab->count()-1);
+    }
+}
+
+void REMainWindow::ActionClose()
+{
+    QTabWidget* tab = qobject_cast<QTabWidget*>(centralWidget());
+    int idx = tab->currentIndex();
+    if(idx != -1)
+    {
+        CloseDocumentTab(idx);
+    }
+}
+
+void REMainWindow::CloseDocumentTab(int index)
+{
+    QTabWidget* tab = qobject_cast<QTabWidget*>(centralWidget());
+    QWidget* w = tab->widget(index);
+    if(w)
+    {
+        REDocumentView* doc = qobject_cast<REDocumentView*>(w);
+        if(doc == _currentDocument) {
+            DisconnectFromDocument();
+        }
+
+        tab->removeTab(index);
+
+        doc->DestroyControllers();
+        delete doc;
     }
 }
 
@@ -212,6 +244,9 @@ void REMainWindow::ConnectToDocument()
     QObject::connect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
     QObject::connect(_currentDocument, SIGNAL(PlaybackStarted()), this, SLOT(OnCurrentDocumentPlaybackStarted()));
     QObject::connect(_currentDocument, SIGNAL(PlaybackStopped()), this, SLOT(OnCurrentDocumentPlaybackStopped()));
+
+    QObject::connect(ui->actionSave, SIGNAL(triggered()), _currentDocument, SLOT(Save()));
+    QObject::connect(ui->actionSaveAs, SIGNAL(triggered()), _currentDocument, SLOT(SaveAs()));
 
     QObject::connect(ui->actionTracksAndParts, SIGNAL(triggered()), _currentDocument, SLOT(ShowTracksAndPartsDialog()));
     QObject::connect(ui->actionTimeSignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowTimeSignatureDialog()));
