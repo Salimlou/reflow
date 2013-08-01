@@ -10,7 +10,7 @@ It is released under the CeCILL License (French equivalent of the GNU-GPL, respe
 Missing Features
 ====
 
-- Save/~~Close~~ File
+- <s>Save/Close File</s>
 - Translations
 - Printing
 - PDF, WAV, MIDI, GP5 Export
