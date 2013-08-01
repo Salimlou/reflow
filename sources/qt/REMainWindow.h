@@ -10,6 +10,7 @@ class REScoreScene;
 class REQtPalette;
 class REDocumentView;
 class RESequencerWidget;
+class RETransportWidget;
 
 namespace Ui {
     class REMainWindow;
@@ -48,6 +49,7 @@ private:
     REDocumentView* _currentDocument;
     REQtPalette* _palette;
     RESequencerWidget* _sequencerWidget;
+    RETransportWidget* _transportWidget;
     QListView* _partListView;
     QListView* _sectionListView;
 	QAction* _undoAction;

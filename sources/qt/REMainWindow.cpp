@@ -6,7 +6,7 @@
 #include "REPartListModel.h"
 #include "RESectionListModel.h"
 #include "RETrackListModel.h"
-
+#include "RETransportWidget.h"
 #include "RESequencerWidget.h"
 
 #include <RESong.h>
@@ -84,6 +84,8 @@ REMainWindow::REMainWindow(QWidget *parent) :
     _sequencerWidget = new RESequencerWidget;
     _sequencerWidget->setMinimumHeight(40);
 
+    _transportWidget = new RETransportWidget;
+
     _partListView = new QListView;
     _partListView->setFocusPolicy(Qt::NoFocus);
     _partListView->setStyleSheet(QString::fromLatin1(_listViewStyleSheet));
@@ -96,8 +98,14 @@ REMainWindow::REMainWindow(QWidget *parent) :
     paletteDock->setWidget(_palette);
     this->addDockWidget(Qt::LeftDockWidgetArea, paletteDock);
 
+    QDockWidget* transportDock = new QDockWidget(tr("Transport"));
+    transportDock->setWidget(_transportWidget);
+    transportDock->setAllowedAreas(Qt::AllDockWidgetAreas);
+    this->addDockWidget(Qt::LeftDockWidgetArea, transportDock);
+
     QDockWidget* sequencerDock = new QDockWidget(tr("Sequencer"));
     sequencerDock->setWidget(_sequencerWidget);
+    sequencerDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
     this->addDockWidget(Qt::BottomDockWidgetArea, sequencerDock);
 
     QDockWidget* partListDock = new QDockWidget(tr("Parts"));

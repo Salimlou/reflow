@@ -14,8 +14,7 @@ DEFINES += REFLOW_VERBOSE
 }
 else {
 }
-SOURCES += "sources/core/REArchive.cpp" \
-    sources/qt/REMixerWidget.cpp
+SOURCES += "sources/core/REArchive.cpp"
 SOURCES += "sources/core/REAudioEngine.cpp"
 SOURCES += "sources/core/REAudioExportEngine.cpp"
 SOURCES += "sources/core/REAudioSettings.cpp"
@@ -98,8 +97,7 @@ SOURCES += "sources/core/REViewport.cpp"
 SOURCES += "sources/core/REVoice.cpp"
 SOURCES += "sources/core/REWavFileWriter.cpp"
 SOURCES += "sources/core/REWriteChunkToFile.cpp"
-HEADERS += "sources/core/REArchive.h" \
-    sources/qt/REMixerWidget.h
+HEADERS += "sources/core/REArchive.h"
 HEADERS += "sources/core/REAudioEngine.h"
 HEADERS += "sources/core/REAudioExportEngine.h"
 HEADERS += "sources/core/REAudioSettings.h"
@@ -202,6 +200,7 @@ SOURCES += "sources/qt/REJackAudioEngine.cpp"
 SOURCES += "sources/qt/REMainWindow.cpp"
 SOURCES += "sources/qt/REMixerHeaderWidget.cpp"
 SOURCES += "sources/qt/REMixerRowWidget.cpp"
+SOURCES += "sources/qt/REMixerWidget.cpp"
 SOURCES += "sources/qt/REMusicalFont_qt.cpp"
 SOURCES += "sources/qt/RENavigatorHeaderWidget.cpp"
 SOURCES += "sources/qt/RENavigatorScene.cpp"
@@ -224,6 +223,7 @@ SOURCES += "sources/qt/RETabCursorItem.cpp"
 SOURCES += "sources/qt/RETimeSignatureDialog.cpp"
 SOURCES += "sources/qt/RETrackListModel.cpp"
 SOURCES += "sources/qt/RETrackListView.cpp"
+SOURCES += "sources/qt/RETransportWidget.cpp"
 SOURCES += "sources/qt/RETuningDialog.cpp"
 SOURCES += "sources/qt/REUndoCommand.cpp"
 SOURCES += "sources/qt/REXmlParser_qt.cpp"
@@ -237,6 +237,7 @@ HEADERS += "sources/qt/REJackAudioEngine.h"
 HEADERS += "sources/qt/REMainWindow.h"
 HEADERS += "sources/qt/REMixerHeaderWidget.h"
 HEADERS += "sources/qt/REMixerRowWidget.h"
+HEADERS += "sources/qt/REMixerWidget.h"
 HEADERS += "sources/qt/RENavigatorHeaderWidget.h"
 HEADERS += "sources/qt/RENavigatorScene.h"
 HEADERS += "sources/qt/REPartListModel.h"
@@ -256,6 +257,7 @@ HEADERS += "sources/qt/RETabCursorItem.h"
 HEADERS += "sources/qt/RETimeSignatureDialog.h"
 HEADERS += "sources/qt/RETrackListModel.h"
 HEADERS += "sources/qt/RETrackListView.h"
+HEADERS += "sources/qt/RETransportWidget.h"
 HEADERS += "sources/qt/RETuningDialog.h"
 HEADERS += "sources/qt/REUndoCommand.h"
 FORMS += "sources/qt/RECreateTrackDialog.ui"
@@ -267,6 +269,7 @@ FORMS += "sources/qt/RERehearsalDialog.ui"
 FORMS += "sources/qt/RERepeatDialog.ui"
 FORMS += "sources/qt/REStringTuningWidget.ui"
 FORMS += "sources/qt/RETimeSignatureDialog.ui"
+FORMS += "sources/qt/RETransportWidget.ui"
 FORMS += "sources/qt/RETuningDialog.ui"
 SOURCES += "depends/rtaudio/RtAudio.cpp"
 HEADERS += "depends/rtaudio/RtAudio.h"
@@ -278,11 +281,11 @@ INCLUDEPATH += "sources/qt"
 INCLUDEPATH += "depends"
 win32 {
 	INCLUDEPATH += "C:\boost_1_52_0"
-  INCLUDEPATH += "C:\Program Files (x86)\Jack\includes"
+    INCLUDEPATH += "C:\Program Files (x86)\Jack\includes"
 	DEFINES += BOOST_MEM_FN_ENABLE_STDCALL
 	DEFINES += __WINDOWS_DS__
-QMAKE_LIBDIR += "C:\Program Files (x86)\Jack\lib"
-LIBS += dsound.lib ole32.lib libjack.lib
+    QMAKE_LIBDIR += "C:\Program Files (x86)\Jack\lib"
+  LIBS += dsound.lib ole32.lib libjack.lib
 }
 macx {
   INCLUDEPATH += /opt/Boost
