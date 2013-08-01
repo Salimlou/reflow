@@ -20,6 +20,7 @@
 #include <RENote.h>
 #include <REChord.h>
 #include <REBar.h>
+#include <REPhrase.h>
 
 #include "REPropertiesDialog.h"
 #include "RERehearsalDialog.h"
@@ -32,6 +33,9 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDir>
+#include <QApplication>
+#include <QClipboard>
+#include <QMimeData>
 
 using std::bind;
 
@@ -786,6 +790,41 @@ void REDocumentView::ActionSlideInLow()
     _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::ToggleSlideInOnSelection, std::placeholders::_1, Reflow::SlideInFromBelow)));
 }
 
+void REDocumentView::ActionCut()
+{
+    _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::Cut, std::placeholders::_1, false)));
+}
+
+void REDocumentView::ActionCopy()
+{
+    _scoreController->Copy(false);
+}
+
+void REDocumentView::ActionPaste()
+{
+    QClipboard* clipboard = QApplication::clipboard();
+    const QMimeData* mimeData = clipboard->mimeData();
+
+    if(mimeData->hasFormat("application/x-reflow-phrase"))
+    {
+        QByteArray data = mimeData->data("application/x-reflow-phrase");
+        std::string encodedPhrase(data.data(), data.size());
+
+        _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::PasteEncodedPhrase, std::placeholders::_1, encodedPhrase)));
+    }
+
+    else if(mimeData->hasFormat("application/x-reflow-psong")) {
+        QByteArray data = mimeData->data("application/x-reflow-psong");
+        std::string encodedPartialSong(data.data(), data.size());
+
+        _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::PasteEncodedPartialSong, std::placeholders::_1, encodedPartialSong)));
+    }
+}
+
+void REDocumentView::ActionDelete()
+{
+    _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::DeleteSelection, std::placeholders::_1)));
+}
 
 void REDocumentView::ClickedOnPart(QModelIndex idx)
 {
@@ -844,10 +883,33 @@ void REDocumentView::OnShouldCenterOnCursor(const REScoreController* scoreContro
 
 void REDocumentView::OnCopyPhraseToPasteboard(const REPhrase* phrase, Reflow::TrackType trackType)
 {
+    qDebug() << "Copying phrase with " << phrase->ChordCount() << " chords to clipboard";
+
+    REBufferOutputStream buffer;
+    buffer.WriteUInt8(trackType);
+    phrase->EncodeTo(buffer);
+    QByteArray bytes = QByteArray(buffer.Data(), buffer.Size());
+
+    QClipboard* clipboard = QApplication::clipboard();
+    QMimeData* data = new QMimeData();
+    data->setData("application/x-reflow-phrase", bytes);
+    clipboard->setMimeData(data);
 }
 
 void REDocumentView::OnCopyPartialSongToPasteboard(const RESong* song)
 {
+    qDebug() << "Copying song with " << song->TrackCount() << " tracks to clipboard";
+
+    REBufferOutputStream buffer;
+    buffer.WriteUInt32(song->BarCount());
+    buffer.WriteUInt32(song->TrackCount());
+    song->EncodeTo(buffer);
+    QByteArray bytes = QByteArray(buffer.Data(), buffer.Size());
+
+    QClipboard* clipboard = QApplication::clipboard();
+    QMimeData* data = new QMimeData();
+    data->setData("application/x-reflow-psong", bytes);
+    clipboard->setMimeData(data);
 }
 
 void REDocumentView::ScoreControllerWillRebuildWithSettings(REScoreSettings& settings)

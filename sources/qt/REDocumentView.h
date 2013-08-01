@@ -67,6 +67,11 @@ public slots:
     void Save();
     void SaveAs();
 
+    void ActionCut();
+    void ActionCopy();
+    void ActionPaste();
+    void ActionDelete();
+
     void ActionAddChord();
     void ActionInsertChord();
     void ActionDuplicateChord();

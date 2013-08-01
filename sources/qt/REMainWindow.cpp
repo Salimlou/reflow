@@ -276,6 +276,11 @@ void REMainWindow::ConnectToDocument()
     QObject::connect(ui->actionSave, SIGNAL(triggered()), _currentDocument, SLOT(Save()));
     QObject::connect(ui->actionSaveAs, SIGNAL(triggered()), _currentDocument, SLOT(SaveAs()));
 
+    QObject::connect(ui->actionCut, SIGNAL(triggered()), _currentDocument, SLOT(ActionCut()));
+    QObject::connect(ui->actionCopy, SIGNAL(triggered()), _currentDocument, SLOT(ActionCopy()));
+    QObject::connect(ui->actionPaste, SIGNAL(triggered()), _currentDocument, SLOT(ActionPaste()));
+    QObject::connect(ui->actionDelete, SIGNAL(triggered()), _currentDocument, SLOT(ActionDelete()));
+
     QObject::connect(ui->actionTracksAndParts, SIGNAL(triggered()), _currentDocument, SLOT(ShowTracksAndPartsDialog()));
     QObject::connect(ui->actionTimeSignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowTimeSignatureDialog()));
     QObject::connect(ui->actionKeySignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowKeySignatureDialog()));
@@ -323,13 +328,13 @@ void REMainWindow::ConnectToDocument()
     QObject::connect(_palette->ButtonForIdentifier("32nd"), SIGNAL(clicked()), _currentDocument, SLOT(Action32ndNote()));
     QObject::connect(_palette->ButtonForIdentifier("64th"), SIGNAL(clicked()), _currentDocument, SLOT(Action64thNote()));
 
-    QObject::connect(_palette->ButtonForIdentifier("tuplet2"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet2()));
-    QObject::connect(_palette->ButtonForIdentifier("tuplet3"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet3()));
-    QObject::connect(_palette->ButtonForIdentifier("tuplet4"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet4()));
-    QObject::connect(_palette->ButtonForIdentifier("tuplet5"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet5()));
-    QObject::connect(_palette->ButtonForIdentifier("tuplet6"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet6()));
-    QObject::connect(_palette->ButtonForIdentifier("tuplet7"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet7()));
-    QObject::connect(_palette->ButtonForIdentifier("tuplet9"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet9()));
+    QObject::connect(_palette->ButtonForIdentifier("tuplet_2"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet2()));
+    QObject::connect(_palette->ButtonForIdentifier("tuplet_3"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet3()));
+    QObject::connect(_palette->ButtonForIdentifier("tuplet_4"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet4()));
+    QObject::connect(_palette->ButtonForIdentifier("tuplet_5"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet5()));
+    QObject::connect(_palette->ButtonForIdentifier("tuplet_6"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet6()));
+    QObject::connect(_palette->ButtonForIdentifier("tuplet_7"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet7()));
+    QObject::connect(_palette->ButtonForIdentifier("tuplet_9"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet9()));
 
     QObject::connect(_palette->ButtonForIdentifier("dot"), SIGNAL(clicked()), _currentDocument, SLOT(ActionDottedNote()));
     QObject::connect(_palette->ButtonForIdentifier("2dot"), SIGNAL(clicked()), _currentDocument, SLOT(ActionDoubleDottedNote()));
@@ -414,6 +419,11 @@ void REMainWindow::DisconnectFromDocument()
     QObject::disconnect(ui->actionSave, SIGNAL(triggered()), _currentDocument, SLOT(Save()));
     QObject::disconnect(ui->actionSaveAs, SIGNAL(triggered()), _currentDocument, SLOT(SaveAs()));
 
+    QObject::disconnect(ui->actionCut, SIGNAL(triggered()), _currentDocument, SLOT(ActionCut()));
+    QObject::disconnect(ui->actionCopy, SIGNAL(triggered()), _currentDocument, SLOT(ActionCopy()));
+    QObject::disconnect(ui->actionPaste, SIGNAL(triggered()), _currentDocument, SLOT(ActionPaste()));
+    QObject::disconnect(ui->actionDelete, SIGNAL(triggered()), _currentDocument, SLOT(ActionDelete()));
+
     QObject::disconnect(ui->actionTracksAndParts, SIGNAL(triggered()), _currentDocument, SLOT(ShowTracksAndPartsDialog()));
     QObject::disconnect(ui->actionTimeSignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowTimeSignatureDialog()));
     QObject::disconnect(ui->actionKeySignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowKeySignatureDialog()));
@@ -461,13 +471,13 @@ void REMainWindow::DisconnectFromDocument()
     QObject::disconnect(_palette->ButtonForIdentifier("32nd"), SIGNAL(clicked()), _currentDocument, SLOT(Action32ndNote()));
     QObject::disconnect(_palette->ButtonForIdentifier("64th"), SIGNAL(clicked()), _currentDocument, SLOT(Action64thNote()));
 
-    QObject::disconnect(_palette->ButtonForIdentifier("tuplet2"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet2()));
-    QObject::disconnect(_palette->ButtonForIdentifier("tuplet3"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet3()));
-    QObject::disconnect(_palette->ButtonForIdentifier("tuplet4"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet4()));
-    QObject::disconnect(_palette->ButtonForIdentifier("tuplet5"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet5()));
-    QObject::disconnect(_palette->ButtonForIdentifier("tuplet6"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet6()));
-    QObject::disconnect(_palette->ButtonForIdentifier("tuplet7"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet7()));
-    QObject::disconnect(_palette->ButtonForIdentifier("tuplet9"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet9()));
+    QObject::disconnect(_palette->ButtonForIdentifier("tuplet_2"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet2()));
+    QObject::disconnect(_palette->ButtonForIdentifier("tuplet_3"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet3()));
+    QObject::disconnect(_palette->ButtonForIdentifier("tuplet_4"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet4()));
+    QObject::disconnect(_palette->ButtonForIdentifier("tuplet_5"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet5()));
+    QObject::disconnect(_palette->ButtonForIdentifier("tuplet_6"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet6()));
+    QObject::disconnect(_palette->ButtonForIdentifier("tuplet_7"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet7()));
+    QObject::disconnect(_palette->ButtonForIdentifier("tuplet_9"), SIGNAL(clicked()), _currentDocument, SLOT(ActionTuplet9()));
 
     QObject::disconnect(_palette->ButtonForIdentifier("dot"), SIGNAL(clicked()), _currentDocument, SLOT(ActionDottedNote()));
     QObject::disconnect(_palette->ButtonForIdentifier("2dot"), SIGNAL(clicked()), _currentDocument, SLOT(ActionDoubleDottedNote()));

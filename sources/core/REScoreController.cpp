@@ -3269,6 +3269,22 @@ void REScoreController::Copy(bool allTracks)
     }
 }
 
+void REScoreController::PasteEncodedPartialSong(std::string encodedPartialSong)
+{
+    REConstBufferInputStream input(encodedPartialSong.data(), encodedPartialSong.size());
+
+    unsigned int barCount = input.ReadUInt32();
+    unsigned int trackCount = input.ReadUInt32();
+    RESong* song = new RESong;
+    song->DecodeFrom(input);
+
+    bool pasteOver = song->TrackCount() == 1;
+    bool includeBarInfo = false;
+    PastePartialSong(song, pasteOver, includeBarInfo);
+
+    delete song;
+}
+
 void REScoreController::PastePartialSong(const RESong* decodedSong, bool pasteOver, bool includeBarInfo)
 {
     REFLOW_SCORE_OPERATION_BEGIN("Paste")
@@ -3364,6 +3380,17 @@ void REScoreController::PastePartialSong(const RESong* decodedSong, bool pasteOv
         }
     }
     REFLOW_SCORE_OPERATION_END
+}
+
+void REScoreController::PasteEncodedPhrase(std::string encodedPhrase)
+{
+    REConstBufferInputStream input(encodedPhrase.data(), encodedPhrase.size());
+
+    REPhrase* p = new REPhrase;
+    Reflow::TrackType trackType = static_cast<Reflow::TrackType>(input.ReadUInt8());
+    p->DecodeFrom(input);
+    PastePhrase(p, trackType);
+    delete p;
 }
 
 void REScoreController::PastePhrase(const REPhrase* phraseToInsert, Reflow::TrackType trackType)

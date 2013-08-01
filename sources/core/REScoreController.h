@@ -118,6 +118,8 @@ public:
     void Copy(bool allTracks);
     void PastePartialSong(const RESong* song, bool pasteOver=false, bool includeBarInfo=true);
     void PastePhrase(const REPhrase* phrase, Reflow::TrackType trackType);
+    void PasteEncodedPartialSong(std::string encodedPartialSong);
+    void PasteEncodedPhrase(std::string encodedPhrase);
         
     void MoveSingleTrackBarRangeSelectionTo(int insertBarIndex, int trackIndex, bool pasteOver);
     void CopySingleTrackBarRangeSelectionTo(int insertBarIndex, int trackIndex, bool pasteOver);
