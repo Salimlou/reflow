@@ -14,7 +14,6 @@ Missing Features
 - Printing
 - PDF, WAV, MIDI, GP5 Export
 - Zooming
-- Cut/Copy/Paste
 - Playback Transport
 - Preferences Dialog
 - File Properties Dialog
@@ -26,6 +25,7 @@ Missing Features
 - Parts Dialog
 - Keyboard and Fretboard
 - Chord Names and Diagrams Dialog
+- <del>Cut/Copy/Paste</del>
 - <del>Save/Close File</del>
 
 
