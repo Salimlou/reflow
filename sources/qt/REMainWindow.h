@@ -33,12 +33,15 @@ protected slots:
     void OnCurrentTabChanged(int newIndex);
     void OnCurrentDocumentPlaybackStarted();
     void OnCurrentDocumentPlaybackStopped();
+    void OnCurrentDocumentStatusChanged();
 
     void CloseDocumentTab(int index);
 
 protected:
     void ConnectToDocument();
     void DisconnectFromDocument();
+
+    void UpdateWindowTitleFromCurrentDocument();
 
 private:
     Ui::REMainWindow *ui;

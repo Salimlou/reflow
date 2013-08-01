@@ -13,6 +13,7 @@
 
 #include <REGuitarProParser.h>
 #include <REInputStream.h>
+#include <REOutputStream.h>
 #include <RESong.h>
 #include <RESongController.h>
 #include <RESystem.h>
@@ -29,6 +30,8 @@
 #include <QVBoxLayout>
 #include <QFile>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QDir>
 
 using std::bind;
 
@@ -43,12 +46,28 @@ REDocumentView::REDocumentView(QWidget *parent) :
 
 void REDocumentView::Save()
 {
-
+    if(_filename.isEmpty()) {
+        SaveAs();
+    }
+    else if(WriteFLOW(_filename)) {
+        _undoStack->setClean();
+        emit FileStatusChanged();
+    }
 }
 
 void REDocumentView::SaveAs()
 {
-
+    QString home = QDir::homePath();
+    QString filter = "Reflow Files (*.flow)";
+    QString path = QFileDialog::getSaveFileName(this, tr("Save File"), home, filter);
+    if(!path.isEmpty()) {
+        if(WriteFLOW(path))
+        {
+            _filename = path;
+            _undoStack->setClean();
+            emit FileStatusChanged();
+        }
+    }
 }
 
 void REDocumentView::InitializeWithEmptyDocument()
@@ -138,6 +157,27 @@ bool REDocumentView::LoadFLOW(RESong& song, QString filename)
         REPrintf("Reflow File Loading Error: %s", e.what());
         return false;
     }
+}
+
+bool REDocumentView::WriteFLOW(QString filename)
+{
+    QFile file(filename);
+    if(!file.open(QFile::WriteOnly)) {
+        QMessageBox::critical(this, tr("Reflow Error"), tr("Failed to write file"));
+        return false;
+    }
+
+    REBufferOutputStream buffer;
+    buffer.SetVersion(REFLOW_IO_VERSION);
+    buffer.SetSubType(REFLOW_IO_REFLOW2);
+
+    buffer.Write("FLOW", 4);
+    buffer.WriteUInt32(REFLOW_IO_VERSION);
+    _song->EncodeTo(buffer);
+
+    file.write(buffer.Data(), buffer.Size());
+    file.close();
+    return true;
 }
 
 void REDocumentView::CreateControllers()

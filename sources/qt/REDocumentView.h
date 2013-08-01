@@ -162,6 +162,7 @@ protected slots:
 signals:
     void PlaybackStarted();
     void PlaybackStopped();
+    void FileStatusChanged();
 
 public:
 	bool IsPlaybackRunning() const;
@@ -189,6 +190,7 @@ protected:
     void DestroyControllers();
     void LoadGP(RESong& song, QString filename);
 	bool LoadFLOW(RESong& song, QString filename);
+    bool WriteFLOW(QString filename);
 
 protected:
     RESong* _song;

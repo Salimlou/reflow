@@ -190,6 +190,19 @@ void REMainWindow::OnCurrentTabChanged(int newIndex)
     ConnectToDocument();
 }
 
+void REMainWindow::OnCurrentDocumentStatusChanged()
+{
+    QTabWidget* tab = qobject_cast<QTabWidget*>(centralWidget());
+
+    int index = tab->currentIndex();
+    QWidget* w = tab->widget(index);
+    if(w) {
+        REDocumentView* doc = qobject_cast<REDocumentView*>(w);
+        tab->setTabText(index, doc->Filename());
+        UpdateWindowTitleFromCurrentDocument();
+    }
+}
+
 void REMainWindow::OnCurrentDocumentPlaybackStarted()
 {
     _playAction->setIcon(QIcon(":/toolbar-stop.png"));
@@ -202,10 +215,8 @@ void REMainWindow::OnCurrentDocumentPlaybackStopped()
     _playAction->setText(tr("Play"));
 }
 
-void REMainWindow::ConnectToDocument()
+void REMainWindow::UpdateWindowTitleFromCurrentDocument()
 {
-    if(_currentDocument == NULL) return;
-
     QString title = _currentDocument->Filename();
     if(title.isEmpty()) {
         setWindowTitle("Reflow");
@@ -215,6 +226,13 @@ void REMainWindow::ConnectToDocument()
         setWindowTitle("");
         setWindowFilePath(title);
     }
+}
+
+void REMainWindow::ConnectToDocument()
+{
+    if(_currentDocument == NULL) return;
+
+    UpdateWindowTitleFromCurrentDocument();
 
     const REScoreController* scoreController = _currentDocument->ScoreController();
     const RESong* song = scoreController->Score()->Song();
@@ -244,6 +262,7 @@ void REMainWindow::ConnectToDocument()
     QObject::connect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
     QObject::connect(_currentDocument, SIGNAL(PlaybackStarted()), this, SLOT(OnCurrentDocumentPlaybackStarted()));
     QObject::connect(_currentDocument, SIGNAL(PlaybackStopped()), this, SLOT(OnCurrentDocumentPlaybackStopped()));
+    QObject::connect(_currentDocument, SIGNAL(FileStatusChanged()), this, SLOT(OnCurrentDocumentStatusChanged()));
 
     QObject::connect(ui->actionSave, SIGNAL(triggered()), _currentDocument, SLOT(Save()));
     QObject::connect(ui->actionSaveAs, SIGNAL(triggered()), _currentDocument, SLOT(SaveAs()));
@@ -380,6 +399,10 @@ void REMainWindow::DisconnectFromDocument()
     QObject::disconnect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
     QObject::disconnect(_currentDocument, SIGNAL(PlaybackStarted()), this, SLOT(OnCurrentDocumentPlaybackStarted()));
     QObject::disconnect(_currentDocument, SIGNAL(PlaybackStopped()), this, SLOT(OnCurrentDocumentPlaybackStopped()));
+    QObject::disconnect(_currentDocument, SIGNAL(FileStatusChanged()), this, SLOT(OnCurrentDocumentStatusChanged()));
+
+    QObject::disconnect(ui->actionSave, SIGNAL(triggered()), _currentDocument, SLOT(Save()));
+    QObject::disconnect(ui->actionSaveAs, SIGNAL(triggered()), _currentDocument, SLOT(SaveAs()));
 
     QObject::disconnect(ui->actionTracksAndParts, SIGNAL(triggered()), _currentDocument, SLOT(ShowTracksAndPartsDialog()));
     QObject::disconnect(ui->actionTimeSignature, SIGNAL(triggered()), _currentDocument, SLOT(ShowTimeSignatureDialog()));
