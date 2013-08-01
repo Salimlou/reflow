@@ -37,7 +37,7 @@ using std::bind;
 
 REDocumentView::REDocumentView(QWidget *parent) :
     QWidget(parent),
-    _song(NULL), _songController(NULL), _scoreController(NULL), _scoreView(NULL), _scene(NULL), _viewport(NULL), _undoStack(NULL), _viewportUpdateTimer(NULL)
+    _song(NULL), _songController(NULL), _scoreController(NULL), _scoreView(NULL), _scene(NULL), _viewport(NULL), _undoStack(NULL), _viewportUpdateTimer(NULL), _trackingEnabled(false)
 {
 	_undoStack = new QUndoStack(this);
     _viewportUpdateTimer = new QTimer(this);
@@ -270,6 +270,11 @@ void REDocumentView::TogglePlayback()
 	else {
 		StartPlayback();
 	}
+}
+
+void REDocumentView::SetTrackingEnabled(bool enabled)
+{
+    _trackingEnabled = enabled;
 }
 
 void REDocumentView::UpdateViewport()
@@ -854,3 +859,4 @@ void REDocumentView::ScoreControllerInspectorWillReload(const REScoreController 
 
 void REDocumentView::ScoreControllerInspectorDidReload(const REScoreController *scoreController)
 {}
+

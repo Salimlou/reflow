@@ -39,6 +39,8 @@ public:
 
     RESequencer* Sequencer() {return _songController->Sequencer();}
 
+    bool IsTrackingEnabled() const {return _trackingEnabled;}
+
 	const QUndoStack* UndoStack() const {return _undoStack;}
 	QUndoStack* UndoStack() {return _undoStack;}
 
@@ -60,6 +62,7 @@ public slots:
 	void StartPlayback();
 	void StopPlayback();
 	void TogglePlayback();
+    void SetTrackingEnabled(bool);
 
     void Save();
     void SaveAs();
@@ -205,6 +208,7 @@ protected:
     REPartListModel* _partListModel;
     RETrackListModel* _trackListModel;
     RESectionListModel* _sectionListModel;
+    bool _trackingEnabled;
 };
 
 #endif // REDOCUMENTVIEW_H

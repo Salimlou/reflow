@@ -200,7 +200,7 @@ void REQtViewport::RepositionTabCursor()
 // ------------------------------------------------------------------------------------------------------------------
 void REQtViewport::UpdatePlaybackCursor(float dt)
 {
-    _playbackTrackingEnabled = true;
+    _playbackTrackingEnabled = _documentView->IsTrackingEnabled();
     _playbackTrackingPause = 0.0;
 
     REViewport::UpdatePlaybackCursor(dt);
