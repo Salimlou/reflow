@@ -33,6 +33,8 @@
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/document.h>
 
+#undef minor
+
 #ifdef REFLOW_QT
 #  include <QColor>
 #  include <QPointF>
@@ -40,7 +42,7 @@
 #  include <QRectF>
 #  include <QTransform>
 #  include <qdebug.h>
-#  include <QtOpenGL>
+#  include <QModelIndex>
 #endif
 
 #ifdef REFLOW_VERBOSE

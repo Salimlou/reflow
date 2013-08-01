@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "remainwindow.h"
+#include "REMainWindow.h"
 
 #include <RESong.h>
 #include <REScoreSettings.h>
@@ -30,13 +30,15 @@
 
 std::string BundlePath()
 {
-#ifdef WIN32
+#if defined(WIN32)
 #  ifdef DEBUG
     return "..";
 #  else
     return ".";
 #  endif
-#else if defined(MACOSX)
+#elif defined(LINUX)
+    return ".";
+#elif defined(MACOSX)
     char path[1024];
     CFBundleRef mainBundle = CFBundleGetMainBundle();
     assert( mainBundle );

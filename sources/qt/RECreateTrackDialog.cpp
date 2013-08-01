@@ -2,6 +2,7 @@
 #include "ui_RECreateTrackDialog.h"
 
 #include "REUndoCommand.h"
+#include <QListWidgetItem>
 
 RECreateTrackDialog::RECreateTrackDialog(QWidget *parent) :
     QDialog(parent),

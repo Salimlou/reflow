@@ -13,6 +13,8 @@
 #include "REFunctions.h"
 #include "RESequencer.h"
 
+#include <QMessageBox>
+
 REPropertiesDialog::REPropertiesDialog(REDocumentView *parent) :
     QDialog(parent),
     ui(new Ui::REPropertiesDialog), _backupTrackIndex(0)

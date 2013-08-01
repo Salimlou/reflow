@@ -7,6 +7,8 @@
 
 #include <QDebug>
 #include <QLabel>
+#include <QScrollArea>
+#include <QScrollBar>
 
 RESequencerWidget::RESequencerWidget(QWidget *parent) :
     QWidget(parent), _headerHeight(32), _mixerWidth(350), _documentView(nullptr)

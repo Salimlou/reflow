@@ -5,6 +5,8 @@
 
 #include "RESongController.h"
 
+class QListWidgetItem;
+
 namespace Ui {
 class RECreateTrackDialog;
 }
