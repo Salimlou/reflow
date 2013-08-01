@@ -10,7 +10,7 @@ class QtProject < Project
   end
   
   def write_pro_to_file!(f)
-    f.puts "QT += core gui widgets opengl xml"
+    f.puts "QT += core gui widgets xml"
     f.puts "CONFIG += c++11"
     f.puts "TARGET = #{self.prop(:product_name)}"
     f.puts "TEMPLATE = app"
@@ -62,9 +62,11 @@ class QtProject < Project
     # Windows spec
     f.puts "win32 {"
     f.puts "	INCLUDEPATH += \"C:\\boost_1_52_0\""
+    f.puts "    INCLUDEPATH += \"C:\\Program Files (x86)\\Jack\\includes\""
     f.puts "	DEFINES += BOOST_MEM_FN_ENABLE_STDCALL"
     f.puts "	DEFINES += __WINDOWS_DS__"                  # RtAudio will use DirectSound
-    f.puts "  LIBS += dsound.lib ole32.lib"
+    f.puts "    QMAKE_LIBDIR += \"C:\\Program Files (x86)\\Jack\\lib\""
+    f.puts "  LIBS += dsound.lib ole32.lib libjack.lib"
     f.puts "}"
     
     # Mac spec
@@ -74,6 +76,13 @@ class QtProject < Project
     f.puts "  DEFINES += __MACOSX_CORE__"
     f.puts "  DEFINES += MACOSX"
     f.puts "  LIBS += -lpthread -L/usr/local/lib -ljack -framework CoreAudio -framework CoreFoundation"
+    f.puts "}"
+
+    # Linux spec
+    f.puts "linux-clang {"
+    f.puts "    DEFINES += LINUX __LINUX_PULSE__"
+    f.puts "    QMAKE_CXXFLAGS += -std=c++11"
+    f.puts "    LIBS += -lpulse -lpulse-simple -ljack -lpthread -lrt"
     f.puts "}"
     
   end
