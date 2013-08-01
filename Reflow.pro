@@ -278,9 +278,11 @@ INCLUDEPATH += "sources/qt"
 INCLUDEPATH += "depends"
 win32 {
 	INCLUDEPATH += "C:\boost_1_52_0"
+  INCLUDEPATH += "C:\Program Files (x86)\Jack\includes"
 	DEFINES += BOOST_MEM_FN_ENABLE_STDCALL
 	DEFINES += __WINDOWS_DS__
-  LIBS += dsound.lib ole32.lib
+QMAKE_LIBDIR += "C:\Program Files (x86)\Jack\lib"
+LIBS += dsound.lib ole32.lib libjack.lib
 }
 macx {
   INCLUDEPATH += /opt/Boost

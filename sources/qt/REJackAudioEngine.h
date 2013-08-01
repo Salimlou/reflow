@@ -4,6 +4,9 @@
 #include "RETypes.h"
 
 #include <REAudioEngine.h>
+#ifdef WIN32
+#define _STDINT_H
+#endif
 #include <jack/jack.h>
 
 class REJackAudioEngine : public REAudioEngine
