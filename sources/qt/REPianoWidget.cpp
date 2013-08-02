@@ -34,11 +34,13 @@ static bool isSharped[] = {false, true, false, true, false, false, true, false, 
 
 
 REPianoWidget::REPianoWidget(QWidget *parent) :
-    QWidget(parent), _scaleX(1.0f), _offsetX(0.0)
+    QWidget(parent), _scaleX(1.0f), _offsetX(0.0), _documentView(nullptr)
 {
     _backgroundImage = QImage(":/keyboard-97.png");
     setMinimumSize(_backgroundImage.size());
     setMinimumHeight(_backgroundImage.height());
+
+    _offsetX = 7 * KeySpacing();
 }
 
 void REPianoWidget::ConnectToDocument(REDocumentView* doc)
@@ -56,8 +58,110 @@ void REPianoWidget::paintEvent(QPaintEvent *)
     QPainter painter(this);
 
     painter.fillRect(rect(), QBrush(QColor::fromRgb(0x33, 0x33, 0x33)));
-
     painter.drawImage(0, 0, _backgroundImage);
+
+    if(_documentView == nullptr) return;
+
+    const REScoreController* scoreController = _documentView->ScoreController();
+    const REScore* score = scoreController->Score();
+    const RESequencer* sequencer = scoreController->Sequencer();
+
+    int barIndex = scoreController->Cursor().BarIndex();
+    int voiceIndex = scoreController->Cursor().VoiceIndex();
+    int staffIndex = scoreController->Cursor().StaffIndex();
+
+    const RESystem* system = score->SystemWithBarIndex(barIndex);
+    const REStaff* staff = system ? system->Staff(staffIndex) : NULL;
+    if(staff == NULL) {
+        return;
+    }
+
+    const RETrack* track = staff->Track();
+
+    REIntSet pitchesInChord;
+    REIntSet pitchesInBar;
+
+    QColor color;
+
+    if(sequencer && sequencer->IsRunning())
+    {
+        int barIndex = sequencer->BarIndexThatsCurrentlyPlaying();
+        int tick = sequencer->TickInBarPlaying();
+
+        for(int voiceIndex = 0; voiceIndex < track->VoiceCount(); ++voiceIndex)
+        {
+            const REVoice* voice = track->Voice(voiceIndex);
+            const REPhrase* phrase = voice->Phrase(barIndex);
+            if(phrase)
+            {
+                const REChord* currentChord = NULL;
+                const REChord* chordAfter = NULL;
+                phrase->ChordsSurroundingTick(tick, &currentChord, &chordAfter);
+
+                for(int chordIndex=0; chordIndex<phrase->ChordCount(); ++chordIndex)
+                {
+                    const REChord* chord = phrase->Chord(chordIndex);
+                    for(int i=0; i<chord->NoteCount(); ++i)
+                    {
+                        const RENote* note = chord->Note(i);
+                        int pitch = note->Pitch().midi;
+                        pitchesInBar.insert(pitch);
+                        if(chord == currentChord) {
+                            pitchesInChord.insert(pitch);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        color = QColor::fromRgb(217, 102, 39, 200);
+    }
+    else
+    {
+        const REVoice* voice = track->Voice(voiceIndex);
+        const REPhrase* phrase = voice->Phrase(barIndex);
+        const REBar* bar = (phrase ? phrase->Bar() : NULL);
+        if(bar)
+        {
+            const REChord* currentChord = scoreController->Cursor().Chord();
+            int stringIndex = scoreController->Cursor().LineIndex();
+
+            for(int chordIndex=0; chordIndex<phrase->ChordCount(); ++chordIndex)
+            {
+                const REChord* chord = phrase->Chord(chordIndex);
+                for(int i=0; i<chord->NoteCount(); ++i)
+                {
+                    const RENote* note = chord->Note(i);
+                    int pitch = note->Pitch().midi;
+                    pitchesInBar.insert(pitch);
+                    if(chord == currentChord) {
+                        pitchesInChord.insert(pitch);
+                    }
+                }
+            }
+
+            color = QColor::fromRgb(217, 102, 39, 200);
+        }
+    }
+
+    // Draw pressed keys
+    REIntSet::const_iterator pitchesInChordIterator = pitchesInChord.begin();
+    for(; pitchesInChordIterator != pitchesInChord.end(); ++pitchesInChordIterator)
+    {
+        int pitch = *pitchesInChordIterator;
+
+        int chromatic = pitch % 12;
+        bool sharp = isSharped[chromatic];
+
+        RERect rc = RectForPitch(pitch);
+        rc.origin.x -= _offsetX;
+        float y = YOffsetOfRoundOfPitch(pitch);
+
+        painter.setPen(QPen(color));
+        painter.setBrush(QBrush(color.lighter()));
+        painter.drawRect(QRect(rc.MiddleX()-3, y-3, 6, 6));
+    }
 }
 
 float REPianoWidget::KeySpacing() const

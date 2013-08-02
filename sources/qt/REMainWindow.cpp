@@ -256,6 +256,7 @@ void REMainWindow::ConnectToDocument()
     // Sequencer
     _sequencerWidget->ConnectToDocument(_currentDocument);
     _transportWidget->ConnectToDocument(_currentDocument);
+    _pianoWidget->ConnectToDocument(_currentDocument);
 
     // Part List
     _partListView->setModel(_currentDocument->PartListModel());
@@ -401,6 +402,7 @@ void REMainWindow::DisconnectFromDocument()
     // Sequencer
     _sequencerWidget->DisconnectFromDocument();
     _transportWidget->DisconnectFromDocument();
+    _pianoWidget->DisconnectFromDocument();
 
     // Part List
     _partListView->setModel(nullptr);
