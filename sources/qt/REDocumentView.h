@@ -172,6 +172,8 @@ signals:
     void PlaybackStarted();
     void PlaybackStopped();
     void FileStatusChanged();
+    void CursorOrSelectionChanged();
+    void DataChanged();
 
 public:
 	bool IsPlaybackRunning() const;

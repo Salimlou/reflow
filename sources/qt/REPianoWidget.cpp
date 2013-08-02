@@ -46,11 +46,13 @@ REPianoWidget::REPianoWidget(QWidget *parent) :
 void REPianoWidget::ConnectToDocument(REDocumentView* doc)
 {
     _documentView = doc;
+    RefreshDisplay();
 }
 
 void REPianoWidget::DisconnectFromDocument()
 {
     _documentView = nullptr;
+    RefreshDisplay();
 }
 
 void REPianoWidget::paintEvent(QPaintEvent *)
@@ -285,4 +287,9 @@ RERect REPianoWidget::RectForPitch(unsigned int pitch) const
     x += (7.0 * KeySpacing() * octave);
 
     return RERect(x, y, w, h);
+}
+
+void REPianoWidget::RefreshDisplay()
+{
+    update();
 }

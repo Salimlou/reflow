@@ -14,7 +14,8 @@ class REPianoWidget : public QWidget
 public:
     explicit REPianoWidget(QWidget *parent = 0);
     
-signals:
+public slots:
+    void RefreshDisplay();
 
 public:
     void ConnectToDocument(REDocumentView* doc);

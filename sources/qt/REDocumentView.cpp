@@ -886,6 +886,7 @@ void REDocumentView::SongControllerWantsToBackup(const RESongController* control
 // ----------------------------------------------------------------------------
 void REDocumentView::ScoreControllerSelectionDidChange(const REScoreController* scoreController)
 {
+    emit CursorOrSelectionChanged();
 }
 
 void REDocumentView::ScoreControllerScoreDidChange(const REScoreController* scoreController, const REScore* score)
@@ -895,10 +896,12 @@ void REDocumentView::ScoreControllerScoreDidChange(const REScoreController* scor
 
 void REDocumentView::ScoreControllerRefreshPresentation(const REScoreController* scoreController, const REScore* score)
 {
+    emit DataChanged();
 }
 
 void REDocumentView::OnShouldCenterOnCursor(const REScoreController* scoreController)
 {
+    emit CursorOrSelectionChanged();
 }
 
 void REDocumentView::OnCopyPhraseToPasteboard(const REPhrase* phrase, Reflow::TrackType trackType)
