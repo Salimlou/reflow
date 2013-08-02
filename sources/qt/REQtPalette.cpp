@@ -9,6 +9,7 @@ REQtPalette::REQtPalette(QWidget *parent) :
     CreateButtons();
 
     setMinimumWidth(200);
+    setFocusPolicy(Qt::NoFocus);
 }
 
 REQtPalette::~REQtPalette()
@@ -55,9 +56,10 @@ void REQtPalette::CreateButtons()
 
         QString iconName = QString(":/palette_%1.png").arg(ident);
         QPushButton* btn = new QPushButton(QIcon(iconName), "", this);
-        //btn->setStyleSheet(QString("margin: 0px; padding: 0px; border: none;"));
+        btn->setStyleSheet(QString("margin: 0px; padding: 0px; border: none;"));
         btn->setGeometry(x, y, 24, 24);
         btn->setFlat(true);
+        btn->setFocusPolicy(Qt::NoFocus);
         _buttons[ident] = btn;
     }
 }

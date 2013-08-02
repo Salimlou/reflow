@@ -25,6 +25,8 @@ public:
     explicit REMainWindow(QWidget *parent = 0);
     ~REMainWindow();
 
+    REDocumentView* CurrentDocumentView() const {return _currentDocument;}
+
 public slots:
     void ActionNew();
     void ActionOpen();

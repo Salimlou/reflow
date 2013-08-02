@@ -118,5 +118,6 @@ int main(int argc, char *argv[])
 	REMainWindow w;
     w.ActionNew();
     w.show();
+
     return a.exec();
 }

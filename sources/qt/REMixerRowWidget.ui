@@ -51,6 +51,9 @@
      <height>24</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="text">
     <string>S</string>
    </property>
@@ -67,6 +70,9 @@
      <height>24</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="text">
     <string>M</string>
    </property>
@@ -82,6 +88,9 @@
      <width>61</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="maximum">
     <number>100</number>
@@ -102,6 +111,9 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="maximum">
     <number>100</number>
    </property>
@@ -120,6 +132,9 @@
      <width>24</width>
      <height>24</height>
     </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
     <string>V</string>

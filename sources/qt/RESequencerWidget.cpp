@@ -13,12 +13,15 @@
 RESequencerWidget::RESequencerWidget(QWidget *parent) :
     QWidget(parent), _headerHeight(32), _mixerWidth(350), _documentView(nullptr)
 {
+    setFocusPolicy(Qt::NoFocus);
+
     _mixerHeader = new REMixerHeaderWidget(this);
     _mixerHeader->setStyleSheet("QLabel { color: #dadada; }");
 
     _mixerScrollArea = new QScrollArea(this);
     _mixerScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _mixerScrollArea->setStyleSheet( "QScrollArea { border-style: none; background: #fefefe; }" );
+    _mixerScrollArea->setFocusPolicy(Qt::NoFocus);
     _mixerWidget = new REMixerWidget;
     _mixerWidget->setGeometry(0, 0, _mixerWidth, 400);
     _mixerScrollArea->setWidget(_mixerWidget);
@@ -27,6 +30,7 @@ RESequencerWidget::RESequencerWidget(QWidget *parent) :
     _navigatorHeaderScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _navigatorHeaderScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _navigatorHeaderScrollArea->setStyleSheet( "QScrollArea { border-style: none; }" );
+    _navigatorHeaderScrollArea->setFocusPolicy(Qt::NoFocus);
     _navigatorHeader = new RENavigatorHeaderWidget;
     _navigatorHeader->setGeometry(0, 0, 1200, _headerHeight);
     _navigatorHeaderScrollArea->setWidget(_navigatorHeader);
@@ -37,6 +41,7 @@ RESequencerWidget::RESequencerWidget(QWidget *parent) :
     _navigatorView = new QGraphicsView(_navigatorScene, this);
     _navigatorView->setStyleSheet( "QGraphicsView { border-style: none; background: #333333; }" );
     _navigatorView->setAlignment(Qt::AlignTop|Qt::AlignLeft);
+    _navigatorView->setFocusPolicy(Qt::NoFocus);
 
     QObject::connect(_navigatorHeaderScrollArea->horizontalScrollBar(), SIGNAL(valueChanged(int)), _navigatorView->horizontalScrollBar(), SLOT(setValue(int)));
     QObject::connect(_navigatorView->horizontalScrollBar(), SIGNAL(valueChanged(int)), _navigatorHeaderScrollArea->horizontalScrollBar(), SLOT(setValue(int)));

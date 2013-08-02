@@ -77,6 +77,7 @@ REMainWindow::REMainWindow(QWidget *parent) :
     tab->setDocumentMode(true);
     tab->setTabsClosable(true);
     tab->setElideMode(Qt::ElideLeft);
+    tab->setFocusPolicy(Qt::NoFocus);
     QObject::connect(tab, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseDocumentTab(int)));
     setCentralWidget(tab);
 
@@ -203,6 +204,7 @@ void REMainWindow::OnCurrentTabChanged(int newIndex)
     DisconnectFromDocument();
     REDocumentView* doc = qobject_cast<REDocumentView*>(tab->widget(newIndex));
     _currentDocument = doc;
+    _currentDocument->setFocus();
     ConnectToDocument();
 }
 
