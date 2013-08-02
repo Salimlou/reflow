@@ -49,6 +49,9 @@ protected:
 
     void UpdateWindowTitleFromCurrentDocument();
 
+protected:
+    virtual void closeEvent(QCloseEvent *);
+
 private:
     Ui::REMainWindow *ui;
     REDocumentView* _currentDocument;

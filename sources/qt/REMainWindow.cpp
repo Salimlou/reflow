@@ -16,6 +16,7 @@
 #include <QGraphicsTextItem>
 #include <QFileDialog>
 #include <QDockWidget>
+#include <QSettings>
 
 static const char* _listViewStyleSheet =
     "QListView {\n"
@@ -106,33 +107,39 @@ REMainWindow::REMainWindow(QWidget *parent) :
     _sectionListView->setStyleSheet(QString::fromLatin1(_listViewStyleSheet));
 
     QDockWidget* paletteDock = new QDockWidget(tr("Palette"));
+    paletteDock->setObjectName("paletteDock");
     paletteDock->setWidget(_palette);
     addDockWidget(Qt::LeftDockWidgetArea, paletteDock);
     ui->menuView->addAction(paletteDock->toggleViewAction());
 
     QDockWidget* transportDock = new QDockWidget(tr("Transport"));
+    transportDock->setObjectName("transportDock");
     transportDock->setWidget(_transportWidget);
     transportDock->setAllowedAreas(Qt::AllDockWidgetAreas);
     addDockWidget(Qt::RightDockWidgetArea, transportDock);
     ui->menuView->addAction(transportDock->toggleViewAction());
 
     QDockWidget* sequencerDock = new QDockWidget(tr("Sequencer"));
+    sequencerDock->setObjectName("sequencerDock");
     sequencerDock->setWidget(_sequencerWidget);
     sequencerDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
     addDockWidget(Qt::BottomDockWidgetArea, sequencerDock);
     ui->menuView->addAction(sequencerDock->toggleViewAction());
 
     QDockWidget* partListDock = new QDockWidget(tr("Parts"));
+    partListDock->setObjectName("partListDock");
     partListDock->setWidget(_partListView);
     addDockWidget(Qt::RightDockWidgetArea, partListDock);
     ui->menuView->addAction(partListDock->toggleViewAction());
 
     QDockWidget* sectionListDock = new QDockWidget(tr("Sections"));
+    sectionListDock->setObjectName("sectionListDock");
     sectionListDock->setWidget(_sectionListView);
     addDockWidget(Qt::RightDockWidgetArea, sectionListDock);
     ui->menuView->addAction(sectionListDock->toggleViewAction());
 
     QDockWidget* pianoDock = new QDockWidget(tr("Keyboard"));
+    pianoDock->setObjectName("pianoDock");
     pianoDock->setWidget(_pianoWidget);
     pianoDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
     addDockWidget(Qt::BottomDockWidgetArea, pianoDock);
@@ -143,6 +150,10 @@ REMainWindow::REMainWindow(QWidget *parent) :
     QObject::connect(ui->actionNew, SIGNAL(triggered()), this, SLOT(ActionNew()));
     QObject::connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(ActionOpen()));
     QObject::connect(ui->actionClose, SIGNAL(triggered()), this, SLOT(ActionClose()));
+
+    QSettings settings;
+    restoreGeometry(settings.value("mainWindow/geometry").toByteArray());
+    restoreState(settings.value("mainWindow/state").toByteArray());
 }
 
 REMainWindow::~REMainWindow()
@@ -266,6 +277,15 @@ void REMainWindow::RefreshInterfaceFromCurrentDocument()
     _editLowVoiceButton->blockSignals(true);
     _editLowVoiceButton->setChecked(_currentDocument->IsEditingLowVoice());
     _editLowVoiceButton->blockSignals(false);
+}
+
+void REMainWindow::closeEvent(QCloseEvent* e)
+{
+    QSettings settings;
+    settings.setValue("mainWindow/geometry", saveGeometry());
+    settings.setValue("mainWindow/state", saveState());
+
+    QMainWindow::closeEvent(e);
 }
 
 void REMainWindow::ConnectToDocument()

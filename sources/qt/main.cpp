@@ -105,6 +105,9 @@ QPixmap TestRenderOnePage(const REScore& score, QString filename)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setOrganizationName("Gargant Studios");
+    a.setOrganizationDomain("gargant.com");
+    a.setApplicationName("Reflow");
 
     // Default soundfont path
     RESoundFontManager::Instance().SetDefaultSoundFontPath(DataPath() + "/GeneralUser.sf2");
