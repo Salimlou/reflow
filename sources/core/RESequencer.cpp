@@ -412,13 +412,7 @@ bool RESequencer::IsInitialized() const
 
 void RESequencer::Build(const RESong *song) 
 {
-#ifdef REFLOW_QT
     RESequencer::Build(song, REAudioEngine::Instance());
-#elif defined(REFLOW_MAC) || defined(REFLOW_IOS)
-    RESequencer::Build(song, RECoreAudioEngine::Instance());
-#elif defined(REFLOW_EMSCRIPTEN)
-    // TODO!
-#endif
 }
 
 void RESequencer::Build(const RESong *song, REAudioEngine* audioEngine)
@@ -473,6 +467,10 @@ void RESequencer::Shutdown()
     _rack = NULL;
     
     _d->running = false;
+
+    for(RESequencerListener* listener : _d->_listeners) {
+        listener->OnSequencerUpdateRT(this);
+    }
 }
 
 void RESequencer::StartPlayback() 

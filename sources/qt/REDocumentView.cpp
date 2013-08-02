@@ -265,6 +265,7 @@ void REDocumentView::StopPlayback()
 
     _viewportUpdateTimer->stop();
 
+    UpdateViewport();
     emit PlaybackStopped();
 }
 void REDocumentView::TogglePlayback()
