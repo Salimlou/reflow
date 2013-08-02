@@ -63,21 +63,21 @@ void REScoreScene::keyPressEvent(QKeyEvent *event)
 
     QString characters = event->text();
 
-    if     (keyCode == Qt::Key_1 || characters.startsWith("1")) {scoreController->TypeKeypadNumber(1, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_2 || characters.startsWith("2")) {scoreController->TypeKeypadNumber(2, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_3 || characters.startsWith("3")) {scoreController->TypeKeypadNumber(3, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_4 || characters.startsWith("4")) {scoreController->TypeKeypadNumber(4, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_5 || characters.startsWith("5")) {scoreController->TypeKeypadNumber(5, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_6 || characters.startsWith("6")) {scoreController->TypeKeypadNumber(6, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_7 || characters.startsWith("7")) {scoreController->TypeKeypadNumber(7, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_8 || characters.startsWith("8")) {scoreController->TypeKeypadNumber(8, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_9 || characters.startsWith("9")) {scoreController->TypeKeypadNumber(9, altDown); consumed=true;}
-    else if(keyCode == Qt::Key_0 || characters.startsWith("0")) {scoreController->TypeKeypadNumber(0, altDown); consumed=true;}
+    if     (keyCode == Qt::Key_1 || characters.startsWith("1")) {_documentView->ActionTypeKeypad(1, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_2 || characters.startsWith("2")) {_documentView->ActionTypeKeypad(2, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_3 || characters.startsWith("3")) {_documentView->ActionTypeKeypad(3, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_4 || characters.startsWith("4")) {_documentView->ActionTypeKeypad(4, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_5 || characters.startsWith("5")) {_documentView->ActionTypeKeypad(5, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_6 || characters.startsWith("6")) {_documentView->ActionTypeKeypad(6, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_7 || characters.startsWith("7")) {_documentView->ActionTypeKeypad(7, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_8 || characters.startsWith("8")) {_documentView->ActionTypeKeypad(8, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_9 || characters.startsWith("9")) {_documentView->ActionTypeKeypad(9, altDown); consumed=true;}
+    else if(keyCode == Qt::Key_0 || characters.startsWith("0")) {_documentView->ActionTypeKeypad(0, altDown); consumed=true;}
 
     if(!altDown)
     {
-        if(characters.startsWith("+")) {scoreController->DecreaseNoteValueOnSelection(); consumed = true;}
-        if(characters.startsWith("-")) {scoreController->IncreaseNoteValueOnSelection(); consumed = true;}
+        if(characters.startsWith("+")) {_documentView->ActionDecreaseDuration(); consumed = true;}
+        if(characters.startsWith("-")) {_documentView->ActionIncreaseDuration(); consumed = true;}
     }
 
     unsigned long moveFlags = 0;

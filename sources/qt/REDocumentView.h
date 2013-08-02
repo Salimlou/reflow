@@ -74,6 +74,10 @@ public slots:
     void ActionPaste();
     void ActionDelete();
 
+    void ActionIncreaseDuration();
+    void ActionDecreaseDuration();
+    void ActionTypeKeypad(int, bool);
+
     void ActionAddChord();
     void ActionInsertChord();
     void ActionDuplicateChord();

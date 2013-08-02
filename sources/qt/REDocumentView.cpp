@@ -305,6 +305,21 @@ void REDocumentView::UpdateViewport()
     }
 }
 
+void REDocumentView::ActionIncreaseDuration()
+{
+    _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::IncreaseNoteValueOnSelection, std::placeholders::_1)));
+}
+
+void REDocumentView::ActionDecreaseDuration()
+{
+    _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::DecreaseNoteValueOnSelection, std::placeholders::_1)));
+}
+
+void REDocumentView::ActionTypeKeypad(int num, bool alt)
+{
+    _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::TypeKeypadNumber, std::placeholders::_1, num, alt, false)));
+}
+
 void REDocumentView::ActionAddChord()
 {
     _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::AddChordAfterCursor, std::placeholders::_1)));
