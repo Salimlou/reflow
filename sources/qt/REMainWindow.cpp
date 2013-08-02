@@ -63,6 +63,13 @@ REMainWindow::REMainWindow(QWidget *parent) :
     QToolBar* toolbar = ui->mainToolBar;
     _playAction = toolbar->addAction(QIcon(":/toolbar-play.png"), tr("Play"));
 
+    _editLowVoiceButton = new QPushButton("Low");
+    _editLowVoiceButton->setCheckable(true);
+    _editLowVoiceButton->setMinimumSize(QSize(24, 24));
+    _editLowVoiceButton->setMaximumSize(QSize(32, 24));
+    _editLowVoiceButton->setFocusPolicy(Qt::NoFocus);
+    ui->statusBar->addPermanentWidget(_editLowVoiceButton);
+
     setStyleSheet(QString(
                       "QMainWindow::separator {"
                       "  background: black;"
@@ -288,6 +295,11 @@ void REMainWindow::ConnectToDocument()
     ui->menuEdit->addAction(_undoAction);
 	ui->menuEdit->addAction(_redoAction);
 
+    _editLowVoiceButton->blockSignals(true);
+    _editLowVoiceButton->setChecked(_currentDocument->IsEditingLowVoice());
+    _editLowVoiceButton->blockSignals(false);
+    QObject::connect(_editLowVoiceButton, SIGNAL(toggled(bool)), _currentDocument, SLOT(SetEditLowVoice(bool)));
+
     QObject::connect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
     QObject::connect(_currentDocument, SIGNAL(PlaybackStarted()), this, SLOT(OnCurrentDocumentPlaybackStarted()));
     QObject::connect(_currentDocument, SIGNAL(PlaybackStopped()), this, SLOT(OnCurrentDocumentPlaybackStopped()));
@@ -435,6 +447,11 @@ void REMainWindow::DisconnectFromDocument()
 		delete _redoAction;
 		_redoAction = NULL;
 	}
+
+    _editLowVoiceButton->blockSignals(true);
+    _editLowVoiceButton->setChecked(false);
+    _editLowVoiceButton->blockSignals(false);
+    QObject::disconnect(_editLowVoiceButton, SIGNAL(toggled(bool)), _currentDocument, SLOT(SetEditLowVoice(bool)));
 
     QObject::disconnect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
     QObject::disconnect(_currentDocument, SIGNAL(PlaybackStarted()), this, SLOT(OnCurrentDocumentPlaybackStarted()));

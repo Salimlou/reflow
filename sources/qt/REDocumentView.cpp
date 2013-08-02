@@ -283,6 +283,16 @@ void REDocumentView::SetTrackingEnabled(bool enabled)
     _trackingEnabled = enabled;
 }
 
+bool REDocumentView::IsEditingLowVoice() const
+{
+    return _scoreController->IsEditingLowVoice();
+}
+
+void REDocumentView::SetEditLowVoice(bool b)
+{
+    _scoreController->SetEditLowVoice(b);
+}
+
 void REDocumentView::UpdateViewport()
 {
     if(_scoreController == NULL) return;

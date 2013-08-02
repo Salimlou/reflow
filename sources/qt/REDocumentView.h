@@ -40,6 +40,7 @@ public:
     RESequencer* Sequencer() {return _songController->Sequencer();}
 
     bool IsTrackingEnabled() const {return _trackingEnabled;}
+    bool IsEditingLowVoice() const;
 
 	const QUndoStack* UndoStack() const {return _undoStack;}
 	QUndoStack* UndoStack() {return _undoStack;}
@@ -63,6 +64,7 @@ public slots:
 	void StopPlayback();
 	void TogglePlayback();
     void SetTrackingEnabled(bool);
+    void SetEditLowVoice(bool);
 
     void Save();
     void SaveAs();
