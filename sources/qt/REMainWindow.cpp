@@ -100,30 +100,36 @@ REMainWindow::REMainWindow(QWidget *parent) :
 
     QDockWidget* paletteDock = new QDockWidget(tr("Palette"));
     paletteDock->setWidget(_palette);
-    this->addDockWidget(Qt::LeftDockWidgetArea, paletteDock);
+    addDockWidget(Qt::LeftDockWidgetArea, paletteDock);
+    ui->menuView->addAction(paletteDock->toggleViewAction());
 
     QDockWidget* transportDock = new QDockWidget(tr("Transport"));
     transportDock->setWidget(_transportWidget);
     transportDock->setAllowedAreas(Qt::AllDockWidgetAreas);
-    this->addDockWidget(Qt::RightDockWidgetArea, transportDock);
+    addDockWidget(Qt::RightDockWidgetArea, transportDock);
+    ui->menuView->addAction(transportDock->toggleViewAction());
 
     QDockWidget* sequencerDock = new QDockWidget(tr("Sequencer"));
     sequencerDock->setWidget(_sequencerWidget);
     sequencerDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
-    this->addDockWidget(Qt::BottomDockWidgetArea, sequencerDock);
+    addDockWidget(Qt::BottomDockWidgetArea, sequencerDock);
+    ui->menuView->addAction(sequencerDock->toggleViewAction());
 
     QDockWidget* partListDock = new QDockWidget(tr("Parts"));
     partListDock->setWidget(_partListView);
-    this->addDockWidget(Qt::RightDockWidgetArea, partListDock);
+    addDockWidget(Qt::RightDockWidgetArea, partListDock);
+    ui->menuView->addAction(partListDock->toggleViewAction());
 
     QDockWidget* sectionListDock = new QDockWidget(tr("Sections"));
     sectionListDock->setWidget(_sectionListView);
-    this->addDockWidget(Qt::RightDockWidgetArea, sectionListDock);
+    addDockWidget(Qt::RightDockWidgetArea, sectionListDock);
+    ui->menuView->addAction(sectionListDock->toggleViewAction());
 
     QDockWidget* pianoDock = new QDockWidget(tr("Keyboard"));
     pianoDock->setWidget(_pianoWidget);
     pianoDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
-    this->addDockWidget(Qt::BottomDockWidgetArea, pianoDock);
+    addDockWidget(Qt::BottomDockWidgetArea, pianoDock);
+    ui->menuView->addAction(pianoDock->toggleViewAction());
 
     QObject::connect(tab, SIGNAL(currentChanged(int)), this, SLOT(OnCurrentTabChanged(int)));
 
