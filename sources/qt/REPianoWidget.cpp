@@ -12,11 +12,14 @@
 #include "RESystem.h"
 #include "REStaff.h"
 #include "RESequencer.h"
+#include "REUndoCommand.h"
 
 #include <sstream>
 #include <cmath>
 
 #include <QPainter>
+#include <QMouseEvent>
+#include <QUndoStack>
 
 static int stepToPitch[] = {
     0,
@@ -164,6 +167,28 @@ void REPianoWidget::paintEvent(QPaintEvent *)
         painter.setBrush(QBrush(color.lighter()));
         painter.drawRect(QRect(rc.MiddleX()-3, y-3, 6, 6));
     }
+}
+
+void REPianoWidget::mousePressEvent(QMouseEvent *event)
+{
+    if(!_documentView) return;
+
+    REPoint pos(event->pos().x(), event->pos().y());
+    pos.x += _offsetX;
+
+    int step = StepWithXOffset(pos.x);
+    int octave = OctaveWithXOffset(pos.x);
+    int alter = AlterationWithXYOffset(pos.x, pos.y);
+    int pitch = stepToPitch[step] + octave*12 + alter;
+    float xmod = fmodf(pos.x, KeySpacing());
+    printf("clicked on step %d at octave %d with alter %d => pitch: %d (xmod:%1.2f y:%1.2f)\n", step, octave, alter, pitch, xmod, pos.y);
+
+    REIntVector pitches;
+    pitches.push_back(pitch);
+
+    QUndoStack* undoStack = _documentView->UndoStack();
+    REScoreController* scoreController = _documentView->ScoreController();
+    undoStack->push(new REScoreUndoCommand(scoreController, std::bind(&REScoreController::InsertNotesWithPitches, std::placeholders::_1, pitches)));
 }
 
 float REPianoWidget::KeySpacing() const
