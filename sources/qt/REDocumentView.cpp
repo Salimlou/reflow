@@ -198,6 +198,7 @@ void REDocumentView::CreateControllers()
     // Add the score scene to the view
     _scoreView = new REScoreSceneView(_scene, 0);
     _scoreView->setStyleSheet( "QGraphicsView { border-style: none; }" );
+    _scoreView->setFocusPolicy(Qt::ClickFocus);
     QVBoxLayout* layout = new QVBoxLayout;
     layout->setMargin(0);
     layout->addWidget(_scoreView);
@@ -291,6 +292,7 @@ bool REDocumentView::IsEditingLowVoice() const
 void REDocumentView::SetEditLowVoice(bool b)
 {
     _scoreController->SetEditLowVoice(b);
+    emit CursorOrSelectionChanged();
 }
 
 void REDocumentView::UpdateViewport()

@@ -259,6 +259,15 @@ void REMainWindow::UpdateWindowTitleFromCurrentDocument()
     }
 }
 
+void REMainWindow::RefreshInterfaceFromCurrentDocument()
+{
+    if(_currentDocument == nullptr) return;
+
+    _editLowVoiceButton->blockSignals(true);
+    _editLowVoiceButton->setChecked(_currentDocument->IsEditingLowVoice());
+    _editLowVoiceButton->blockSignals(false);
+}
+
 void REMainWindow::ConnectToDocument()
 {
     if(_currentDocument == NULL) return;
@@ -299,6 +308,7 @@ void REMainWindow::ConnectToDocument()
     _editLowVoiceButton->setChecked(_currentDocument->IsEditingLowVoice());
     _editLowVoiceButton->blockSignals(false);
     QObject::connect(_editLowVoiceButton, SIGNAL(toggled(bool)), _currentDocument, SLOT(SetEditLowVoice(bool)));
+    QObject::connect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), this, SLOT(RefreshInterfaceFromCurrentDocument()));
 
     QObject::connect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
     QObject::connect(_currentDocument, SIGNAL(PlaybackStarted()), this, SLOT(OnCurrentDocumentPlaybackStarted()));
@@ -452,6 +462,7 @@ void REMainWindow::DisconnectFromDocument()
     _editLowVoiceButton->setChecked(false);
     _editLowVoiceButton->blockSignals(false);
     QObject::disconnect(_editLowVoiceButton, SIGNAL(toggled(bool)), _currentDocument, SLOT(SetEditLowVoice(bool)));
+    QObject::disconnect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), this, SLOT(RefreshInterfaceFromCurrentDocument()));
 
     QObject::disconnect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
     QObject::disconnect(_currentDocument, SIGNAL(PlaybackStarted()), this, SLOT(OnCurrentDocumentPlaybackStarted()));

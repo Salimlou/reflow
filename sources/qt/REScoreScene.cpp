@@ -54,9 +54,9 @@ void REScoreScene::keyPressEvent(QKeyEvent *event)
     REScoreController* scoreController = _documentView->ScoreController();
 
     int keyCode = event->key();
-    bool shiftDown = (0 != event->modifiers() & Qt::ShiftModifier);
-    bool cmdDown = (0 != event->modifiers() & Qt::ControlModifier);
-    bool altDown = (0 != event->modifiers() & Qt::AltModifier);
+    bool shiftDown = (0 != (event->modifiers() & Qt::ShiftModifier));
+    bool cmdDown = (0 != (event->modifiers() & Qt::ControlModifier));
+    bool altDown = (0 != (event->modifiers() & Qt::AltModifier));
     qDebug() << "keyDown: " << (shiftDown ? "shift + " : "") << (int)keyCode;
 
     bool consumed = false;
@@ -85,9 +85,9 @@ void REScoreScene::keyPressEvent(QKeyEvent *event)
     if(cmdDown) moveFlags |= REScoreController::CursorCmdDown;
     switch (keyCode)
     {
-        case Qt::Key_Tab:
+        case Qt::Key_twosuperior:
         {
-            //self.currentVoiceIndex = 1 - self.currentVoiceIndex;
+            _documentView->SetEditLowVoice(!_documentView->IsEditingLowVoice());
             consumed = true;
             break;
         }
@@ -120,7 +120,13 @@ void REScoreScene::keyPressEvent(QKeyEvent *event)
         }
         case Qt::Key_Backspace:
         case Qt::Key_Delete: {
-            scoreController->DeleteSelection();
+            _documentView->ActionDelete();
+            consumed=true;
+            break;
+        }
+
+        case Qt::Key_Slash: {
+            _documentView->ActionSplitChord();
             consumed=true;
             break;
         }

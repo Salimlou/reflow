@@ -41,6 +41,7 @@ protected slots:
     void OnCurrentDocumentStatusChanged();
 
     void CloseDocumentTab(int index);
+    void RefreshInterfaceFromCurrentDocument();
 
 protected:
     void ConnectToDocument();
