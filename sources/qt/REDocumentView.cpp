@@ -17,10 +17,12 @@
 #include <RESong.h>
 #include <RESongController.h>
 #include <RESystem.h>
+#include <RETrack.h>
 #include <RENote.h>
 #include <REChord.h>
 #include <REBar.h>
 #include <REPhrase.h>
+#include <REAudioEngine.h>
 
 #include "REPropertiesDialog.h"
 #include "RERehearsalDialog.h"
@@ -37,6 +39,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QMimeData>
+#include <QSettings>
 
 using std::bind;
 
@@ -305,6 +308,31 @@ void REDocumentView::UpdateViewport()
     }
 }
 
+void REDocumentView::PlaySelectedChordOnMonitoringDevice()
+{
+    QSettings settings;
+    bool playbackNotesOnInput = settings.value("edit/playNotesOnInput", QVariant(true)).toBool();
+    if(!playbackNotesOnInput) return;
+
+    if(_scoreController->InferredSelectionKind() != REScoreController::CursorSelection) {
+        return;
+    }
+
+    int barIndex = _scoreController->FirstSelectedBarIndex();
+
+    const REChord* chord = _scoreController->FirstSelectedChord();
+    if(chord == NULL) return;
+
+    const RETempoTimeline& tempoTimeline =  _song->TempoTimeline();
+    const RETempoItem* tempoItem = tempoTimeline.ItemAt(barIndex, chord->Offset());
+    double bpm = tempoItem ? tempoItem->BeatsPerMinute() : 90.0;
+
+    const RETrack* track = chord->Phrase()->Track();
+    REMidiClip midiClip;
+    track->CalculateMidiClipEventsForChord(&midiClip, chord, 0);
+    REAudioEngine::Instance()->PlayInstantClipOnMonitoringDevice(midiClip, bpm, track->Capo(), true);
+}
+
 void REDocumentView::ActionIncreaseDuration()
 {
     _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::IncreaseNoteValueOnSelection, std::placeholders::_1)));
@@ -318,6 +346,7 @@ void REDocumentView::ActionDecreaseDuration()
 void REDocumentView::ActionTypeKeypad(int num, bool alt)
 {
     _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::TypeKeypadNumber, std::placeholders::_1, num, alt, false)));
+    PlaySelectedChordOnMonitoringDevice();
 }
 
 void REDocumentView::ActionAddChord()

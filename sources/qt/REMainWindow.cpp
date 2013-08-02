@@ -9,6 +9,7 @@
 #include "RETransportWidget.h"
 #include "RESequencerWidget.h"
 #include "REPianoWidget.h"
+#include "REPreferencesDialog.h"
 
 #include <RESong.h>
 #include <RESongController.h>
@@ -159,6 +160,12 @@ REMainWindow::REMainWindow(QWidget *parent) :
 REMainWindow::~REMainWindow()
 {
     delete ui;
+}
+
+void REMainWindow::on_actionPreferences_triggered()
+{
+    REPreferencesDialog dlg(this);
+    dlg.exec();
 }
 
 void REMainWindow::ActionNew()

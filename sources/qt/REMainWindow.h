@@ -43,6 +43,8 @@ protected slots:
     void CloseDocumentTab(int index);
     void RefreshInterfaceFromCurrentDocument();
 
+    void on_actionPreferences_triggered();
+
 protected:
     void ConnectToDocument();
     void DisconnectFromDocument();

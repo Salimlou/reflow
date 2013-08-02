@@ -209,6 +209,8 @@ protected:
 	bool LoadFLOW(RESong& song, QString filename);
     bool WriteFLOW(QString filename);
 
+    void PlaySelectedChordOnMonitoringDevice();
+
 protected:
     RESong* _song;
     RESongController* _songController;

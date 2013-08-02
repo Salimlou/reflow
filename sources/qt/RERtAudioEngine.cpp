@@ -44,6 +44,15 @@ void RERtAudioEngine::Initialize(const REAudioSettings& settings)
     unsigned int sampleRate = 44100;
     unsigned int bufferFrames = REFLOW_WORK_BUFFER_SIZE; // 256 sample frames
 
+    // Create an Instant Music Rack for monitoring MIDI input
+    _monitorRack = new REMusicRack();
+    _monitorRack->SetSampleRate(_sampleRate);
+    _monitorDevice = _monitorRack->CreateMusicDevice();
+    RESynthMusicDevice* synthMusicDevice = static_cast<RESynthMusicDevice*>(_monitorDevice);
+    synthMusicDevice->SetSoundFont(_soundfont);
+    AddRack(_monitorRack);
+    _monitorRack->SetRenderingEnabled(true);
+
     try {
         _rtAudio.openStream( &parameters, NULL, RTAUDIO_SINT16,
                         sampleRate, &bufferFrames, &RERtAudioEngine::_RERtAudioEngineCallback, NULL);

@@ -55,6 +55,8 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionPreferences"/>
+    <addaction name="separator"/>
     <addaction name="actionCut"/>
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
@@ -261,6 +263,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+I</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
    </property>
   </action>
  </widget>
