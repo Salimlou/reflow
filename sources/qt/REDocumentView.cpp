@@ -33,6 +33,7 @@
 #include "RETimeSignatureDialog.h"
 #include "REFilePropertiesDialog.h"
 #include "RETextDialog.h"
+#include "REClefDialog.h"
 
 #include <QGraphicsTextItem>
 #include <QVBoxLayout>
@@ -518,7 +519,8 @@ void REDocumentView::ShowTimeSignatureDialog()
 
 void REDocumentView::ShowClefDialog()
 {
-    QMessageBox::critical(this, tr("Reflow Error"), tr("This feature is not yet implemented"));
+    REClefDialog dlg(this);
+    dlg.exec();
 }
 
 void REDocumentView::ShowKeySignatureDialog()
