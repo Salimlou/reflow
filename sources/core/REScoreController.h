@@ -331,6 +331,7 @@ public:
     
     void PerformTaskOnSelectedGraceNote(RENoteOperation op, const std::string& taskName, unsigned long flags=0);
     
+    void PerformTaskOnSongController(RESongControllerOperation op);
     void PerformTaskOnSong(RESongOperation op);
     void PerformTasksOnSong(const RESongOperationVector& ops);
     

@@ -17,7 +17,8 @@ else {
 SOURCES += "sources/core/REArchive.cpp" \
     sources/qt/REFilePropertiesDialog.cpp \
     sources/qt/REPianoWidget.cpp \
-    sources/qt/REPreferencesDialog.cpp
+    sources/qt/REPreferencesDialog.cpp \
+    sources/qt/REPartListView.cpp
 SOURCES += "sources/core/REAudioEngine.cpp"
 SOURCES += "sources/core/REAudioExportEngine.cpp"
 SOURCES += "sources/core/REAudioSettings.cpp"
@@ -103,7 +104,8 @@ SOURCES += "sources/core/REWriteChunkToFile.cpp"
 HEADERS += "sources/core/REArchive.h" \
     sources/qt/REFilePropertiesDialog.h \
     sources/qt/REPianoWidget.h \
-    sources/qt/REPreferencesDialog.h
+    sources/qt/REPreferencesDialog.h \
+    sources/qt/REPartListView.h
 HEADERS += "sources/core/REAudioEngine.h"
 HEADERS += "sources/core/REAudioExportEngine.h"
 HEADERS += "sources/core/REAudioSettings.h"

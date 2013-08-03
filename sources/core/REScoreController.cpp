@@ -1350,6 +1350,10 @@ static int _AlterationFromKeypadNumber(int num)
     return 0;
 }
 
+void REScoreController::PerformTaskOnSongController(RESongControllerOperation op)
+{
+    op(_songController);
+}
 
 void REScoreController::PerformTaskOnSong(RESongOperation op)
 {

@@ -39,7 +39,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tracksTab">
     <attribute name="title">
@@ -169,7 +169,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>9</pointsize>
+       <pointsize>7</pointsize>
       </font>
      </property>
      <property name="text">
@@ -269,14 +269,140 @@
     <attribute name="title">
      <string>Parts</string>
     </attribute>
-    <widget class="QListView" name="partList">
+    <widget class="REPartListView" name="partList">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
-       <width>231</width>
-       <height>301</height>
+       <y>10</y>
+       <width>261</width>
+       <height>321</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deletePartButton">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>340</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>-</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addPartButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>340</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>+</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="showStandardNotation">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>120</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Show Standard Notation</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="showTablature">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>150</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Show Tablature</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="hideDynamics">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>210</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Hide Dynamics</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="useMultibarRests">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>180</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Use Multibar Rests</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>10</y>
+       <width>191</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Part Name</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="partNameText">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>40</y>
+       <width>251</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>90</y>
+       <width>261</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Presentation Options</string>
      </property>
     </widget>
    </widget>
@@ -287,6 +413,11 @@
    <class>RETrackListView</class>
    <extends>QListView</extends>
    <header>RETrackListView.h</header>
+  </customwidget>
+  <customwidget>
+   <class>REPartListView</class>
+   <extends>QListView</extends>
+   <header>REPartListView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

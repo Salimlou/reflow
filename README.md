@@ -20,9 +20,9 @@ Missing Features
 - Text Dialog
 - Tempo Marker Dialog
 - Bend Dialog
-- Parts Dialog
 - Chord Names and Diagrams Dialog
 - <del>Keyboard</del> and Fretboard
+- <del>Parts Dialog</del>
 - <del>Zooming</del>
 - <del>File Properties Dialog</del>
 - <del>Cut/Copy/Paste</del>
