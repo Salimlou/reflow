@@ -17,11 +17,11 @@ Missing Features
 - Preferences Dialog
 - Clef Dialog
 - Key Signature Dialog
-- Text Dialog
 - Tempo Marker Dialog
 - Bend Dialog
 - Chord Names and Diagrams Dialog
 - <del>Keyboard</del> and Fretboard
+- <del>Text Dialog</del>
 - <del>Parts Dialog</del>
 - <del>Zooming</del>
 - <del>File Properties Dialog</del>

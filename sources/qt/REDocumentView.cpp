@@ -32,6 +32,7 @@
 #include "RERepeatDialog.h"
 #include "RETimeSignatureDialog.h"
 #include "REFilePropertiesDialog.h"
+#include "RETextDialog.h"
 
 #include <QGraphicsTextItem>
 #include <QVBoxLayout>
@@ -560,7 +561,17 @@ void REDocumentView::ShowChordDiagramDialog()
 
 void REDocumentView::ShowTextDialog()
 {
-    QMessageBox::critical(this, tr("Reflow Error"), tr("This feature is not yet implemented"));
+    const REChord* chord = _scoreController->FirstSelectedChord();
+    if(chord == nullptr) return;
+
+    RETextDialog dlg(this);
+    dlg.InitializeFromChord(chord);
+    if(QDialog::Accepted == dlg.exec())
+    {
+        std::string text = dlg.Text().toStdString();
+        Reflow::TextPositioning position = static_cast<Reflow::TextPositioning>(dlg.PositioningIndex());
+        _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::SetTextOnSelection, std::placeholders::_1, text, position)));
+    }
 }
 
 void REDocumentView::ShowRepeatDialog()

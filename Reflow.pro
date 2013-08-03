@@ -18,7 +18,8 @@ SOURCES += "sources/core/REArchive.cpp" \
     sources/qt/REFilePropertiesDialog.cpp \
     sources/qt/REPianoWidget.cpp \
     sources/qt/REPreferencesDialog.cpp \
-    sources/qt/REPartListView.cpp
+    sources/qt/REPartListView.cpp \
+    sources/qt/RETextDialog.cpp
 SOURCES += "sources/core/REAudioEngine.cpp"
 SOURCES += "sources/core/REAudioExportEngine.cpp"
 SOURCES += "sources/core/REAudioSettings.cpp"
@@ -105,7 +106,8 @@ HEADERS += "sources/core/REArchive.h" \
     sources/qt/REFilePropertiesDialog.h \
     sources/qt/REPianoWidget.h \
     sources/qt/REPreferencesDialog.h \
-    sources/qt/REPartListView.h
+    sources/qt/REPartListView.h \
+    sources/qt/RETextDialog.h
 HEADERS += "sources/core/REAudioEngine.h"
 HEADERS += "sources/core/REAudioExportEngine.h"
 HEADERS += "sources/core/REAudioSettings.h"
@@ -270,7 +272,8 @@ HEADERS += "sources/qt/RETuningDialog.h"
 HEADERS += "sources/qt/REUndoCommand.h"
 FORMS += "sources/qt/RECreateTrackDialog.ui" \
     sources/qt/REFilePropertiesDialog.ui \
-    sources/qt/REPreferencesDialog.ui
+    sources/qt/REPreferencesDialog.ui \
+    sources/qt/RETextDialog.ui
 FORMS += "sources/qt/REMainWindow.ui"
 FORMS += "sources/qt/REMixerHeaderWidget.ui"
 FORMS += "sources/qt/REMixerRowWidget.ui"
