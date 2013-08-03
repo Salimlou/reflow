@@ -8,7 +8,7 @@
 class REGraphicsSystemItem : public QGraphicsItem
 {
 public:
-    REGraphicsSystemItem(const RESystem* system, QGraphicsItem* parentItem=0);
+    REGraphicsSystemItem(const REScoreController* scoreController, const RESystem* system, QGraphicsItem* parentItem=0);
     virtual ~REGraphicsSystemItem(){}
 
 public:
@@ -18,6 +18,7 @@ public:
 
 protected:
     const RESystem* _system;
+    const REScoreController* _scoreController;
 };
 
 #endif // REGRAPHICSSYSTEMITEM_H

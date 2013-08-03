@@ -49,6 +49,21 @@ REPainter::~REPainter()
     delete _d;
 }
 
+void REPainter::SetGrayOutInactiveVoice(bool b)
+{
+    _d->grayOutInactiveVoice = b;
+}
+
+void REPainter::SetDrawingToScreen(bool b)
+{
+    _d->drawingToScreen = b;
+}
+
+void REPainter::SetForcedToBlack(bool b)
+{
+    _d->forcedToBlack = b;
+}
+
 void REPainter::SetStrokeColor(const REColor& color)
 {
     if(!_painter) return;
@@ -359,7 +374,7 @@ void REPainter::SetActiveVoiceIndex(int index)
 
 bool REPainter::ShouldGrayOutInactiveVoice() const
 {
-    return false;
+    return _d->grayOutInactiveVoice;
 }
 
 bool REPainter::IsForcedToBlack() const

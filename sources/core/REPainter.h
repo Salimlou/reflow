@@ -110,6 +110,10 @@ public:
     REPainter(QPainter* painter);
     ~REPainter();
 
+    void SetGrayOutInactiveVoice(bool);
+    void SetDrawingToScreen(bool);
+    void SetForcedToBlack(bool);
+
 private:
     QPainter* _painter;
 #else

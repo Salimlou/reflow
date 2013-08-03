@@ -315,9 +315,10 @@ REViewportSystemItem* REQtViewportPageItem::CreateSystemItemInPage(const RESyste
 REQtViewportSystemItem::REQtViewportSystemItem(REQtViewport* viewport, const RESystem* system)
 : REViewportSystemItem(viewport, system), _systemItem(NULL)
 {
+    const REScoreController* scoreController = viewport->DocumentView()->ScoreController();
     RERect frame = system->Frame();
 
-    _systemItem = new REGraphicsSystemItem(system);
+    _systemItem = new REGraphicsSystemItem(scoreController, system);
     _systemItem->setPos(frame.origin.ToQPointF());
 }
 
