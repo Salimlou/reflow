@@ -189,6 +189,7 @@ void REQtViewport::RepositionTabCursor()
 
     _tabCursor->setVisible(_tabInputCursorVisible);
     _tabCursor->_rects = _tabInputCursorSubRects;
+    _tabCursor->prepareGeometryChange();
     _tabCursor->_size = _tabInputCursorRect.size;
     _tabCursor->setPos(_tabInputCursorRect.origin.ToQPointF());
 
