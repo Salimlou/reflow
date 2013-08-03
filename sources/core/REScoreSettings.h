@@ -45,6 +45,7 @@ public:
     void UnsetFlag(ScoreFlag flag) {_flags &= ~flag;}
     
     const RESize& PaperSize() const {return _paperSize;}
+    RESize PaperSizeInMillimeters() const;
     void SetPaperSize(const RESize& sz) {_paperSize = sz;}
     
     void SetPaperOrientation(Reflow::PaperOrientation orientation) {_paperOrientation = orientation;}
@@ -60,6 +61,7 @@ public:
     const std::string& Name() const {return _name;}
     
     double VirtualMargin(Reflow::MarginLocation margin) const {return _virtualMargins[margin];}
+    double VirtualMarginInMillimeters(Reflow::MarginLocation margin) const;
     RERect ContentRect() const;
     RERect PageRect() const;
     

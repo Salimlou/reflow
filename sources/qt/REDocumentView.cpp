@@ -23,6 +23,9 @@
 #include <REBar.h>
 #include <REPhrase.h>
 #include <REAudioEngine.h>
+#include <REScoreRoot.h>
+#include <REPage.h>
+#include <REPainter.h>
 
 #include "REPropertiesDialog.h"
 #include "RERehearsalDialog.h"
@@ -40,6 +43,7 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QSettings>
+#include <QPdfWriter>
 
 using std::bind;
 
@@ -187,6 +191,68 @@ bool REDocumentView::WriteFLOW(QString filename)
 
     file.write(buffer.Data(), buffer.Size());
     file.close();
+    return true;
+}
+
+void REDocumentView::ExportPDF()
+{
+    QString home = QDir::homePath();
+    QString filter = "PDF Files (*.pdf)";
+    QString path = QFileDialog::getSaveFileName(this, tr("Export as PDF"), home, filter);
+    if(!path.isEmpty()) {
+        WritePDF(path);
+    }
+}
+
+bool REDocumentView::WritePDF(QString filename) const
+{
+    QPdfWriter pdf(filename);
+
+    const REScoreSettings* scoreSettings = _song->Score(_scoreController->ScoreIndex());
+    REScore score(_song);
+    score.Rebuild(*scoreSettings);
+
+    qDebug() << "Page Size MM Before: " << pdf.pageSizeMM();
+
+    pdf.setCreator("Reflow");
+    pdf.setTitle(QString("%1 - %2").arg(QString::fromStdString(_song->Title())).arg(QString::fromStdString(scoreSettings->Name())));
+    //pdf.setPageSizeMM(scoreSettings->PaperSizeInMillimeters().ToQSizeF());
+    QPdfWriter::Margins margins;
+    {
+        margins.left = scoreSettings->VirtualMarginInMillimeters(Reflow::LeftMargin);
+        margins.top= scoreSettings->VirtualMarginInMillimeters(Reflow::TopMargin);
+        margins.right= scoreSettings->VirtualMarginInMillimeters(Reflow::RightMargin);
+        margins.bottom = scoreSettings->VirtualMarginInMillimeters(Reflow::BottomMargin);
+        //pdf.setMargins(margins);
+    }
+
+    qDebug() << "Page Size MM After: " << pdf.pageSizeMM();
+    qDebug() << "PDF width:" << pdf.width() << " (" << pdf.widthMM() << "mm)";
+    qDebug() << "PDF height:" << pdf.height() << " (" << pdf.heightMM() << "mm)";
+
+    QPainter qpainter(&pdf);
+    REPainter painter(&qpainter);
+    painter.SetDrawingToScreen(false);
+
+    RERect pageRect = scoreSettings->PageRect();
+    RERect contentRect = scoreSettings->ContentRect();
+    qDebug() << "Page Size MM After: " << pdf.pageSizeMM();
+    qDebug() << "PDF width:" << pdf.width() << " (" << pdf.widthMM() << "mm)";
+    qDebug() << "PDF height:" << pdf.height() << " (" << pdf.heightMM() << "mm)";
+
+    float sx = (float)pdf.width() / pageRect.Width();
+    float sy = (float)pdf.height() / pageRect.Height();
+    qpainter.scale(sx, sy);
+    //painter.StrokeRect(RERect(0, 0, pageRect.Width(), pageRect.Height()));
+    qpainter.translate(contentRect.origin.x, contentRect.origin.y);
+
+    for(int pageIndex=0; pageIndex<score.PageCount(); ++pageIndex)
+    {
+        if(pageIndex > 0) pdf.newPage();
+
+        score.DrawPage(painter, pageIndex);
+    }
+
     return true;
 }
 
@@ -1015,4 +1081,3 @@ void REDocumentView::ScoreControllerInspectorWillReload(const REScoreController 
 
 void REDocumentView::ScoreControllerInspectorDidReload(const REScoreController *scoreController)
 {}
-

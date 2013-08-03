@@ -51,6 +51,16 @@ REScoreSettings::~REScoreSettings()
     delete _style;
 }
 
+RESize REScoreSettings::PaperSizeInMillimeters() const
+{
+    return RESize(Reflow::ScoreUnitsToMillimeters(_paperSize.w), Reflow::ScoreUnitsToMillimeters(_paperSize.h));
+}
+
+double REScoreSettings::VirtualMarginInMillimeters(Reflow::MarginLocation margin) const
+{
+    return Reflow::ScoreUnitsToMillimeters(VirtualMargin(margin));
+}
+
 RERect REScoreSettings::PageRect() const
 {
     float w = _paperSize.w;

@@ -12,7 +12,7 @@ Missing Features
 
 - Translations
 - Printing
-- PDF, WAV, MIDI, GP5 Export
+- <del>PDF,</del> WAV, MIDI, GP5 Export
 - Playback Transport
 - Preferences Dialog
 - Clef Dialog
