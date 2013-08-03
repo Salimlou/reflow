@@ -43,9 +43,11 @@
 
 using std::bind;
 
+static float _zoomFactors[] = {0.25, 0.50, 0.75, 0.90, 1.00, 1.10, 1.25, 1.50, 1.75, 2.00, 2.50, 3.00, 4.00};
+
 REDocumentView::REDocumentView(QWidget *parent) :
     QWidget(parent),
-    _song(NULL), _songController(NULL), _scoreController(NULL), _scoreView(NULL), _scene(NULL), _viewport(NULL), _undoStack(NULL), _viewportUpdateTimer(NULL), _trackingEnabled(false)
+    _song(NULL), _songController(NULL), _scoreController(NULL), _scoreView(NULL), _scene(NULL), _viewport(NULL), _undoStack(NULL), _viewportUpdateTimer(NULL), _trackingEnabled(false), _zoomIndex(4)
 {
 	_undoStack = new QUndoStack(this);
     _viewportUpdateTimer = new QTimer(this);
@@ -296,6 +298,18 @@ void REDocumentView::SetEditLowVoice(bool b)
 {
     _scoreController->SetEditLowVoice(b);
     emit CursorOrSelectionChanged();
+}
+
+void REDocumentView::SetZoomIndex(int zi)
+{
+    _zoomIndex = zi;
+    float t = ZoomFactor();
+    _scoreView->setTransform(QTransform::fromScale(t,t));
+}
+
+float REDocumentView::ZoomFactor() const
+{
+    return _zoomFactors[_zoomIndex];
 }
 
 void REDocumentView::UpdateViewport()

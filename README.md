@@ -13,7 +13,6 @@ Missing Features
 - Translations
 - Printing
 - PDF, WAV, MIDI, GP5 Export
-- Zooming
 - Playback Transport
 - Preferences Dialog
 - Clef Dialog
@@ -22,8 +21,9 @@ Missing Features
 - Tempo Marker Dialog
 - Bend Dialog
 - Parts Dialog
-- Keyboard and Fretboard
 - Chord Names and Diagrams Dialog
+- <del>Keyboard</del> and Fretboard
+- <del>Zooming</del>
 - <del>File Properties Dialog</del>
 - <del>Cut/Copy/Paste</del>
 - <del>Save/Close File</del>

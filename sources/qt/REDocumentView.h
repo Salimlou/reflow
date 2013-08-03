@@ -65,6 +65,7 @@ public slots:
 	void TogglePlayback();
     void SetTrackingEnabled(bool);
     void SetEditLowVoice(bool);
+    void SetZoomIndex(int);
 
     void Save();
     void SaveAs();
@@ -185,6 +186,9 @@ public:
 	bool IsPlaybackRunning() const;
     QString Filename() const {return _filename;}
 
+    int ZoomIndex() const {return _zoomIndex;}
+    float ZoomFactor() const;
+
 public:
     virtual void SongControllerWillModifySong(const RESongController* controller, const RESong* song);
     virtual void SongControllerDidModifySong(const RESongController* controller, const RESong* song, bool successfully);
@@ -225,6 +229,7 @@ protected:
     RETrackListModel* _trackListModel;
     RESectionListModel* _sectionListModel;
     bool _trackingEnabled;
+    int _zoomIndex;
 };
 
 #endif // REDOCUMENTVIEW_H

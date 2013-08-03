@@ -70,7 +70,14 @@ REMainWindow::REMainWindow(QWidget *parent) :
     _editLowVoiceButton->setMinimumSize(QSize(24, 24));
     _editLowVoiceButton->setMaximumSize(QSize(32, 24));
     _editLowVoiceButton->setFocusPolicy(Qt::NoFocus);
-    ui->statusBar->addPermanentWidget(_editLowVoiceButton);
+    ui->statusBar->addWidget(_editLowVoiceButton);
+
+    _zoomCombo = new QComboBox;
+    QStringList zoomValues;
+    zoomValues << "25%" << "50%" << "75%" << "90%" << "100%" << "110%" << "125%" << "150%" << "175%" << "200%" << "250%" << "300%" << "400%";
+    _zoomCombo->addItems(zoomValues);
+    _zoomCombo->setFocusPolicy(Qt::NoFocus);
+    ui->statusBar->addWidget(_zoomCombo);
 
     setStyleSheet(QString(
                       "QMainWindow::separator {"
@@ -335,6 +342,12 @@ void REMainWindow::ConnectToDocument()
     _editLowVoiceButton->setChecked(_currentDocument->IsEditingLowVoice());
     _editLowVoiceButton->blockSignals(false);
     QObject::connect(_editLowVoiceButton, SIGNAL(toggled(bool)), _currentDocument, SLOT(SetEditLowVoice(bool)));
+
+    _zoomCombo->blockSignals(true);
+    _zoomCombo->setCurrentIndex(_currentDocument->ZoomIndex());
+    _zoomCombo->blockSignals(false);
+    QObject::connect(_zoomCombo, SIGNAL(currentIndexChanged(int)), _currentDocument, SLOT(SetZoomIndex(int)));
+
     QObject::connect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), this, SLOT(RefreshInterfaceFromCurrentDocument()));
 
     QObject::connect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));
@@ -489,6 +502,12 @@ void REMainWindow::DisconnectFromDocument()
     _editLowVoiceButton->setChecked(false);
     _editLowVoiceButton->blockSignals(false);
     QObject::disconnect(_editLowVoiceButton, SIGNAL(toggled(bool)), _currentDocument, SLOT(SetEditLowVoice(bool)));
+
+    _zoomCombo->blockSignals(true);
+    _zoomCombo->setCurrentIndex(4);
+    _zoomCombo->blockSignals(false);
+    QObject::disconnect(_zoomCombo, SIGNAL(currentIndexChanged(int)), _currentDocument, SLOT(SetZoomIndex(int)));
+
     QObject::disconnect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), this, SLOT(RefreshInterfaceFromCurrentDocument()));
 
     QObject::disconnect(_playAction, SIGNAL(triggered()), _currentDocument, SLOT(TogglePlayback()));

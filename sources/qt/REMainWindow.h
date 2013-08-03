@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QListView>
+#include <QComboBox>
 #include <QPushButton>
 
 #include <RETypes.h>
@@ -67,6 +68,7 @@ private:
 	QAction* _redoAction;
     QAction* _playAction;
     QPushButton* _editLowVoiceButton;
+    QComboBox* _zoomCombo;
 };
 
 #endif // REMAINWINDOW_H
