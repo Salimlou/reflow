@@ -15,8 +15,6 @@
 #include "REOutputStream.h"
 #include "REInputStream.h"
 
-#include <boost/foreach.hpp>
-
 #ifdef REFLOW_TRACE_INSTANCES
 int RENote::_instanceCount = 0;
 #endif
@@ -274,7 +272,7 @@ void RENote::RemoveGraceNote(int idx)
 }
 void RENote::ClearGraceNotes()
 {
-    BOOST_FOREACH(REGraceNote* gnote, _graceNotes)
+    for(REGraceNote* gnote : _graceNotes)
     {
         gnote->Release();
     }

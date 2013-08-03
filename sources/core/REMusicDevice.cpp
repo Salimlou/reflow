@@ -25,7 +25,6 @@
 #  include <AudioToolbox/AudioToolbox.h>
 #endif
 
-#include <boost/foreach.hpp>
 #include <deque>
 
 #define DEBUG_AUDIO
@@ -338,7 +337,7 @@ void RESynthChannel::Initialize()
 
 void RESynthChannel::Shutdown()
 {
-    BOOST_FOREACH(REMonophonicSynthVoice* voice, _voices) {
+    for(REMonophonicSynthVoice* voice : _voices) {
         delete voice;
     }
     _voices.clear();

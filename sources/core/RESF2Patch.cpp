@@ -10,8 +10,6 @@
 #include "RESoundFont.h"
 #include "RESF2Generator.h"
 
-#include <boost/foreach.hpp>
-
 RESF2Patch::RESF2Patch(RESoundFont* sf2)
 : _sf2(sf2)
 {
@@ -19,7 +17,7 @@ RESF2Patch::RESF2Patch(RESoundFont* sf2)
 
 RESF2Patch::~RESF2Patch()
 {
-    BOOST_FOREACH(RESF2Generator* gen, _generators) {
+    for(RESF2Generator* gen : _generators) {
         delete gen;
     }
     _generators.clear();

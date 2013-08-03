@@ -15,7 +15,6 @@
 #include <cassert>
 #include <sstream>
 #include <boost/algorithm/string.hpp>
-#include <boost/foreach.hpp>
 
 REMusicalGlyph::REMusicalGlyph()
 {
@@ -248,7 +247,7 @@ void REMusicalFont::OnEndElement(const REXMLParser& parser,
         REAffineTransform transform = REAffineTransform::Multiply(a, b);
         
         // Translate all paths
-        BOOST_FOREACH(REBezierPath* path, _currentPaths) {
+        for(REBezierPath* path : _currentPaths) {
             if(path) {
                 path->Transform(transform);
                 _currentParsedGlyph->AddBezierPath(path);

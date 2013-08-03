@@ -33,8 +33,6 @@
 #include <cmath>
 #include <iostream>
 #include <sstream>
-#include <boost/foreach.hpp>
-#include <boost/bind.hpp>
 #include <boost/format.hpp>
 #include <algorithm>
 
@@ -665,7 +663,7 @@ void REScore::DrawPage(REPainter& painter, unsigned int pageIndex) const
 
 const RESystem* REScore::PickSystem(const REPoint& pos) const
 {
-    BOOST_FOREACH(const RESystem* system, Systems())
+    for(const RESystem* system : Systems())
     {
         if(system->SceneFrame().PointInside(pos)) {
             return system;

@@ -25,7 +25,6 @@
 #include <cmath>
 
 #include <boost/format.hpp>
-#include <boost/foreach.hpp>
 
 RESystem::RESystem()
 : _indexInPage(0), _flags(0), _score(NULL)
@@ -895,7 +894,7 @@ void RESystem::Draw(REPainter &painter) const
         // Draw Track Name in header
         if(IsFirstSystemInPage())
         {
-            BOOST_FOREACH(const RETrack* track, score->Tracks())
+            for(const RETrack* track : score->Tracks())
             {
                 const REStaff* staff = FirstStaffOfTrack(track);
                 if(staff == NULL) continue;
@@ -910,7 +909,7 @@ void RESystem::Draw(REPainter &painter) const
         
         // Brackets
         painter.SetFillColor(REColor::Black);
-        BOOST_FOREACH(const RETrack* track, score->Tracks())
+        for(const RETrack* track : score->Tracks())
         {
             const REStaff* firstStaff = FirstStaffOfTrack(track);
             const REStaff* lastStaff = LastStaffOfTrack(track);
@@ -978,7 +977,7 @@ void RESystem::Draw(REPainter &painter) const
         staff->ListNoteGizmos(noteGizmos);
     }
     painter.SetFillColor(REColor(0, 0, 1, 0.25));
-    BOOST_FOREACH(const REGizmo& gizmo, noteGizmos) {
+    for(const REGizmo& gizmo : noteGizmos) {
         painter.FillRect(gizmo.box);
     }
 #endif

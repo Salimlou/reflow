@@ -26,9 +26,6 @@
 #include "RESoundFontManager.h"
 #include "REFunctions.h"
 
-#include <boost/foreach.hpp>
-#include <boost/bind.hpp>
-
 class RESequencerImpl
 {
 public:  
@@ -79,7 +76,7 @@ public:
 
 RESequencerTrack::~RESequencerTrack()
 {
-    BOOST_FOREACH(REMidiClip* clip, _clips) {
+    for(REMidiClip* clip : _clips) {
         delete clip;
     }
     _clips.clear();
@@ -130,7 +127,7 @@ RESequencer::~RESequencer()
     delete _playlist;
     
     if(_tracks) {
-        BOOST_FOREACH(RESequencerTrack* track, *_tracks) {delete track;}
+        for(RESequencerTrack* track : *_tracks) {delete track;}
         delete _tracks;
     }
     
@@ -356,12 +353,12 @@ void RESequencer::_RebuildSequencer(const RESong* song)
     delete playlist;
     delete tempoTimeline;
     if(tracks) {
-        BOOST_FOREACH(RESequencerTrack* track, *tracks) {delete track;}
+        for(RESequencerTrack* track : *tracks) {delete track;}
         delete tracks;
     }
     
     // Delete unused devices
-    BOOST_FOREACH(REMusicDevice* device, devicesToDelete) {
+    for(REMusicDevice* device : devicesToDelete) {
         delete device;
     }
 }
@@ -893,7 +890,7 @@ void RESequencer::WillRenderRack (REMusicRack* rack, unsigned int nbFrames, floa
     _d->framesSinceLastUpdateRender += nbFrames;
     if(_d->framesSinceLastUpdateRender > nbFramesPerRefresh) {
         _d->framesSinceLastUpdateRender = 0;
-        BOOST_FOREACH(RESequencerListener* listener, _d->_listeners) {
+        for(RESequencerListener* listener : _d->_listeners) {
             listener->OnSequencerUpdateRT(this);
         }
     }
@@ -1234,7 +1231,7 @@ void RESequencer::GenerateMidiTrackData(REOutputStream& data, const RESequencerT
     
     // Write Packets as raw Midi Data
     int32_t currentTick = 0;
-    BOOST_FOREACH(const REMidiPacket& packet, packets)
+    for(const REMidiPacket& packet : packets)
     {
         int32_t deltaTicks = (packet.tick - currentTick);
         currentTick = packet.tick;
@@ -1287,7 +1284,7 @@ void RESequencer::ExportMidiToFile(const std::string& filename) const
 	}
 	
 	// Append content for each track
-    BOOST_FOREACH(const RESequencerTrack* track, *_tracks)
+    for(const RESequencerTrack* track : *_tracks)
     {
         REBufferOutputStream midiData;
         midiData.SetEndianness(Reflow::BigEndian);

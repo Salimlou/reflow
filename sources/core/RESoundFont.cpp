@@ -14,7 +14,6 @@
 #include "RELogger.h"
 
 #include <cmath>
-#include <boost/foreach.hpp>
 
 #define DUMP_SF2_LOADING
 
@@ -344,7 +343,7 @@ RESF2Patch* RESoundFont::LoadPatch(unsigned int presetIndex)
             for(unsigned int pgenIdx = pgenRg.FirstIndex(); pgenIdx <= pgenRg.LastIndex()-1; ++pgenIdx)
             {
                 SF2GenList* pgen = &_sfPGens[pgenIdx];
-                BOOST_FOREACH(RESF2Generator* gen, generators) 
+                for(RESF2Generator* gen : generators)
                 {
                     if(Verbose()) _logger->printf("    [PGEN - Oper: %d] ", pgen->sfGenOper);
                     ApplyGenListToGenerator(gen, *pgen, RESoundFont::PresetGenList);
@@ -361,7 +360,7 @@ RESF2Patch* RESoundFont::LoadPatch(unsigned int presetIndex)
                 for(unsigned int pgenIdx = pbagGlobalRange.FirstIndex(); pgenIdx <= pbagGlobalRange.LastIndex(); ++pgenIdx)
                 {
                     SF2GenList* pgen = &_sfPGens[pgenIdx];
-                    BOOST_FOREACH(RESF2Generator* gen, generators) 
+                    for(RESF2Generator* gen : generators)
                     {
                         if(Verbose()) _logger->printf("    [GLOBAL PGEN - Oper: %d] ", pgen->sfGenOper);
                         ApplyGenListToGenerator(gen, *pgen, RESoundFont::PresetGlobalGenList);

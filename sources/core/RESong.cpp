@@ -664,9 +664,6 @@ void RESong::CalculateTickSet(unsigned int barIndex, const RETrackSet& tracks, R
 }
 void RESong::_ClearPlaylist()
 {
-    /*BOOST_FOREACH(REPlaylistBar* pbar, _playlist) {
-        delete pbar;
-    }*/
     _playlist.clear();
 }
 

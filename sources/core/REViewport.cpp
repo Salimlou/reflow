@@ -35,8 +35,6 @@
 #  include <QDebug>
 #endif
 
-#include <boost/foreach.hpp>
-
 REViewport::REViewport(REScoreController* scoreController)
 : _scoreController(scoreController)
 {
@@ -794,7 +792,7 @@ void REViewport::SmoothUpdatePlayback(float dt)
 void REViewportPageItem::CreateSystemItems()
 {
     REScore* score = _viewport->Score();
-    BOOST_FOREACH(RESystem* system, score->Systems())
+    for(RESystem* system : score->Systems())
     {
         if(system->Parent() != _page) continue;
         

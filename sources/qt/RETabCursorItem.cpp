@@ -6,8 +6,6 @@
 
 #include <REPainter.h>
 
-#include <boost/foreach.hpp>
-
 #define DIM_FACTOR      0.50
 
 RETabCursorItem::RETabCursorItem(REQtViewport* viewport) :
@@ -33,7 +31,7 @@ void RETabCursorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     {
         float dx = scenePos().x();
         float dy = scenePos().y();
-        BOOST_FOREACH(const RERect& subrect, _rects)
+        for(const RERect& subrect : _rects)
         {
             RERect rc = subrect;
             rc.origin.x = rc.origin.x - dx + 0.5;

@@ -10,8 +10,6 @@
 #include "REScore.h"
 #include "REPage.h"
 
-#include <boost/foreach.hpp>
-
 REScoreRoot::~REScoreRoot()
 {
     Clear();
@@ -19,7 +17,7 @@ REScoreRoot::~REScoreRoot()
 
 void REScoreRoot::Clear()
 {
-    BOOST_FOREACH(REPage* page, _pages) {delete page;}
+    for(REPage* page : _pages) {delete page;}
     _pages.clear();
 }
 

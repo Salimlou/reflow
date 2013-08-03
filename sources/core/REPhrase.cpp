@@ -19,8 +19,6 @@
 #include "REPitch.h"
 #include "REStandardNotationCompiler.h"
 
-#include <boost/foreach.hpp>
-
 REPhrase::REPhrase()
 : _parent(0), _index(-1)
 {
@@ -661,7 +659,7 @@ bool REPhrase::IsEmptyOrRest() const
 
 void REPhrase::CalculateLineRange(bool transposed, int* outMinLine, int* outMaxLine) const
 {
-    BOOST_FOREACH(const REChord* chord, _chords) {
+    for(const REChord* chord : _chords) {
         chord->CalculateLineRange(transposed, outMinLine, outMaxLine);
     }
 }

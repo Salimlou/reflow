@@ -10,8 +10,6 @@
 #include "REMusicDevice.h"
 #include "REAudioEngine.h"
 
-#include <boost/foreach.hpp>
-
 REMusicRack::REMusicRack()
 : _renderingEnabled(false), _delegate(NULL), _metronomeDevice(NULL), _audioEngine(NULL)
 {
@@ -205,7 +203,7 @@ void REMusicRack::DestroyAllMusicDevices()
     {
         MutexLocker lock_my_rack_please(_mtx);
         
-        BOOST_FOREACH(REMusicDevice* dev, _devices) {
+        for(REMusicDevice* dev : _devices) {
             delete dev;
         }
         _devices.clear();

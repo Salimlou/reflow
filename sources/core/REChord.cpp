@@ -17,7 +17,6 @@
 #include "REInputStream.h"
 
 #include <algorithm>
-#include <boost/foreach.hpp>
 
 REChord::REChord()
 : _parent(0), _index(-1), _noteValue(Reflow::QuarterNote), _dots(0), _tuplet(0,0), _flags(0), _text(NULL), _dynamics(Reflow::DynamicsUndefined)
@@ -566,7 +565,7 @@ REChord* REChord::CloneKeepingNotesInLineRange(int firstLine, int lastLine, bool
 unsigned int REChord::NoteCountInStringRange(int firstString, int lastString) const
 {
     unsigned int count = 0;
-    BOOST_FOREACH(RENote* note, _notes) {
+    for(RENote* note : _notes) {
         if(firstString <= note->String() && note->String() <= lastString) {++count;}
     }
     return count;
@@ -575,7 +574,7 @@ unsigned int REChord::NoteCountInStringRange(int firstString, int lastString) co
 unsigned int REChord::NoteCountInLineRange(int firstLine, int lastLine, bool transposing) const
 {
     unsigned int count = 0;
-    BOOST_FOREACH(RENote* note, _notes) {
+    for(RENote* note : _notes) {
         const RENote::REStandardRep &rep = note->Representation(transposing);
         if(firstLine <= rep.line && rep.line <= lastLine) {
             ++count;
@@ -586,7 +585,7 @@ unsigned int REChord::NoteCountInLineRange(int firstLine, int lastLine, bool tra
 
 void REChord::FindNotesInStringRange(REConstNoteVector* notes, int firstString, int lastString) const
 {
-    BOOST_FOREACH(RENote* note, _notes) {
+    for(RENote* note : _notes) {
         if(firstString <= note->String() && note->String() <= lastString) {
             notes->push_back(note);
         }
@@ -594,7 +593,7 @@ void REChord::FindNotesInStringRange(REConstNoteVector* notes, int firstString, 
 }
 void REChord::FindNotesInLineRange(REConstNoteVector* notes, int firstLine, int lastLine, bool transposing) const
 {
-    BOOST_FOREACH(RENote* note, _notes) {
+    for(RENote* note : _notes) {
         const RENote::REStandardRep &rep = note->Representation(transposing);
         if(firstLine <= rep.line && rep.line <= lastLine) {
             notes->push_back(note);
@@ -609,7 +608,7 @@ void REChord::PerformOperationOnAllNotes(RENoteOperation op)
 
 void REChord::PerformOperationOnNotesInStringRange(RENoteOperation op, int firstString, int lastString)
 {
-    BOOST_FOREACH(RENote* note, _notes) {
+    for(RENote* note : _notes) {
         if(firstString <= note->String() && note->String() <= lastString) {
             op(note);
         }
@@ -618,7 +617,7 @@ void REChord::PerformOperationOnNotesInStringRange(RENoteOperation op, int first
 
 void REChord::PerformOperationOnNotesInLineRange(RENoteOperation op, int firstLine, int lastLine, bool transposing)
 {
-    BOOST_FOREACH(RENote* note, _notes) 
+    for(RENote* note : _notes)
     {
         const RENote::REStandardRep &rep = note->Representation(transposing);
         if(firstLine <= rep.line && rep.line <= lastLine) {
@@ -634,7 +633,7 @@ bool REChord::AtLeastOneNoteVerifies(RENotePredicate pred) const
 
 bool REChord::AtLeastOneNoteInStringRangeVerifies(RENotePredicate pred, int firstString, int lastString) const
 {
-    BOOST_FOREACH(const RENote* note, _notes) {
+    for(const RENote* note : _notes) {
         if(firstString <= note->String() && note->String() <= lastString && pred(note)) {
             return true;
         }
@@ -644,7 +643,7 @@ bool REChord::AtLeastOneNoteInStringRangeVerifies(RENotePredicate pred, int firs
 
 bool REChord::AtLeastOneNoteInLineRangeVerifies(RENotePredicate pred, int firstLine, int lastLine, bool transposing) const
 {
-    BOOST_FOREACH(const RENote* note, _notes) 
+    for(const RENote* note : _notes)
     {
         const RENote::REStandardRep &rep = note->Representation(transposing);
         if(firstLine <= rep.line && rep.line <= lastLine && pred(note)) {
@@ -679,7 +678,7 @@ void REChord::_CalculateSpacing(float* leftSpacing, float* rightSpacing, float u
     float accidentalOffset = 0.0;
     float graceNoteOffset = 0.0;
     bool oneNoteIsGhost = false;
-    BOOST_FOREACH(const RENote* note, _notes) 
+    for(const RENote* note : _notes)
     {
         const RENote::REStandardRep &rep = note->Representation(transposing);
         
@@ -735,7 +734,7 @@ bool REChord::HasVerticallyStackedSeconds(bool withStemUp, bool transposed) cons
 {
     if(withStemUp)
     {
-        BOOST_FOREACH(const RENote* note, _notes) {
+        for(const RENote* note : _notes) {
             const RENote::REStandardRep &rep = note->Representation(transposed);
             if(rep.flags & RENote::StackedSecondOnOppositeSideWithStemUp) {
                 return true;
@@ -744,7 +743,7 @@ bool REChord::HasVerticallyStackedSeconds(bool withStemUp, bool transposed) cons
     }
     else 
     {
-        BOOST_FOREACH(const RENote* note, _notes) {
+        for(const RENote* note : _notes) {
             const RENote::REStandardRep &rep = note->Representation(transposed);
             if(rep.flags & RENote::StackedSecondOnOppositeSideWithStemDown) {
                 return true;
