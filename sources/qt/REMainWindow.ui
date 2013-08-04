@@ -47,6 +47,8 @@
       <string>Export</string>
      </property>
      <addaction name="actionExportPDF"/>
+     <addaction name="actionExportMIDI"/>
+     <addaction name="actionExportGuitarPro5"/>
     </widget>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
@@ -280,6 +282,16 @@
   <action name="actionExportPDF">
    <property name="text">
     <string>PDF</string>
+   </property>
+  </action>
+  <action name="actionExportGuitarPro5">
+   <property name="text">
+    <string>Guitar Pro 5</string>
+   </property>
+  </action>
+  <action name="actionExportMIDI">
+   <property name="text">
+    <string>MIDI</string>
    </property>
   </action>
  </widget>

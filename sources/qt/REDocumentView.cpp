@@ -12,6 +12,7 @@
 #include "REUndoCommand.h"
 
 #include <REGuitarProParser.h>
+#include <REGuitarProWriter.h>
 #include <REInputStream.h>
 #include <REOutputStream.h>
 #include <RESong.h>
@@ -259,6 +260,41 @@ bool REDocumentView::WritePDF(QString filename) const
     }
 
     return true;
+}
+
+void REDocumentView::ExportMIDI()
+{
+    QString home = QDir::homePath();
+    QString filter = "MIDI Files (*.mid)";
+    QString path = QFileDialog::getSaveFileName(this, tr("Export as MIDI"), home, filter);
+    if(!path.isEmpty()) {
+        WriteMIDI(path);
+    }
+}
+
+bool REDocumentView::WriteMIDI(QString filename) const
+{
+    RESequencer sequencer;
+    sequencer.Build(_song, nullptr);
+
+    sequencer.ExportMidiToFile(filename.toStdString());
+    return true;
+}
+
+void REDocumentView::ExportGP5()
+{
+    QString home = QDir::homePath();
+    QString filter = "Guitar Pro 5 Files (*.gp5)";
+    QString path = QFileDialog::getSaveFileName(this, tr("Export as GP5"), home, filter);
+    if(!path.isEmpty()) {
+        WriteGP5(path);
+    }
+}
+
+bool REDocumentView::WriteGP5(QString filename) const
+{
+    REGuitarProWriter gp;
+    return gp.ExportSongToFile(_song, filename.toStdString());
 }
 
 void REDocumentView::CreateControllers()

@@ -12,12 +12,13 @@ Missing Features
 
 - Translations
 - Printing
-- <del>PDF,</del> WAV, MIDI, GP5 Export
+- WAV Export
 - Playback Transport
 - Preferences Dialog
 - Tempo Marker Dialog
 - Chord Names and Diagrams Dialog
 - <del>Keyboard</del> and Fretboard
+- <del>PDF, MIDI, GP5 Export</del>
 - <del>Bend Dialog</del>
 - <del>Key Signature Dialog</del>
 - <del>Clef Dialog</del>

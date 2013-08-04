@@ -358,6 +358,8 @@ void REMainWindow::ConnectToDocument()
     QObject::connect(ui->actionSave, SIGNAL(triggered()), _currentDocument, SLOT(Save()));
     QObject::connect(ui->actionSaveAs, SIGNAL(triggered()), _currentDocument, SLOT(SaveAs()));
     QObject::connect(ui->actionExportPDF, SIGNAL(triggered()), _currentDocument, SLOT(ExportPDF()));
+    QObject::connect(ui->actionExportMIDI, SIGNAL(triggered()), _currentDocument, SLOT(ExportMIDI()));
+    QObject::connect(ui->actionExportGuitarPro5, SIGNAL(triggered()), _currentDocument, SLOT(ExportGP5()));
 
     QObject::connect(ui->actionCut, SIGNAL(triggered()), _currentDocument, SLOT(ActionCut()));
     QObject::connect(ui->actionCopy, SIGNAL(triggered()), _currentDocument, SLOT(ActionCopy()));
@@ -519,6 +521,8 @@ void REMainWindow::DisconnectFromDocument()
     QObject::disconnect(ui->actionSave, SIGNAL(triggered()), _currentDocument, SLOT(Save()));
     QObject::disconnect(ui->actionSaveAs, SIGNAL(triggered()), _currentDocument, SLOT(SaveAs()));
     QObject::disconnect(ui->actionExportPDF, SIGNAL(triggered()), _currentDocument, SLOT(ExportPDF()));
+    QObject::disconnect(ui->actionExportMIDI, SIGNAL(triggered()), _currentDocument, SLOT(ExportMIDI()));
+    QObject::disconnect(ui->actionExportGuitarPro5, SIGNAL(triggered()), _currentDocument, SLOT(ExportGP5()));
 
     QObject::disconnect(ui->actionCut, SIGNAL(triggered()), _currentDocument, SLOT(ActionCut()));
     QObject::disconnect(ui->actionCopy, SIGNAL(triggered()), _currentDocument, SLOT(ActionCopy()));

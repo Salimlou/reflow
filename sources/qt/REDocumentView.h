@@ -70,6 +70,8 @@ public slots:
     void Save();
     void SaveAs();
     void ExportPDF();
+    void ExportMIDI();
+    void ExportGP5();
 
     void ActionCut();
     void ActionCopy();
@@ -214,6 +216,8 @@ protected:
 	bool LoadFLOW(RESong& song, QString filename);
     bool WriteFLOW(QString filename);
     bool WritePDF(QString filename) const;
+    bool WriteMIDI(QString filename) const;
+    bool WriteGP5(QString filename) const;
 
     void PlaySelectedChordOnMonitoringDevice();
 
