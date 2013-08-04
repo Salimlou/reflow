@@ -23,7 +23,8 @@ SOURCES += "sources/core/REArchive.cpp" \
     sources/qt/REClefDialog.cpp \
     sources/qt/REClefPreview.cpp \
     sources/qt/REKeySignatureDialog.cpp \
-    sources/qt/REKeySignaturePreview.cpp
+    sources/qt/REKeySignaturePreview.cpp \
+    sources/qt/REBendDialog.cpp
 SOURCES += "sources/core/REAudioEngine.cpp"
 SOURCES += "sources/core/REAudioExportEngine.cpp"
 SOURCES += "sources/core/REAudioSettings.cpp"
@@ -115,7 +116,8 @@ HEADERS += "sources/core/REArchive.h" \
     sources/qt/REClefDialog.h \
     sources/qt/REClefPreview.h \
     sources/qt/REKeySignatureDialog.h \
-    sources/qt/REKeySignaturePreview.h
+    sources/qt/REKeySignaturePreview.h \
+    sources/qt/REBendDialog.h
 HEADERS += "sources/core/REAudioEngine.h"
 HEADERS += "sources/core/REAudioExportEngine.h"
 HEADERS += "sources/core/REAudioSettings.h"
@@ -283,7 +285,8 @@ FORMS += "sources/qt/RECreateTrackDialog.ui" \
     sources/qt/REPreferencesDialog.ui \
     sources/qt/RETextDialog.ui \
     sources/qt/REClefDialog.ui \
-    sources/qt/REKeySignatureDialog.ui
+    sources/qt/REKeySignatureDialog.ui \
+    sources/qt/REBendDialog.ui
 FORMS += "sources/qt/REMainWindow.ui"
 FORMS += "sources/qt/REMixerHeaderWidget.ui"
 FORMS += "sources/qt/REMixerRowWidget.ui"

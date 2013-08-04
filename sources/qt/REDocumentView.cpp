@@ -26,6 +26,7 @@
 #include <REScoreRoot.h>
 #include <REPage.h>
 #include <REPainter.h>
+#include <REBend.h>
 
 #include "REPropertiesDialog.h"
 #include "RERehearsalDialog.h"
@@ -35,6 +36,7 @@
 #include "RETextDialog.h"
 #include "REClefDialog.h"
 #include "REKeySignatureDialog.h"
+#include "REBendDialog.h"
 
 #include <QGraphicsTextItem>
 #include <QVBoxLayout>
@@ -955,7 +957,17 @@ void REDocumentView::ActionLetRing()
 
 void REDocumentView::ShowBendDialog()
 {
-    QMessageBox::critical(this, tr("Reflow Error"), tr("This feature is not yet implemented"));
+    const RENote* note = _scoreController->Cursor().Note();
+    if(note == nullptr) return;
+
+    REBendDialog dlg(this);
+    dlg.SetBend(note->Bend());
+    if(dlg.exec() == QDialog::Accepted)
+    {
+        REBend bend = dlg.Bend();
+        auto op = std::bind(&REScoreController::SetBendOnSelection, std::placeholders::_1, bend);
+        _undoStack->push(new REScoreUndoCommand(_scoreController, op));
+    }
 }
 
 void REDocumentView::ActionShiftSlide()
