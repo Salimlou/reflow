@@ -179,6 +179,12 @@ void REPropertiesDialog::UpdatePartUI(const REScoreSettings *scoreSettings)
     ui->useMultibarRests->blockSignals(false);
 }
 
+void REPropertiesDialog::SetActiveTrack(int trackIndex)
+{
+    ui->tabWidget->setCurrentIndex(0);
+    ui->trackList->setCurrentIndex(ui->trackList->model()->index(trackIndex, 0));
+}
+
 void REPropertiesDialog::on_nameText_editingFinished()
 {
     REDocumentView* doc = DocumentView();

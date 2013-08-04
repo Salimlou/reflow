@@ -93,6 +93,7 @@ public slots:
 
     void ShowFilePropertiesDialog();
     void ShowTracksAndPartsDialog();
+    void ShowTracksAndPartsDialogSelectingTrack(int trackIndex);
     void ShowTimeSignatureDialog();
     void ShowClefDialog();
     void ShowKeySignatureDialog();

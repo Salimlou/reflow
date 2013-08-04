@@ -530,6 +530,13 @@ void REDocumentView::ShowTracksAndPartsDialog()
     dlg.exec();
 }
 
+void REDocumentView::ShowTracksAndPartsDialogSelectingTrack(int trackIndex)
+{
+    REPropertiesDialog dlg(this);
+    dlg.SetActiveTrack(trackIndex);
+    dlg.exec();
+}
+
 void REDocumentView::ShowTimeSignatureDialog()
 {
     const REBar* bar = _scoreController->FirstSelectedBar();

@@ -27,6 +27,9 @@ protected slots:
     void on_volumeSlider_valueChanged(int);
     void on_panSlider_valueChanged(int);
     
+protected:
+    void mouseDoubleClickEvent(QMouseEvent *);
+
 private:
     Ui::REMixerRowWidget *ui;
     int _trackIndex;

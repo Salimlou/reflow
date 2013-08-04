@@ -25,6 +25,8 @@ public:
     REDocumentView* DocumentView();
     REScoreController* ScoreController();
 
+    void SetActiveTrack(int trackIndex);
+
 protected slots:
     void on_addTrackButton_clicked();
     void on_deleteTrackButton_clicked();

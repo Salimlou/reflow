@@ -11,6 +11,8 @@
 
 #include "ui_REMixerRowWidget.h"
 
+#include <QMouseEvent>
+
 REMixerRowWidget::REMixerRowWidget(REMixerWidget* parent, int trackIndex)
     : QWidget(parent),
       _trackIndex(trackIndex),
@@ -172,4 +174,9 @@ void REMixerRowWidget::on_panSlider_valueChanged(int newValue)
     if(sequencer) {
         sequencer->SetTrackPan(_trackIndex, pan);
     }
+}
+
+void REMixerRowWidget::mouseDoubleClickEvent(QMouseEvent *)
+{
+    DocumentView()->ShowTracksAndPartsDialogSelectingTrack(_trackIndex);
 }
