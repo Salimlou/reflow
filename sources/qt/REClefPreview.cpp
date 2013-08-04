@@ -38,13 +38,11 @@ void REClefPreview::paintEvent(QPaintEvent *)
     switch(_clef)
     {
         case Reflow::TrebleClef:
-            //painter.DrawMusicSymbol(Reflow::FontElement_GClef, 22.0, pt.y+size, size);
             painter.DrawMusicSymbol("gclef", 22.0, pt.y()+size, size);
             yVA = pt.y() - size * 4.0;
             yVB = pt.y() + size * 3.5;
             break;
         case Reflow::BassClef:
-            //painter.DrawMusicSymbol(Reflow::FontElement_FClef, 22.0, pt.y-size, size);
             painter.DrawMusicSymbol("fclef", 22.0, pt.y()-size, size);
             yVA = pt.y() - size * 4;
             yVB = pt.y() + size * 2;

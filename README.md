@@ -15,12 +15,12 @@ Missing Features
 - <del>PDF,</del> WAV, MIDI, GP5 Export
 - Playback Transport
 - Preferences Dialog
-- Clef Dialog
-- Key Signature Dialog
 - Tempo Marker Dialog
 - Bend Dialog
 - Chord Names and Diagrams Dialog
 - <del>Keyboard</del> and Fretboard
+- <del>Key Signature Dialog</del>
+- <del>Clef Dialog</del>
 - <del>Text Dialog</del>
 - <del>Parts Dialog</del>
 - <del>Zooming</del>

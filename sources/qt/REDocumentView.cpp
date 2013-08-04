@@ -34,6 +34,7 @@
 #include "REFilePropertiesDialog.h"
 #include "RETextDialog.h"
 #include "REClefDialog.h"
+#include "REKeySignatureDialog.h"
 
 #include <QGraphicsTextItem>
 #include <QVBoxLayout>
@@ -520,12 +521,30 @@ void REDocumentView::ShowTimeSignatureDialog()
 void REDocumentView::ShowClefDialog()
 {
     REClefDialog dlg(this);
-    dlg.exec();
+    dlg.InitializeWithScoreController(_scoreController);
+    if(QDialog::Accepted == dlg.exec())
+    {
+        Reflow::ClefType clef = dlg.Clef();
+        Reflow::OttaviaType ottavia = dlg.Ottavia();
+        auto op = std::bind(&REScoreController::SetClefOfSelectedBars, std::placeholders::_1, clef, ottavia);
+        _undoStack->push(new REScoreUndoCommand(_scoreController, op));
+    }
 }
 
 void REDocumentView::ShowKeySignatureDialog()
 {
-    QMessageBox::critical(this, tr("Reflow Error"), tr("This feature is not yet implemented"));
+    const REBar* firstBar = _scoreController->FirstSelectedBar();
+    const REKeySignature& ks = (firstBar ? firstBar->KeySignature() : REKeySignature());
+
+    REKeySignatureDialog dlg(this);
+    dlg.SetKeySignature(ks);
+    if(QDialog::Accepted == dlg.exec())
+    {
+        REKeySignature newKs = dlg.KeySignature();
+
+        auto op = std::bind(&REScoreController::SetKeySignatureOfSelectedBars, std::placeholders::_1, newKs);
+        _undoStack->push(new REScoreUndoCommand(_scoreController, op));
+    }
 }
 
 void REDocumentView::ShowRehearsalDialog()
