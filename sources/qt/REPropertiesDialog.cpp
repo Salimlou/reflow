@@ -108,6 +108,8 @@ void REPropertiesDialog::Cleanup()
 
 void REPropertiesDialog::UpdateTrackUI(const RETrack* track)
 {
+    bool isTablature = (track && track->IsTablature());
+
     ui->nameText->blockSignals(true);
     ui->shortNameText->blockSignals(true);
     ui->midiProgramList->blockSignals(true);
@@ -130,6 +132,13 @@ void REPropertiesDialog::UpdateTrackUI(const RETrack* track)
         ui->tuningText->setText("");
         ui->capoSpinBox->setValue(0);
     }
+
+    ui->capoSpinBox->setVisible(isTablature);
+    ui->capoLabel->setVisible(isTablature);
+    ui->tuningButton->setVisible(isTablature);
+    ui->tuningLabel->setVisible(isTablature);
+    ui->tuningText->setVisible(isTablature);
+    ui->stringCountLabel->setVisible(isTablature);
 
     ui->nameText->blockSignals(false);
     ui->shortNameText->blockSignals(false);
