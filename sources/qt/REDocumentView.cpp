@@ -38,6 +38,7 @@
 #include "REClefDialog.h"
 #include "REKeySignatureDialog.h"
 #include "REBendDialog.h"
+#include "RETempoMarkerDialog.h"
 
 #include <QGraphicsTextItem>
 #include <QVBoxLayout>
@@ -724,7 +725,37 @@ void REDocumentView::ActionSystemBreak()
 
 void REDocumentView::ShowTempoMarkerDialog()
 {
-    QMessageBox::critical(this, tr("Reflow Error"), tr("This feature is not yet implemented"));
+    const RETempoTimeline& tempoMarkers = _song->TempoTimeline();
+
+    int barIndex = _scoreController->FirstSelectedBarIndex();
+    REGlobalTimeDiv beat = _scoreController->FirstSelectedBeat();
+    bool exact = false;
+    const RETempoItem* item = tempoMarkers.ItemAt(barIndex, beat.timeDiv, &exact);
+
+    RETempoMarkerDialog dlg(this);
+    dlg.Initialize(item ? item->tempo : _song->DefaultTempo(),
+                   item ? item->unitType : Reflow::QuarterTempoUnit);
+
+    int code = dlg.exec();
+    if(code == 2)
+    {
+        int firstBarIndex = _scoreController->FirstSelectedBarIndex();
+        int lastBarIndex = _scoreController->LastSelectedBarIndex();
+
+        RESongControllerOperation op = std::bind(&RESongController::DeleteTempoMarkersInBarRange, std::placeholders::_1, firstBarIndex, lastBarIndex);
+        _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::PerformTaskOnSongController, std::placeholders::_1, op)));
+    }
+    else if(code == QDialog::Accepted)
+    {
+        int barIndex = _scoreController->FirstSelectedBarIndex();
+
+        int tempo = dlg.Tempo();
+        if(tempo < REFLOW_MIN_TEMPO) tempo = REFLOW_MIN_TEMPO;
+        if(tempo > REFLOW_MAX_TEMPO) tempo = REFLOW_MAX_TEMPO;
+
+        RESongControllerOperation op = std::bind(&RESongController::InsertTempoMarker, std::placeholders::_1, barIndex, RETimeDiv(0), tempo, dlg.TempoUnitType());
+        _undoStack->push(new REScoreUndoCommand(_scoreController, std::bind(&REScoreController::PerformTaskOnSongController, std::placeholders::_1, op)));
+    }
 }
 
 void REDocumentView::ActionDoubleFlat()
