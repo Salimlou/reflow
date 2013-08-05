@@ -29,6 +29,7 @@ public:
 
 protected:
     void drawBackground(QPainter * painter, const QRectF & rect);
+    void drawForeground(QPainter *painter, const QRectF &rect);
 
 private:
     REDocumentView* _documentView;

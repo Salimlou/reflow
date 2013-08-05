@@ -1170,6 +1170,9 @@ void REScoreController::MoveCursorRight(unsigned long flags)
     if(_delegate && _inferredSelection == REScoreController::CursorSelection) {
         _delegate->OnShouldCenterOnCursor(this);
     }
+    else if(_delegate) {
+        _delegate->ScoreControllerSelectionDidChange(this);
+    }
 }
 
 void REScoreController::MoveCursorLeft(unsigned long flags)
@@ -1185,6 +1188,9 @@ void REScoreController::MoveCursorLeft(unsigned long flags)
     // Center on cursor if needed
     if(_delegate && _inferredSelection == REScoreController::CursorSelection) {
         _delegate->OnShouldCenterOnCursor(this);
+    }
+    else if(_delegate) {
+        _delegate->ScoreControllerSelectionDidChange(this);
     }
 }
 
@@ -1205,6 +1211,9 @@ void REScoreController::MoveCursorUp(unsigned long flags)
     if(_delegate && _inferredSelection == REScoreController::CursorSelection) {
         _delegate->OnShouldCenterOnCursor(this);
     }
+    else if(_delegate) {
+        _delegate->ScoreControllerSelectionDidChange(this);
+    }
 }
 
 void REScoreController::MoveCursorDown(unsigned long flags)
@@ -1224,6 +1233,9 @@ void REScoreController::MoveCursorDown(unsigned long flags)
     if(_delegate && _inferredSelection == REScoreController::CursorSelection) {
         _delegate->OnShouldCenterOnCursor(this);
     }
+    else if(_delegate) {
+        _delegate->ScoreControllerSelectionDidChange(this);
+    }
 }
 
 void REScoreController::MoveCursorBy(int delta, unsigned long flags)
@@ -1242,6 +1254,9 @@ void REScoreController::MoveCursorBy(int delta, unsigned long flags)
     // Center on cursor if needed
     if(_delegate && _inferredSelection == REScoreController::CursorSelection) {
         _delegate->OnShouldCenterOnCursor(this);
+    }
+    else if(_delegate) {
+        _delegate->ScoreControllerSelectionDidChange(this);
     }
 }
 
@@ -1265,6 +1280,9 @@ void REScoreController::MoveCursorTo(int staffIndex, int barIndex, int tick, int
     // Center on cursor if needed
     if(_delegate && _inferredSelection == REScoreController::CursorSelection) {
         _delegate->OnShouldCenterOnCursor(this);
+    }
+    else if(_delegate) {
+        _delegate->ScoreControllerSelectionDidChange(this);
     }
 }
 

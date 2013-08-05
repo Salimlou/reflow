@@ -55,6 +55,55 @@ void RENavigatorScene::drawBackground(QPainter * painter, const QRectF & rect)
     }
 }
 
+void RENavigatorScene::drawForeground(QPainter *painter, const QRectF &rect)
+{
+    QGraphicsScene::drawForeground(painter, rect);
+
+    if(_documentView == nullptr) return;
+
+    const RESong* song = _documentView->Song();
+    const REScoreController* scoreController = _documentView->ScoreController();
+    if(scoreController->InferredSelectionKind() == REScoreController::BarRangeSelection)
+    {
+        int firstBarIndex = scoreController->FirstSelectedBarIndex();
+        int lastBarIndex = scoreController->LastSelectedBarIndex();
+        int firstTrackIndex = 0;
+        int lastTrackIndex = song->TrackCount()-1;
+
+        RERect rc0 = RectOfBar(firstBarIndex, firstTrackIndex);
+        RERect rc1 = RectOfBar(lastBarIndex, lastTrackIndex);
+        RERect rc = rc0.Union(rc1);
+
+        float alphaFactor = 1.0;
+
+        painter->setPen(QColor::fromRgbF(0.20, 0.25, 0.85, 0.95 * alphaFactor));
+        QBrush brush = QBrush(QColor::fromRgbF(0.20, 0.25, 0.85, 0.24 * alphaFactor));
+
+        painter->fillRect(rc.ToQRectF(), brush);
+        painter->drawRect(rc.ToQRectF());
+    }
+    else
+    {
+        int firstBarIndex = scoreController->FirstSelectedBarIndex();
+        int lastBarIndex = scoreController->LastSelectedBarIndex();
+        const RETrack* track = scoreController->FirstSelectedTrack();
+        if(track)
+        {
+            RERect rc0 = RectOfBar(firstBarIndex, track->Index());
+            RERect rc1 = RectOfBar(lastBarIndex, track->Index());
+            RERect rc = rc0.Union(rc1);
+
+            float alphaFactor = 1.0;
+
+            painter->setPen(QColor::fromRgbF(0.20, 0.25, 0.85, 0.95 * alphaFactor));
+            QBrush brush = QBrush(QColor::fromRgbF(0.20, 0.25, 0.85, 0.24 * alphaFactor));
+
+            painter->fillRect(rc.ToQRectF(), brush);
+            painter->drawRect(rc.ToQRectF());
+        }
+    }
+}
+
 int RENavigatorScene::TickAtX(float x) const
 {
     return x * 48.0;
@@ -93,7 +142,7 @@ int RENavigatorScene::TotalHeight() const
 
 RERect RENavigatorScene::RectOfBar(int barIndex, int trackIndex) const
 {
-    float y0 = _headerHeight;
+    float y0 = 0.0;
     float h = _rowHeight;
 
     const RESong* song = _documentView->Song();
@@ -112,7 +161,7 @@ RERect RENavigatorScene::RectOfBar(int barIndex, int trackIndex) const
 
 int RENavigatorScene::TrackIndexAtY(float y) const
 {
-    return (y - _headerHeight) / _rowHeight;
+    return y / _rowHeight;
 }
 
 void RENavigatorScene::TapAtPoint(const REPoint& pt, bool extending)

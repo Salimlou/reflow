@@ -26,6 +26,8 @@ public:
     void ConnectToDocument(REDocumentView*);
     void DisconnectFromDocument();
 
+    void Refresh();
+
 protected:
     virtual void resizeEvent(QResizeEvent * event);
     

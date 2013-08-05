@@ -300,6 +300,8 @@ void REMainWindow::RefreshInterfaceFromCurrentDocument()
     _editLowVoiceButton->blockSignals(true);
     _editLowVoiceButton->setChecked(_currentDocument->IsEditingLowVoice());
     _editLowVoiceButton->blockSignals(false);
+
+    _sequencerWidget->Refresh();
 }
 
 void REMainWindow::closeEvent(QCloseEvent* e)
