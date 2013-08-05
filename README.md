@@ -13,11 +13,10 @@ Missing Features
 - Translations
 - Printing
 - WAV Export
-- Playback Transport
-- Preferences Dialog
-- Tempo Marker Dialog
 - Chord Names and Diagrams Dialog
-- <del>Keyboard</del> and Fretboard
+- <del>Preferences Dialog</del>
+- <del>Tempo Marker Dialog</del>
+- <del>Keyboard and Fretboard</del>
 - <del>PDF, MIDI, GP5 Export</del>
 - <del>Bend Dialog</del>
 - <del>Key Signature Dialog</del>

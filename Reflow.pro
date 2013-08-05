@@ -25,7 +25,8 @@ SOURCES += "sources/core/REArchive.cpp" \
     sources/qt/REKeySignatureDialog.cpp \
     sources/qt/REKeySignaturePreview.cpp \
     sources/qt/REBendDialog.cpp \
-    sources/qt/RETempoMarkerDialog.cpp
+    sources/qt/RETempoMarkerDialog.cpp \
+    sources/qt/REFretboardWidget.cpp
 SOURCES += "sources/core/REAudioEngine.cpp"
 SOURCES += "sources/core/REAudioExportEngine.cpp"
 SOURCES += "sources/core/REAudioSettings.cpp"
@@ -119,7 +120,8 @@ HEADERS += "sources/core/REArchive.h" \
     sources/qt/REKeySignatureDialog.h \
     sources/qt/REKeySignaturePreview.h \
     sources/qt/REBendDialog.h \
-    sources/qt/RETempoMarkerDialog.h
+    sources/qt/RETempoMarkerDialog.h \
+    sources/qt/REFretboardWidget.h
 HEADERS += "sources/core/REAudioEngine.h"
 HEADERS += "sources/core/REAudioExportEngine.h"
 HEADERS += "sources/core/REAudioSettings.h"

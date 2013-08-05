@@ -9,6 +9,7 @@
 #include "RETransportWidget.h"
 #include "RESequencerWidget.h"
 #include "REPianoWidget.h"
+#include "REFretboardWidget.h"
 #include "REPreferencesDialog.h"
 
 #include <RESong.h>
@@ -105,6 +106,7 @@ REMainWindow::REMainWindow(QWidget *parent) :
     _transportWidget = new RETransportWidget;
 
     _pianoWidget = new REPianoWidget;
+    _fretboardWidget = new REFretboardWidget;
 
     _partListView = new QListView;
     _partListView->setFocusPolicy(Qt::NoFocus);
@@ -152,6 +154,13 @@ REMainWindow::REMainWindow(QWidget *parent) :
     pianoDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
     addDockWidget(Qt::BottomDockWidgetArea, pianoDock);
     ui->menuView->addAction(pianoDock->toggleViewAction());
+
+    QDockWidget* fretboardDock = new QDockWidget(tr("Fretboard"));
+    fretboardDock->setObjectName("fretboardDock");
+    fretboardDock->setWidget(_fretboardWidget);
+    fretboardDock->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
+    addDockWidget(Qt::BottomDockWidgetArea, fretboardDock);
+    ui->menuView->addAction(fretboardDock->toggleViewAction());
 
     QObject::connect(tab, SIGNAL(currentChanged(int)), this, SLOT(OnCurrentTabChanged(int)));
 
@@ -319,6 +328,10 @@ void REMainWindow::ConnectToDocument()
     QObject::connect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), _pianoWidget, SLOT(RefreshDisplay()));
     QObject::connect(_currentDocument, SIGNAL(DataChanged()), _pianoWidget, SLOT(RefreshDisplay()));
 
+    _fretboardWidget->ConnectToDocument(_currentDocument);
+    QObject::connect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), _fretboardWidget, SLOT(RefreshDisplay()));
+    QObject::connect(_currentDocument, SIGNAL(DataChanged()), _fretboardWidget, SLOT(RefreshDisplay()));
+
     // Part List
     _partListView->setModel(_currentDocument->PartListModel());
     int scoreIndex = scoreController->ScoreIndex();
@@ -482,6 +495,10 @@ void REMainWindow::DisconnectFromDocument()
     _pianoWidget->DisconnectFromDocument();
     QObject::disconnect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), _pianoWidget, SLOT(RefreshDisplay()));
     QObject::disconnect(_currentDocument, SIGNAL(DataChanged()), _pianoWidget, SLOT(RefreshDisplay()));
+
+    _fretboardWidget->DisconnectFromDocument();
+    QObject::connect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), _fretboardWidget, SLOT(RefreshDisplay()));
+    QObject::connect(_currentDocument, SIGNAL(DataChanged()), _fretboardWidget, SLOT(RefreshDisplay()));
 
     // Part List
     _partListView->setModel(nullptr);
