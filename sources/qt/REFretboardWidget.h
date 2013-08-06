@@ -18,12 +18,11 @@ public:
     void ConnectToDocument(REDocumentView* doc);
     void DisconnectFromDocument();
     
-
-    int REFretboardWidget::stringWithYOffset(float y) const;
-    float REFretboardWidget::yOffsetOfString(int string) const;
-    int REFretboardWidget::fretWithXOffset(float x) const;
-    float REFretboardWidget::xOffsetOfFret(int fret) const;
-    float REFretboardWidget::xOffsetOfCenterOfFret(int fret) const;
+    int stringWithYOffset(float y) const;
+    float yOffsetOfString(int string) const;
+    int fretWithXOffset(float x) const;
+    float xOffsetOfFret(int fret) const;
+    float xOffsetOfCenterOfFret(int fret) const;
 
 protected:
     void paintEvent(QPaintEvent *);
