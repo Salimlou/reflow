@@ -130,6 +130,12 @@ void REScoreScene::keyPressEvent(QKeyEvent *event)
             consumed=true;
             break;
         }
+
+        case Qt::Key_Period: {
+            _documentView->ActionDottedNote();
+            consumed = true;
+            break;
+        }
     }
 
     if(consumed) event->accept();
