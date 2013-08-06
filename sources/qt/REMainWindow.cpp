@@ -19,6 +19,7 @@
 #include <QFileDialog>
 #include <QDockWidget>
 #include <QSettings>
+#include <QFileInfo>
 
 static const char* _listViewStyleSheet =
     "QListView {\n"
@@ -209,7 +210,7 @@ void REMainWindow::ActionOpen(QString filename)
 
         REDocumentView *doc = new REDocumentView;
         doc->InitializeWithFile(filename);
-        tab->addTab(doc, filename);
+        tab->addTab(doc, QFileInfo(filename).fileName());
 
         tab->setCurrentIndex(tab->count()-1);
     }
@@ -263,7 +264,7 @@ void REMainWindow::OnCurrentDocumentStatusChanged()
     QWidget* w = tab->widget(index);
     if(w) {
         REDocumentView* doc = qobject_cast<REDocumentView*>(w);
-        tab->setTabText(index, doc->Filename());
+        tab->setTabText(index, QFileInfo(doc->Filename()).fileName());
         UpdateWindowTitleFromCurrentDocument();
     }
 }
