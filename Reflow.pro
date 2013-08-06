@@ -317,6 +317,7 @@ win32 {
 	DEFINES += __WINDOWS_DS__
     QMAKE_LIBDIR += "C:\Program Files (x86)\Jack\lib"
   LIBS += dsound.lib ole32.lib libjack.lib
+    RC_FILE = Reflow.rc
 }
 macx {
   INCLUDEPATH += /opt/Boost

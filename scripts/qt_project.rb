@@ -61,12 +61,13 @@ class QtProject < Project
     
     # Windows spec
     f.puts "win32 {"
-    f.puts "	INCLUDEPATH += \"C:\\boost_1_52_0\""
+    f.puts "    INCLUDEPATH += \"C:\\boost_1_52_0\""
     f.puts "    INCLUDEPATH += \"C:\\Program Files (x86)\\Jack\\includes\""
-    f.puts "	DEFINES += BOOST_MEM_FN_ENABLE_STDCALL"
-    f.puts "	DEFINES += __WINDOWS_DS__"                  # RtAudio will use DirectSound
+    f.puts "    DEFINES += BOOST_MEM_FN_ENABLE_STDCALL"
+    f.puts "    DEFINES += __WINDOWS_DS__"                  # RtAudio will use DirectSound
     f.puts "    QMAKE_LIBDIR += \"C:\\Program Files (x86)\\Jack\\lib\""
-    f.puts "  LIBS += dsound.lib ole32.lib libjack.lib"
+    f.puts "    LIBS += dsound.lib ole32.lib libjack.lib"
+    f.puts "    RC_FILE = Reflow.rc"
     f.puts "}"
     
     # Mac spec
