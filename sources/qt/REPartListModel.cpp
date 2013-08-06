@@ -46,7 +46,7 @@ QVariant REPartListModel::data(const QModelIndex &index, int role) const
 
     if(role == Qt::DisplayRole)
     {
-        return QString::fromStdString(scoreSettings->Name());
+        return scoreSettings ? QString::fromStdString(scoreSettings->Name()) : QString();
     }
     return QVariant();
 }

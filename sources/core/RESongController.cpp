@@ -980,7 +980,7 @@ void RESongController::RemoveTrack(int trackIndex)
         for(unsigned int i=0; i<_song->ScoreCount(); ++i) 
         {
             REScoreSettings* score = song->Score(i);
-            if(!score->TrackSet().IsSet(track->Index())) continue;
+            if(!score->TrackSet().IsSet(trackIndex)) continue;
             
             RETrackVector tracks = score->Tracks(song);
             tracks.erase(std::find(tracks.begin(), tracks.end(), track), tracks.end());

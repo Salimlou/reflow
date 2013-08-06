@@ -45,7 +45,7 @@ QVariant RETrackListModel::data(const QModelIndex &index, int role) const
 
     if(role == Qt::DisplayRole)
     {
-        return QString::fromStdString(track->Name());
+        return track ? QString::fromStdString(track->Name()) : QString();
     }
     return QVariant();
 }
