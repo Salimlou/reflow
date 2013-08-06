@@ -14,6 +14,9 @@ public:
     explicit RENavigatorScene(QObject *parent = 0);
 
     void SetDocumentView(REDocumentView*);
+    const REDocumentView* DocumentView() const {return _documentView;}
+
+    float RowHeight() const {return _rowHeight;}
 
     int TickAtX(float x) const;
     float XOfTick(int tick) const;

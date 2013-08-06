@@ -1,4 +1,5 @@
 #include "RENavigatorScene.h"
+#include "RENavigatorRowItem.h"
 #include "REDocumentView.h"
 
 #include "REScoreController.h"
@@ -6,6 +7,10 @@
 #include "RESong.h"
 #include "RETrack.h"
 #include "REBar.h"
+#include "REVoice.h"
+#include "REPhrase.h"
+#include "REChord.h"
+#include "RENote.h"
 #include "RESystem.h"
 #include "REStaff.h"
 
@@ -216,6 +221,7 @@ void RENavigatorScene::Refresh()
     REScoreController* scoreController = _documentView->ScoreController();
     const REScore* score = (scoreController ? scoreController->Score() : nullptr);
     const RESong* song = (score ? score->Song() : nullptr);
+    int nbBars = song->BarCount();
 
     int firstBarIndex = 0;
     int lastBarIndex = song->BarCount()-1;
@@ -226,12 +232,40 @@ void RENavigatorScene::Refresh()
     for(int trackIndex=firstTrackIndex; trackIndex<=lastTrackIndex; ++trackIndex)
     {
         const RETrack* track = song->Track(trackIndex);
+
+        // Retrieve Min and Max Pitch
+        int minPitch = 127;
+        int maxPitch = 0;
+        for(unsigned int voiceIndex=0; voiceIndex < track->VoiceCount(); ++voiceIndex)
+        {
+            const REVoice* voice = track->Voice(voiceIndex);
+            for(int barIndex=0; barIndex < nbBars; ++barIndex)
+            {
+                const REPhrase* phrase = voice->Phrase(barIndex);
+                unsigned int nbChords = phrase->ChordCount();
+                for(unsigned int chordIndex = 0; chordIndex < nbChords; ++chordIndex)
+                {
+                    const REChord* chord = phrase->Chord(chordIndex);
+                    unsigned int nbNotes = chord->NoteCount();
+                    for(unsigned int noteIndex = 0; noteIndex < nbNotes; ++noteIndex)
+                    {
+                        const RENote* note = chord->Note(noteIndex);
+                        const RENotePitch& pitch = note->Pitch();
+                        if(pitch.midi > maxPitch) maxPitch = pitch.midi;
+                        if(pitch.midi < minPitch) minPitch = pitch.midi;
+                    }
+                }
+            }
+        }
+
         bool presentInScore = (score->ContainsTrack(track));
         float rowY = trackIndex * _rowHeight;
 
         bool buildingBar = false;
         float x0 = 0;
         float x1 = 0;
+        int rowBarIndex = 0;
+        int rowBarCount = 0;
 
         // Bar Background and Notes
         for(int barIndex=firstBarIndex; barIndex <= lastBarIndex; ++barIndex)
@@ -246,9 +280,16 @@ void RENavigatorScene::Refresh()
             {
                 if(occupied) {
                     x1 = barX + barLen;
+                    ++rowBarCount;
                 }
                 else {
-                    QGraphicsRectItem* rect  = addRect(QRectF(x0, rowY+1.0, x1-x0, _rowHeight-1.0), QPen(Qt::gray), QBrush(Qt::white));
+                    RENavigatorRowItem* item = new RENavigatorRowItem(RERange(rowBarIndex, rowBarCount), trackIndex);
+                    item->setPos(QPointF(x0, rowY));
+                    item->SetMinPitch(minPitch);
+                    item->SetMaxPitch(maxPitch);
+                    item->CalculateBounds(this);
+                    addItem(item);
+                    //QGraphicsRectItem* rect  = addRect(QRectF(x0, rowY+1.0, x1-x0, _rowHeight-1.0), QPen(Qt::gray), QBrush(Qt::white));
                     buildingBar = false;
                 }
             }
@@ -259,12 +300,21 @@ void RENavigatorScene::Refresh()
                     buildingBar = true;
                     x0 = barX;
                     x1 = barX + barLen;
+                    rowBarIndex = barIndex;
+                    rowBarCount = 1;
                 }
             }
         }
 
         if(buildingBar) {
-            QGraphicsRectItem* rect  = addRect(QRectF(x0, rowY+1.0, x1-x0, _rowHeight-1.0), QPen(Qt::gray), QBrush(Qt::white));
+            RENavigatorRowItem* item = new RENavigatorRowItem(RERange(rowBarIndex, rowBarCount), trackIndex);
+            item->setPos(QPointF(x0, rowY));
+            item->SetMinPitch(minPitch);
+            item->SetMaxPitch(maxPitch);
+            item->CalculateBounds(this);
+            addItem(item);
+
+            //QGraphicsRectItem* rect  = addRect(QRectF(x0, rowY+1.0, x1-x0, _rowHeight-1.0), QPen(Qt::gray), QBrush(Qt::white));
             buildingBar = false;
         }
     }
