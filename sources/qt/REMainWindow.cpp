@@ -300,8 +300,6 @@ void REMainWindow::RefreshInterfaceFromCurrentDocument()
     _editLowVoiceButton->blockSignals(true);
     _editLowVoiceButton->setChecked(_currentDocument->IsEditingLowVoice());
     _editLowVoiceButton->blockSignals(false);
-
-    _sequencerWidget->Refresh();
 }
 
 void REMainWindow::closeEvent(QCloseEvent* e)
@@ -324,6 +322,9 @@ void REMainWindow::ConnectToDocument()
 
     // Sequencer
     _sequencerWidget->ConnectToDocument(_currentDocument);
+    QObject::connect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), _sequencerWidget, SLOT(RefreshDisplay()));
+    QObject::connect(_currentDocument, SIGNAL(DataChanged()), _sequencerWidget, SLOT(Refresh()));
+
     _transportWidget->ConnectToDocument(_currentDocument);
 
     _pianoWidget->ConnectToDocument(_currentDocument);
@@ -492,6 +493,9 @@ void REMainWindow::DisconnectFromDocument()
 
     // Sequencer
     _sequencerWidget->DisconnectFromDocument();
+    QObject::disconnect(_currentDocument, SIGNAL(CursorOrSelectionChanged()), _sequencerWidget, SLOT(RefreshDisplay()));
+    QObject::disconnect(_currentDocument, SIGNAL(DataChanged()), _sequencerWidget, SLOT(Refresh()));
+
     _transportWidget->DisconnectFromDocument();
 
     _pianoWidget->DisconnectFromDocument();

@@ -88,10 +88,18 @@ void RESequencerWidget::updateLayout()
     _navigatorScene->setSceneRect(0, 0, navigatorWidth, navigatorHeight);
 }
 
-void RESequencerWidget::Refresh()
+void RESequencerWidget::RefreshDisplay()
 {
     _navigatorScene->update();
     _navigatorHeader->update();
+}
+
+void RESequencerWidget::Refresh()
+{
+    REDocumentView* v = _documentView;
+
+    DisconnectFromDocument();
+    ConnectToDocument(v);
 }
 
 void RESequencerWidget::ConnectToDocument(REDocumentView* doc)

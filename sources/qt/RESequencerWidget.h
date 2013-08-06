@@ -26,6 +26,8 @@ public:
     void ConnectToDocument(REDocumentView*);
     void DisconnectFromDocument();
 
+public slots:
+    void RefreshDisplay();
     void Refresh();
 
 protected:
