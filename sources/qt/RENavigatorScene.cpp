@@ -10,6 +10,7 @@
 #include "REStaff.h"
 
 #include <QPainter>
+#include <QGraphicsSceneMouseEvent>
 
 #include <sstream>
 
@@ -102,6 +103,16 @@ void RENavigatorScene::drawForeground(QPainter *painter, const QRectF &rect)
             painter->drawRect(rc.ToQRectF());
         }
     }
+}
+
+void RENavigatorScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    QPointF pos = event->scenePos();
+    bool shiftDown = 0 != (event->modifiers() & Qt::ShiftModifier);
+
+    TapAtPoint(REPoint(pos.x(), pos.y()), shiftDown);
+
+    event->accept();
 }
 
 int RENavigatorScene::TickAtX(float x) const
