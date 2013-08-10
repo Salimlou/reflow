@@ -23,6 +23,7 @@
 #include <QDate>
 #include <QMessageBox>
 #include <QNetworkAccessManager>
+#include <QDesktopServices>
 
 static const char* _listViewStyleSheet =
     "QListView {\n"
@@ -666,10 +667,10 @@ void REMainWindow::CheckUpdatesInBackground()
     QDate lastCheck = settings.value("last_update_check", QVariant(QDate(1978, 8, 29))).toDate();
     QDate now = QDate::currentDate();
 
-    /*if (lastCheck.daysTo(now) < 3) {
+    if (lastCheck.daysTo(now) < 3) {
         return;
     }
-    settings.setValue("last_update_check", now);*/
+    settings.setValue("last_update_check", now);
 
     QNetworkAccessManager * nam = new QNetworkAccessManager(this);
     connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(CheckUpdateFinished(QNetworkReply*)));
@@ -703,21 +704,29 @@ void REMainWindow::CheckUpdateFinished(QNetworkReply * reply)
             bool ok;
 
             int current = currentVersionComponents.at(i).toInt(&ok);
-            if (!ok) return;
+            if (!ok) {reply->deleteLater(); return;}
 
             int thisVersion = thisVersionComponents.at(i).toInt(&ok);
-            if (!ok) return;
+            if (!ok) {reply->deleteLater(); return;}
 
             if (current > thisVersion)
             {
                 // A new version is available
                 QString text = QString("<html>A new version of Reflow is available.<br><br>You currently have version %1, and version %2 is available.<br><br>Download it at <a href=\"http://www.reflowapp.com\">http://www.reflowapp.com</a><html>").arg(qApp->applicationVersion()).arg(currentVersion);
-                if (QMessageBox::information(this, "Information", text, QMessageBox::Ignore | QMessageBox::Ok) == QMessageBox::Ignore) {
+                if (QMessageBox::information(this, "Information", text, QMessageBox::Ignore | QMessageBox::Ok) == QMessageBox::Ignore)
+                {
                     QSettings settings;
                     settings.setValue("ignore_version", currentVersion);
                 }
+                else
+                {
+                    QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_WEBSITE));
+                }
             }
-            if (current < thisVersion) return;
+            if (current < thisVersion) {
+                reply->deleteLater();
+                return;
+            }
         }
     }
     else {
