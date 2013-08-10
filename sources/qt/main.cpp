@@ -106,6 +106,7 @@ QPixmap TestRenderOnePage(const REScore& score, QString filename)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setApplicationVersion(REFLOW_CURRENT_VERSION);
     a.setOrganizationName("Gargant Studios");
     a.setOrganizationDomain("gargant.com");
     a.setApplicationName("Reflow");
@@ -126,6 +127,8 @@ int main(int argc, char *argv[])
 	REMainWindow w;
     w.ActionNew();
     w.show();
+
+    QObject::connect(&splash, SIGNAL(accepted()), &w, SLOT(CheckUpdatesInBackground()));
 
     return a.exec();
 }

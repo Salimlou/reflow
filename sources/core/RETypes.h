@@ -91,6 +91,7 @@
 #define REFLOW_MIN_TEMPO            (30)
 #define REFLOW_MAX_TEMPO            (300)
 
+#define REFLOW_CURRENT_VERSION          "1.7.2"
 
 #define REFLOW_URL_REFLOW_WEBSITE       "http://www.reflowapp.com"
 #define REFLOW_URL_REFLOW_FORUMS        "https://reflowforums.com"

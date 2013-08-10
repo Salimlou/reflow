@@ -5,6 +5,7 @@
 #include <QListView>
 #include <QComboBox>
 #include <QPushButton>
+#include <QNetworkReply>
 
 #include <RETypes.h>
 
@@ -36,6 +37,8 @@ public slots:
     void ActionOpen(QString filename);
     void ActionClose();
 
+    void CheckUpdatesInBackground();
+
 protected slots:
     void OnCurrentTabChanged(int newIndex);
     void OnCurrentDocumentPlaybackStarted();
@@ -44,6 +47,8 @@ protected slots:
 
     void CloseDocumentTab(int index);
     void RefreshInterfaceFromCurrentDocument();
+
+    void CheckUpdateFinished(QNetworkReply*);
 
     void on_actionPreferences_triggered();
 

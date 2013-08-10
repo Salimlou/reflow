@@ -15,6 +15,17 @@ RETransportWidget::RETransportWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+#ifdef MACOSX
+    // Workaround the weird crash on Mac OSX ...
+    ui->playButton->setFlat(false);
+    ui->metronomeButton->setFlat(false);
+    ui->preclickButton->setFlat(false);
+    ui->trackingButton->setFlat(false);
+    ui->loopButton->setFlat(false);
+    ui->loopStartButton->setFlat(false);
+    ui->loopStartButton->setFlat(false);
+#endif
+
     setMinimumSize(60, 88);
     setMaximumSize(250, 88);
 }

@@ -10,6 +10,7 @@
 #include "RETypes.h"
 
 const char* _labelStylesheet = "QLabel{font: bold 9px; text-align: left; color: #888888;}";
+const char* _versionLabelStylesheet = "QLabel{font: bold 9px; text-align: right; color: #888888;}";
 const char* _linkStylesheet = "QPushButton{font: bold 9px; text-align: left; color: #dadada;}";
 
 RESplash::RESplash(QWidget *parent) :
@@ -28,6 +29,9 @@ RESplash::RESplash(QWidget *parent) :
     ui->linksLabel->setStyleSheet(_labelStylesheet);
     ui->licenseLabel->setStyleSheet(_labelStylesheet);
     ui->copyrightLabel->setStyleSheet(_labelStylesheet);
+
+    ui->versionLabel->setStyleSheet(_versionLabelStylesheet);
+    ui->versionLabel->setText(qApp->applicationVersion());
 
     setMinimumSize(_image.size());
     setMaximumSize(_image.size());
@@ -67,47 +71,47 @@ void RESplash::keyPressEvent(QKeyEvent *)
 
 void RESplash::timerEvent(QTimerEvent *)
 {
-    done(0);
+    done(QDialog::Accepted);
 }
 
 void RESplash::on_forumsButton_pressed()
 {
     QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_FORUMS));
-    done(0);
+    done(QDialog::Accepted);
 }
 
 void RESplash::on_wikiButton_pressed()
 {
     QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_WIKI));
-    done(0);
+    done(QDialog::Accepted);
 }
 
 void RESplash::on_blogButton_pressed()
 {
     QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_DEVBLOG));
-    done(0);
+    done(QDialog::Accepted);
 }
 
 void RESplash::on_websiteButton_pressed()
 {
     QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_WEBSITE));
-    done(0);
+    done(QDialog::Accepted);
 }
 
 void RESplash::on_facebookButton_pressed()
 {
     QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_FACEBOOK));
-    done(0);
+    done(QDialog::Accepted);
 }
 
 void RESplash::on_twitterButton_pressed()
 {
     QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_TWITTER));
-    done(0);
+    done(QDialog::Accepted);
 }
 
 void RESplash::on_githubButton_pressed()
 {
     QDesktopServices::openUrl(QUrl(REFLOW_URL_REFLOW_GITHUB));
-    done(0);
+    done(QDialog::Accepted);
 }

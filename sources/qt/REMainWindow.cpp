@@ -20,6 +20,9 @@
 #include <QDockWidget>
 #include <QSettings>
 #include <QFileInfo>
+#include <QDate>
+#include <QMessageBox>
+#include <QNetworkAccessManager>
 
 static const char* _listViewStyleSheet =
     "QListView {\n"
@@ -655,4 +658,71 @@ void REMainWindow::DisconnectFromDocument()
     QObject::disconnect(_palette->ButtonForIdentifier("slide_out_low"), SIGNAL(clicked()), _currentDocument, SLOT(ActionSlideOutLow()));
     QObject::disconnect(_palette->ButtonForIdentifier("slide_in_high"), SIGNAL(clicked()), _currentDocument, SLOT(ActionSlideInHigh()));
     QObject::disconnect(_palette->ButtonForIdentifier("slide_in_low"), SIGNAL(clicked()), _currentDocument, SLOT(ActionSlideInLow()));
+}
+
+void REMainWindow::CheckUpdatesInBackground()
+{
+    QSettings settings;
+    QDate lastCheck = settings.value("last_update_check", QVariant(QDate(1978, 8, 29))).toDate();
+    QDate now = QDate::currentDate();
+
+    /*if (lastCheck.daysTo(now) < 3) {
+        return;
+    }
+    settings.setValue("last_update_check", now);*/
+
+    QNetworkAccessManager * nam = new QNetworkAccessManager(this);
+    connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(CheckUpdateFinished(QNetworkReply*)));
+#ifdef WIN32
+    QUrl url("http://www.reflowapp.com/reflow_win32_version.txt");
+#elif defined(LINUX)
+    QUrl url("http://www.reflowapp.com/reflow_linux_version.txt");
+#else
+    QUrl url("http://www.reflowapp.com/reflow_mac_version.txt");
+#endif
+    nam->get(QNetworkRequest(url));
+}
+
+void REMainWindow::CheckUpdateFinished(QNetworkReply * reply)
+{
+    if (reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();
+        QString currentVersion(bytes);
+
+        QSettings settings;
+        QString toIgnore = settings.value("ignore_version", QVariant("<none>")).toString();
+        if (toIgnore == currentVersion) return;
+
+        QStringList currentVersionComponents = currentVersion.split(".");
+        QStringList thisVersionComponents = qApp->applicationVersion().split(".");
+
+        int mx = qMin(currentVersionComponents.count(), thisVersionComponents.count());
+        for (int i=0; i<mx; i++)
+        {
+            bool ok;
+
+            int current = currentVersionComponents.at(i).toInt(&ok);
+            if (!ok) return;
+
+            int thisVersion = thisVersionComponents.at(i).toInt(&ok);
+            if (!ok) return;
+
+            if (current > thisVersion)
+            {
+                // A new version is available
+                QString text = QString("<html>A new version of Reflow is available.<br><br>You currently have version %1, and version %2 is available.<br><br>Download it at <a href=\"http://www.reflowapp.com\">http://www.reflowapp.com</a><html>").arg(qApp->applicationVersion()).arg(currentVersion);
+                if (QMessageBox::information(this, "Information", text, QMessageBox::Ignore | QMessageBox::Ok) == QMessageBox::Ignore) {
+                    QSettings settings;
+                    settings.setValue("ignore_version", currentVersion);
+                }
+            }
+            if (current < thisVersion) return;
+        }
+    }
+    else {
+        qDebug() << "Error retrieving last version";
+    }
+
+    reply->deleteLater();
 }

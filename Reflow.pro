@@ -1,4 +1,4 @@
-QT += core gui widgets xml
+QT += core gui widgets xml network
 CONFIG += c++11
 TARGET = Reflow
 TEMPLATE = app
