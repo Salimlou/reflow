@@ -15,10 +15,21 @@
 #endif
 #include <cmath>
 #include <sstream>
+#include <locale>
 
 #ifdef _WIN32
 #  define log2(n)  (log(n)/log(2.0))
 #endif
+
+float Reflow::StringToFloat(std::string str)
+{
+    float val = 0.0f;
+    std::istringstream istr(str);
+
+    istr.imbue(std::locale("C"));
+    istr >> val;
+    return val;
+}
 
 int Reflow::Wrap12(int x) 
 {

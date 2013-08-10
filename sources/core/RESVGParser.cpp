@@ -10,6 +10,7 @@
 #include "REPainter.h"
 #include "REBezierPath.h"
 #include "REException.h"
+#include "REFunctions.h"
 
 #include <boost/algorithm/string/erase.hpp>
 
@@ -260,7 +261,7 @@ REBezierPath* RESVGParser::_Parse(const std::string& d)
                 if(!_CharacterIsCommand(command))
                 {
                     bool minus = ('-' == token->at(0));
-                    double value = (minus ? -atof(token->c_str()+1) : atof(token->c_str()));
+                    double value = (minus ? -Reflow::StringToFloat(token->substr(1)) : Reflow::StringToFloat(*token));
                     svgCommand.AddValue(value);
                 }
                 else break;

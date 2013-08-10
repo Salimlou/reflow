@@ -178,10 +178,10 @@ void REMusicalFont::OnStartElement(const REXMLParser& parser,
     {
         double x=0, y=0, w=0, h=0;
         REXMLAttributeMap::const_iterator it = attributes.end();
-        if((it = attributes.find("x")) != attributes.end()) {x = atof(it->second.c_str());}
-        if((it = attributes.find("y")) != attributes.end()) {y = atof(it->second.c_str());}
-        if((it = attributes.find("width")) != attributes.end()) {w = atof(it->second.c_str());}
-        if((it = attributes.find("height")) != attributes.end()) {h = atof(it->second.c_str());}
+        if((it = attributes.find("x")) != attributes.end()) {x = Reflow::StringToFloat(it->second);}
+        if((it = attributes.find("y")) != attributes.end()) {y = Reflow::StringToFloat(it->second);}
+        if((it = attributes.find("width")) != attributes.end()) {w = Reflow::StringToFloat(it->second);}
+        if((it = attributes.find("height")) != attributes.end()) {h = Reflow::StringToFloat(it->second);}
         _currentAnchor = REPoint(x + w/2, y + h/2);
     }
 
@@ -190,10 +190,10 @@ void REMusicalFont::OnStartElement(const REXMLParser& parser,
     {
         double x=0, y=0, w=0, h=0;
         REXMLAttributeMap::const_iterator it = attributes.end();
-        if((it = attributes.find("x")) != attributes.end()) {x = atof(it->second.c_str());}
-        if((it = attributes.find("y")) != attributes.end()) {y = atof(it->second.c_str());}
-        if((it = attributes.find("width")) != attributes.end()) {w = atof(it->second.c_str());}
-        if((it = attributes.find("height")) != attributes.end()) {h = atof(it->second.c_str());}
+        if((it = attributes.find("x")) != attributes.end()) {x = Reflow::StringToFloat(it->second);}
+        if((it = attributes.find("y")) != attributes.end()) {y = Reflow::StringToFloat(it->second);}
+        if((it = attributes.find("width")) != attributes.end()) {w = Reflow::StringToFloat(it->second);}
+        if((it = attributes.find("height")) != attributes.end()) {h = Reflow::StringToFloat(it->second);}
         _currentBoundingBox = RERect(x,y,w,h);
     }
 

@@ -25,6 +25,7 @@ namespace Reflow
     double PointsToScoreUnits(double points);
     double ScoreUnitsToPoints(double su);
     
+    float StringToFloat(std::string str);
     inline bool IsPowerOfTwo(unsigned int x) {return ((x != 0) && ((x & (~x + 1)) == x));}
     
     unsigned int StandardTuningForString(int stringIndex);
