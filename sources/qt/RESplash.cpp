@@ -3,6 +3,7 @@
 
 #include <QPainter>
 #include <QDesktopServices>
+#include <QDesktopWidget>
 #include <QUrl>
 #include <QTimer>
 
@@ -32,10 +33,14 @@ RESplash::RESplash(QWidget *parent) :
     setMaximumSize(_image.size());
     setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
 
-    QTimer *timer = new QTimer(this);
+    QDesktopWidget* desktop = QApplication::desktop();
+    QSize ds = desktop->size();
+    move((ds.width() - _image.width())/2, (ds.height() - _image.height())/2);
+
+    /*QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(accept()));
     timer->setSingleShot(true);
-    //timer->start(8000);
+    timer->start(5000);*/
 }
 
 RESplash::~RESplash()
