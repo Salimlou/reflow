@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>394</width>
-    <height>88</height>
+    <height>95</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,8 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/stop_white.png</normaloff>
-       <normalon>:/start_white.png</normalon>:/stop_white.png</iconset>
+       <normaloff>:/start_white.png</normaloff>
+       <normalon>:/stop_white.png</normalon>:/start_white.png</iconset>
      </property>
      <property name="iconSize">
       <size>
