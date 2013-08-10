@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>254</width>
+    <width>394</width>
     <height>88</height>
    </rect>
   </property>
@@ -24,9 +24,19 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/toolbar-play.png</normaloff>:/toolbar-play.png</iconset>
+       <normaloff>:/stop_white.png</normaloff>
+       <normalon>:/start_white.png</normalon>:/stop_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
      <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
@@ -54,9 +64,20 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/icon_metronome.png</normaloff>:/icon_metronome.png</iconset>
+       <normaloff>:/metronome_white.png</normaloff>
+       <normalon>:/metronome.png</normalon>
+       <activeon>:/metronome_white.png</activeon>:/metronome_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
      <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
@@ -71,9 +92,19 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/icon_metronome_preclick.png</normaloff>:/icon_metronome_preclick.png</iconset>
+       <normaloff>:/preclick_white.png</normaloff>
+       <normalon>:/preclick.png</normalon>:/preclick_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
      <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
@@ -88,9 +119,19 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/icon_follow_playback.png</normaloff>:/icon_follow_playback.png</iconset>
+       <normaloff>:/autoscroll_white.png</normaloff>
+       <normalon>:/autoscroll.png</normalon>:/autoscroll_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
      <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
@@ -105,9 +146,19 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/icon_loop.png</normaloff>:/icon_loop.png</iconset>
+       <normaloff>:/loop_on_white.png</normaloff>
+       <normalon>:/loop_on.png</normalon>:/loop_on_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
      <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
@@ -122,7 +173,17 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/icon_loop_start.png</normaloff>:/icon_loop_start.png</iconset>
+       <normaloff>:/loop_start_white.png</normaloff>
+       <normalon>:/loop_start.png</normalon>:/loop_start_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -136,7 +197,17 @@
      </property>
      <property name="icon">
       <iconset resource="../../Reflow.qrc">
-       <normaloff>:/icon_loop_end.png</normaloff>:/icon_loop_end.png</iconset>
+       <normaloff>:/loop_end-white.png</normaloff>
+       <normalon>:/loop_end.png</normalon>:/loop_end-white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

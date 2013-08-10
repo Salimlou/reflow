@@ -65,7 +65,7 @@ void REFretboardWidget::RefreshDisplay()
 
 int REFretboardWidget::stringWithYOffset(float y) const
 {
-    int str = roundtol((y-4.0) / FRETBOARD_STRING_HEIGHT);
+    int str = lround((y-4.0) / FRETBOARD_STRING_HEIGHT);
     if(str < 0) str = 0;
     if(str >= _stringCount) str = _stringCount-1;
     return str;

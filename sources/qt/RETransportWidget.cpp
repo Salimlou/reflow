@@ -15,8 +15,8 @@ RETransportWidget::RETransportWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setMinimumHeight(88);
-    setMaximumHeight(88);
+    setMinimumSize(60, 88);
+    setMaximumSize(250, 88);
 }
 
 RETransportWidget::~RETransportWidget()
