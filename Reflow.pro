@@ -14,20 +14,7 @@ DEFINES += REFLOW_VERBOSE
 }
 else {
 }
-SOURCES += "sources/core/REArchive.cpp" \
-    sources/qt/REFilePropertiesDialog.cpp \
-    sources/qt/REPianoWidget.cpp \
-    sources/qt/REPreferencesDialog.cpp \
-    sources/qt/REPartListView.cpp \
-    sources/qt/RETextDialog.cpp \
-    sources/qt/REClefDialog.cpp \
-    sources/qt/REClefPreview.cpp \
-    sources/qt/REKeySignatureDialog.cpp \
-    sources/qt/REKeySignaturePreview.cpp \
-    sources/qt/REBendDialog.cpp \
-    sources/qt/RETempoMarkerDialog.cpp \
-    sources/qt/REFretboardWidget.cpp \
-    sources/qt/RENavigatorRowItem.cpp
+SOURCES += "sources/core/REArchive.cpp"
 SOURCES += "sources/core/REAudioEngine.cpp"
 SOURCES += "sources/core/REAudioExportEngine.cpp"
 SOURCES += "sources/core/REAudioSettings.cpp"
@@ -110,20 +97,7 @@ SOURCES += "sources/core/REViewport.cpp"
 SOURCES += "sources/core/REVoice.cpp"
 SOURCES += "sources/core/REWavFileWriter.cpp"
 SOURCES += "sources/core/REWriteChunkToFile.cpp"
-HEADERS += "sources/core/REArchive.h" \
-    sources/qt/REFilePropertiesDialog.h \
-    sources/qt/REPianoWidget.h \
-    sources/qt/REPreferencesDialog.h \
-    sources/qt/REPartListView.h \
-    sources/qt/RETextDialog.h \
-    sources/qt/REClefDialog.h \
-    sources/qt/REClefPreview.h \
-    sources/qt/REKeySignatureDialog.h \
-    sources/qt/REKeySignaturePreview.h \
-    sources/qt/REBendDialog.h \
-    sources/qt/RETempoMarkerDialog.h \
-    sources/qt/REFretboardWidget.h \
-    sources/qt/RENavigatorRowItem.h
+HEADERS += "sources/core/REArchive.h"
 HEADERS += "sources/core/REAudioEngine.h"
 HEADERS += "sources/core/REAudioExportEngine.h"
 HEADERS += "sources/core/REAudioSettings.h"
@@ -214,25 +188,36 @@ SOURCES += "sources/plugins/guitarpro/REGuitarProWriter.cpp"
 HEADERS += "sources/plugins/guitarpro/REGuitarProParser.h"
 HEADERS += "sources/plugins/guitarpro/REGuitarProWriter.h"
 SOURCES += "sources/qt/main.cpp"
+SOURCES += "sources/qt/REBendDialog.cpp"
 SOURCES += "sources/qt/REBezierPath_qt.cpp"
+SOURCES += "sources/qt/REClefDialog.cpp"
+SOURCES += "sources/qt/REClefPreview.cpp"
 SOURCES += "sources/qt/RECreateTrackDialog.cpp"
 SOURCES += "sources/qt/REDocumentView.cpp"
+SOURCES += "sources/qt/REFilePropertiesDialog.cpp"
+SOURCES += "sources/qt/REFretboardWidget.cpp"
 SOURCES += "sources/qt/REFunctions_qt.cpp"
 SOURCES += "sources/qt/REGraphicsFrameItem.cpp"
 SOURCES += "sources/qt/REGraphicsPageItem.cpp"
 SOURCES += "sources/qt/REGraphicsSliceItem.cpp"
 SOURCES += "sources/qt/REGraphicsSystemItem.cpp"
 SOURCES += "sources/qt/REJackAudioEngine.cpp"
+SOURCES += "sources/qt/REKeySignatureDialog.cpp"
+SOURCES += "sources/qt/REKeySignaturePreview.cpp"
 SOURCES += "sources/qt/REMainWindow.cpp"
 SOURCES += "sources/qt/REMixerHeaderWidget.cpp"
 SOURCES += "sources/qt/REMixerRowWidget.cpp"
 SOURCES += "sources/qt/REMixerWidget.cpp"
 SOURCES += "sources/qt/REMusicalFont_qt.cpp"
 SOURCES += "sources/qt/RENavigatorHeaderWidget.cpp"
+SOURCES += "sources/qt/RENavigatorRowItem.cpp"
 SOURCES += "sources/qt/RENavigatorScene.cpp"
 SOURCES += "sources/qt/REPainter_qt.cpp"
 SOURCES += "sources/qt/REPartListModel.cpp"
+SOURCES += "sources/qt/REPartListView.cpp"
+SOURCES += "sources/qt/REPianoWidget.cpp"
 SOURCES += "sources/qt/REPlaybackCursorItem.cpp"
+SOURCES += "sources/qt/REPreferencesDialog.cpp"
 SOURCES += "sources/qt/REPropertiesDialog.cpp"
 SOURCES += "sources/qt/REQtPalette.cpp"
 SOURCES += "sources/qt/REQtViewport.cpp"
@@ -244,8 +229,11 @@ SOURCES += "sources/qt/REScoreSceneView.cpp"
 SOURCES += "sources/qt/RESectionListModel.cpp"
 SOURCES += "sources/qt/RESequencerWidget.cpp"
 SOURCES += "sources/qt/RESoundFontManager_qt.cpp"
+SOURCES += "sources/qt/RESplash.cpp"
 SOURCES += "sources/qt/REStringTuningWidget.cpp"
 SOURCES += "sources/qt/RETabCursorItem.cpp"
+SOURCES += "sources/qt/RETempoMarkerDialog.cpp"
+SOURCES += "sources/qt/RETextDialog.cpp"
 SOURCES += "sources/qt/RETimeSignatureDialog.cpp"
 SOURCES += "sources/qt/RETrackListModel.cpp"
 SOURCES += "sources/qt/RETrackListView.cpp"
@@ -253,21 +241,32 @@ SOURCES += "sources/qt/RETransportWidget.cpp"
 SOURCES += "sources/qt/RETuningDialog.cpp"
 SOURCES += "sources/qt/REUndoCommand.cpp"
 SOURCES += "sources/qt/REXmlParser_qt.cpp"
+HEADERS += "sources/qt/REBendDialog.h"
+HEADERS += "sources/qt/REClefDialog.h"
+HEADERS += "sources/qt/REClefPreview.h"
 HEADERS += "sources/qt/RECreateTrackDialog.h"
 HEADERS += "sources/qt/REDocumentView.h"
+HEADERS += "sources/qt/REFilePropertiesDialog.h"
+HEADERS += "sources/qt/REFretboardWidget.h"
 HEADERS += "sources/qt/REGraphicsFrameItem.h"
 HEADERS += "sources/qt/REGraphicsPageItem.h"
 HEADERS += "sources/qt/REGraphicsSliceItem.h"
 HEADERS += "sources/qt/REGraphicsSystemItem.h"
 HEADERS += "sources/qt/REJackAudioEngine.h"
+HEADERS += "sources/qt/REKeySignatureDialog.h"
+HEADERS += "sources/qt/REKeySignaturePreview.h"
 HEADERS += "sources/qt/REMainWindow.h"
 HEADERS += "sources/qt/REMixerHeaderWidget.h"
 HEADERS += "sources/qt/REMixerRowWidget.h"
 HEADERS += "sources/qt/REMixerWidget.h"
 HEADERS += "sources/qt/RENavigatorHeaderWidget.h"
+HEADERS += "sources/qt/RENavigatorRowItem.h"
 HEADERS += "sources/qt/RENavigatorScene.h"
 HEADERS += "sources/qt/REPartListModel.h"
+HEADERS += "sources/qt/REPartListView.h"
+HEADERS += "sources/qt/REPianoWidget.h"
 HEADERS += "sources/qt/REPlaybackCursorItem.h"
+HEADERS += "sources/qt/REPreferencesDialog.h"
 HEADERS += "sources/qt/REPropertiesDialog.h"
 HEADERS += "sources/qt/REQtPalette.h"
 HEADERS += "sources/qt/REQtViewport.h"
@@ -278,29 +277,33 @@ HEADERS += "sources/qt/REScoreScene.h"
 HEADERS += "sources/qt/REScoreSceneView.h"
 HEADERS += "sources/qt/RESectionListModel.h"
 HEADERS += "sources/qt/RESequencerWidget.h"
+HEADERS += "sources/qt/RESplash.h"
 HEADERS += "sources/qt/REStringTuningWidget.h"
 HEADERS += "sources/qt/RETabCursorItem.h"
+HEADERS += "sources/qt/RETempoMarkerDialog.h"
+HEADERS += "sources/qt/RETextDialog.h"
 HEADERS += "sources/qt/RETimeSignatureDialog.h"
 HEADERS += "sources/qt/RETrackListModel.h"
 HEADERS += "sources/qt/RETrackListView.h"
 HEADERS += "sources/qt/RETransportWidget.h"
 HEADERS += "sources/qt/RETuningDialog.h"
 HEADERS += "sources/qt/REUndoCommand.h"
-FORMS += "sources/qt/RECreateTrackDialog.ui" \
-    sources/qt/REFilePropertiesDialog.ui \
-    sources/qt/REPreferencesDialog.ui \
-    sources/qt/RETextDialog.ui \
-    sources/qt/REClefDialog.ui \
-    sources/qt/REKeySignatureDialog.ui \
-    sources/qt/REBendDialog.ui \
-    sources/qt/RETempoMarkerDialog.ui
+FORMS += "sources/qt/REBendDialog.ui"
+FORMS += "sources/qt/REClefDialog.ui"
+FORMS += "sources/qt/RECreateTrackDialog.ui"
+FORMS += "sources/qt/REFilePropertiesDialog.ui"
+FORMS += "sources/qt/REKeySignatureDialog.ui"
 FORMS += "sources/qt/REMainWindow.ui"
 FORMS += "sources/qt/REMixerHeaderWidget.ui"
 FORMS += "sources/qt/REMixerRowWidget.ui"
+FORMS += "sources/qt/REPreferencesDialog.ui"
 FORMS += "sources/qt/REPropertiesDialog.ui"
 FORMS += "sources/qt/RERehearsalDialog.ui"
 FORMS += "sources/qt/RERepeatDialog.ui"
+FORMS += "sources/qt/RESplash.ui"
 FORMS += "sources/qt/REStringTuningWidget.ui"
+FORMS += "sources/qt/RETempoMarkerDialog.ui"
+FORMS += "sources/qt/RETextDialog.ui"
 FORMS += "sources/qt/RETimeSignatureDialog.ui"
 FORMS += "sources/qt/RETransportWidget.ui"
 FORMS += "sources/qt/RETuningDialog.ui"
@@ -313,12 +316,12 @@ INCLUDEPATH += "sources/plugins/guitarpro"
 INCLUDEPATH += "sources/qt"
 INCLUDEPATH += "depends"
 win32 {
-	INCLUDEPATH += "C:\boost_1_52_0"
+    INCLUDEPATH += "C:\boost_1_52_0"
     INCLUDEPATH += "C:\Program Files (x86)\Jack\includes"
-	DEFINES += BOOST_MEM_FN_ENABLE_STDCALL
-	DEFINES += __WINDOWS_DS__
+    DEFINES += BOOST_MEM_FN_ENABLE_STDCALL
+    DEFINES += __WINDOWS_DS__
     QMAKE_LIBDIR += "C:\Program Files (x86)\Jack\lib"
-  LIBS += dsound.lib ole32.lib libjack.lib
+    LIBS += dsound.lib ole32.lib libjack.lib
     RC_FILE = Reflow.rc
 }
 macx {

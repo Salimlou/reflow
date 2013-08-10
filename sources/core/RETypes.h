@@ -93,9 +93,11 @@
 
 
 #define REFLOW_URL_REFLOW_WEBSITE       "http://www.reflowapp.com"
-#define REFLOW_URL_REFLOW_FORUMS        "http://getsatisfaction.com/reflow"
+#define REFLOW_URL_REFLOW_FORUMS        "https://reflowforums.com"
+#define REFLOW_URL_REFLOW_WIKI          "http://www.reflowwiki.com"
 #define REFLOW_URL_REFLOW_TWITTER       "http://twitter.com/reflowapp"
 #define REFLOW_URL_REFLOW_FACEBOOK      "http://www.facebook.com/reflowapp"
+#define REFLOW_URL_REFLOW_GITHUB        "http://github.com/gargant/reflow"
 #define REFLOW_URL_REFLOW_DEVBLOG       "http://reflowapp.tumblr.com"
 
 class REObject;

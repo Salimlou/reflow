@@ -1,5 +1,6 @@
 #include <QApplication>
 #include "REMainWindow.h"
+#include "RESplash.h"
 
 #include <RESong.h>
 #include <REScoreSettings.h>
@@ -108,6 +109,10 @@ int main(int argc, char *argv[])
     a.setOrganizationName("Gargant Studios");
     a.setOrganizationDomain("gargant.com");
     a.setApplicationName("Reflow");
+
+    // Splash screen
+    RESplash splash;
+    splash.show();
 
     // Default soundfont path
     RESoundFontManager::Instance().SetDefaultSoundFontPath(DataPath() + "/GeneralUser.sf2");
