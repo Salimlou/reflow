@@ -31,7 +31,7 @@ RESplash::RESplash(QWidget *parent) :
     ui->copyrightLabel->setStyleSheet(_labelStylesheet);
 
     ui->versionLabel->setStyleSheet(_versionLabelStylesheet);
-    ui->versionLabel->setText(qApp->applicationVersion());
+    ui->versionLabel->setText(qApp->applicationVersion() + " Alpha");
 
     setMinimumSize(_image.size());
     setMaximumSize(_image.size());
