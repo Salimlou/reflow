@@ -316,11 +316,11 @@ INCLUDEPATH += "sources/plugins/guitarpro"
 INCLUDEPATH += "sources/qt"
 INCLUDEPATH += "depends"
 win32 {
-    INCLUDEPATH += "C:\boost_1_52_0"
-    INCLUDEPATH += "C:\Program Files (x86)\Jack\includes"
+    INCLUDEPATH += "$$(BOOST_HOME)"
+    INCLUDEPATH += "$$(JACK_HOME)\includes"
     DEFINES += BOOST_MEM_FN_ENABLE_STDCALL
     DEFINES += __WINDOWS_DS__
-    QMAKE_LIBDIR += "C:\Program Files (x86)\Jack\lib"
+    QMAKE_LIBDIR += "$$(JACK_HOME)\lib"
     LIBS += dsound.lib ole32.lib libjack.lib
     RC_FILE = Reflow.rc
 }
