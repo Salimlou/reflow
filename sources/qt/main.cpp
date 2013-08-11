@@ -32,13 +32,9 @@
 std::string BundlePath()
 {
 #if defined(WIN32)
-#  ifdef DEBUG
-    return "..";
-#  else
-    return ".";
-#  endif
+    return qApp->applicationDirPath().toStdString();
 #elif defined(LINUX)
-    return ".";
+    return qApp->applicationDirPath().toStdString();
 #elif defined(MACOSX)
     char path[1024];
     CFBundleRef mainBundle = CFBundleGetMainBundle();
